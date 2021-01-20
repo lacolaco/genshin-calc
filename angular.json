@@ -5,10 +5,10 @@
       "projectType": "application",
       "root": "apps/genshin-calc",
       "sourceRoot": "apps/genshin-calc/src",
-      "prefix": "genshin-calc",
+      "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/apps/genshin-calc",
             "index": "apps/genshin-calc/src/index.html",
@@ -16,12 +16,12 @@
             "polyfills": "apps/genshin-calc/src/polyfills.ts",
             "tsConfig": "apps/genshin-calc/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/genshin-calc/src/favicon.ico",
-              "apps/genshin-calc/src/assets"
-            ],
+            "assets": ["apps/genshin-calc/src/favicon.ico", "apps/genshin-calc/src/assets"],
             "styles": ["apps/genshin-calc/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -54,7 +54,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "genshin-calc:build"
           },
@@ -73,10 +73,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/genshin-calc/src/**/*.ts",
-              "apps/genshin-calc/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/genshin-calc/src/**/*.ts", "apps/genshin-calc/src/**/*.html"]
           }
         },
         "test": {
@@ -114,6 +111,49 @@
           }
         }
       }
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/core/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core"],
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "ui",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -139,7 +179,7 @@
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss"
+      "style": "css"
     }
   },
   "defaultProject": "genshin-calc"

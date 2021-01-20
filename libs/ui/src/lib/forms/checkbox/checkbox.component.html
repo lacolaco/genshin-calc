@@ -1,0 +1,4 @@
+<label class="block py-2">
+  <input type="checkbox" [value]="value" (change)="onChecked($event.target.checked)" class="rounded-md mr-4" />
+  <span class="text-sm"><ng-content></ng-content></span>
+</label>

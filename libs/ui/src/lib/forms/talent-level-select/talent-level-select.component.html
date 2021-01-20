@@ -1,0 +1,6 @@
+<label class="block">
+  <ui-control-label>天賦レベル</ui-control-label>
+  <select (change)="onSelect($event.target.value)" class="block text-sm w-32 px-2 rounded-md">
+    <option *ngFor="let i of talentLevelArray" [value]="i" [selected]="i === value">{{ i }}</option>
+  </select>
+</label>

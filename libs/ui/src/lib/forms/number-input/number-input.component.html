@@ -1,0 +1,11 @@
+<label class="block">
+  <ui-control-label>{{ label }}</ui-control-label>
+  <input
+    type="number"
+    class="block px-2 w-32 rounded-md text-sm"
+    [min]="min"
+    [max]="max"
+    [value]="value"
+    (input)="onInputChange($event.target.value)"
+  />
+</label>
