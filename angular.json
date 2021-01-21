@@ -16,7 +16,7 @@
             "polyfills": "apps/genshin-calc/src/polyfills.ts",
             "tsConfig": "apps/genshin-calc/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/genshin-calc/src/favicon.ico", "apps/genshin-calc/src/assets"],
+            "assets": ["apps/genshin-calc/src/favicon.svg", "apps/genshin-calc/src/assets"],
             "styles": ["apps/genshin-calc/src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
