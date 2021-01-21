@@ -2,7 +2,6 @@ export type CharacterStats = {
   atk: number;
   hp: number;
   def: number;
-  em: number;
 };
 
 export type CriticalDamageParams = {
@@ -12,7 +11,8 @@ export type CriticalDamageParams = {
 
 export type TalentLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
-export type BaseSkillDamageParams<Stats extends Partial<CharacterStats> = Pick<CharacterStats, 'atk'>> = {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type BaseSkillDamageParams<Stats extends Partial<CharacterStats> = {}> = {
   talentLevel: TalentLevel;
   stats: Stats;
 };
@@ -30,12 +30,19 @@ export type BaseDamageReductionParams<Override = unknown> = {
   resistanceDebuff: number;
 } & Override;
 
+export type ElementalReactionParams = {
+  elementalMastery: number;
+  reactionBonus: number;
+};
+
+export type CalculationResult = {
+  baseline: number;
+  critical: number;
+  average: number;
+};
+
 export type Calculation = {
   skillDamage: number;
   damageBonus: number;
-  result: {
-    baseline: number;
-    critical: number;
-    average: number;
-  };
+  result: CalculationResult;
 };

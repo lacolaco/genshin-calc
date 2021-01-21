@@ -3,6 +3,9 @@ module.exports = {
   purge: {
     content: ['./apps/**/*.{html,ts}', './libs/**/*.{html,ts}'],
   },
+  corePlugins: {
+    grid: false,
+  },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {},

@@ -1,8 +1,7 @@
 import { BaseDamageBonusParams, BaseDamageReductionParams, BaseSkillDamageParams, CharacterStats, TalentLevel } from '../types';
-import { calculateDefenseMutiplier } from '../utils';
 import { Calculator } from './base';
 
-const burstSkillDamageMap: Record<TalentLevel, number> = {
+const skillDamageMap: Record<TalentLevel, number> = {
   1: 4.01,
   2: 4.44,
   3: 4.88,
@@ -24,15 +23,12 @@ type SkillDamageParams = BaseSkillDamageParams<Pick<CharacterStats, 'atk' | 'hp'
 type DamageBonusParams = BaseDamageBonusParams & { burstDamageBonus: number };
 type DamageReductionParams = BaseDamageReductionParams;
 
-export class ZhongliBurstCalculator extends Calculator<SkillDamageParams, DamageBonusParams, DamageReductionParams> {
+export class ZhongliPlanetBefallCalculator extends Calculator<SkillDamageParams, DamageBonusParams, DamageReductionParams> {
   protected getSkillDamage({ talentLevel, stats }: SkillDamageParams) {
-    return stats.atk * burstSkillDamageMap[talentLevel] + stats.hp * 0.33;
+    return stats.atk * skillDamageMap[talentLevel] + stats.hp * 0.33;
   }
 
-  protected getDamageBonus({ elementalDamageBonus, enableGeoResonance, burstDamageBonus }: DamageBonusParams) {
+  protected getDamageBonusMultiplier({ elementalDamageBonus, enableGeoResonance, burstDamageBonus }: DamageBonusParams) {
     return elementalDamageBonus + burstDamageBonus + (enableGeoResonance ? 0.15 : 0);
-  }
-  protected getDamageReduction({ characterLevel, enemyLevel, baseResistance, resistanceBonus, resistanceDebuff }: DamageReductionParams) {
-    return calculateDefenseMutiplier(characterLevel, enemyLevel, baseResistance + resistanceBonus - resistanceDebuff);
   }
 }

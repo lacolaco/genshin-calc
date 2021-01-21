@@ -1,13 +1,14 @@
-import { ZhongliBurstCalculator } from './zhongli';
+import { ZhongliPlanetBefallCalculator } from './zhongli-planet-befall';
 
 export function expectDamage(actual: number, expected: number) {
-  const diff = Math.abs(expected - actual);
-  expect(diff / expected).toBeLessThanOrEqual(0.01);
+  const delta = expected * 0.01;
+  expect(actual).toBeLessThanOrEqual(expected + delta);
+  expect(actual).toBeGreaterThanOrEqual(expected - delta);
 }
 
 describe('burst damage', () => {
   test('case 1: minimal', () => {
-    const calculator = new ZhongliBurstCalculator();
+    const calculator = new ZhongliPlanetBefallCalculator();
 
     const { result } = calculator.calc({
       skillDamage: {
@@ -41,7 +42,7 @@ describe('burst damage', () => {
   });
 
   test('case 2: no buff', () => {
-    const calculator = new ZhongliBurstCalculator();
+    const calculator = new ZhongliPlanetBefallCalculator();
 
     const { result } = calculator.calc({
       skillDamage: {
@@ -72,7 +73,7 @@ describe('burst damage', () => {
   });
 
   test('case 3: buff', () => {
-    const calculator = new ZhongliBurstCalculator();
+    const calculator = new ZhongliPlanetBefallCalculator();
 
     const { result } = calculator.calc({
       skillDamage: {

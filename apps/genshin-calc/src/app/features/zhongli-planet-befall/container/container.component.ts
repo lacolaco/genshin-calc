@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { ZhongliBurstCalculator } from '@genshincalc/core';
+import { ZhongliPlanetBefallCalculator } from '@genshincalc/core';
 import { RxState } from '@rx-angular/state';
 import { initialState, State } from '../state';
 import { FormValues } from '../types';
 
-const calculator = new ZhongliBurstCalculator();
+const calculator = new ZhongliPlanetBefallCalculator();
 
 @Component({
-  selector: 'app-zhongli-burst-container',
-  templateUrl: './zhongli-burst-container.component.html',
-  styleUrls: ['./zhongli-burst-container.component.css'],
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.css'],
 })
-export class ZhongliBurstContainerComponent extends RxState<State> {
+export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
   readonly state$ = this.select();
 
   constructor() {

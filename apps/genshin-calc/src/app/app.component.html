@@ -1,4 +1,4 @@
-<header class="flex flex-wrap justify-start items-center border-b-2 border-gray-200 px-4 py-3 space-x-1">
+<header class="flex flex-wrap justify-start items-center border-b-1 border-gray-200 px-4 py-3 space-x-1">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="block w-8 h-8">
     <path
       stroke-linecap="round"
@@ -11,12 +11,12 @@
   <span class="text-sm text-gray-500">Genshin Impact Damage Calculator</span>
 </header>
 
-<main class="bg-gray-100 flex-auto flex flex-col">
-  <header class="p-4 border-b border-gray-200">
-    <a routerLink="/zhongli-burst" class="">鍾離: 天星</a>
-  </header>
-
-  <section class="flex-auto">
+<main class="flex-auto flex flex-col bg-gray-100">
+  <div class="container mx-auto">
     <router-outlet></router-outlet>
-  </section>
+  </div>
+
+  <div class="container mx-auto mt-4 mb-8">
+    <app-calculator-nav></app-calculator-nav>
+  </div>
 </main>

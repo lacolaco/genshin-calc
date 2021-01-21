@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZhongliBurstContainerComponent } from './zhongli-burst-container.component';
+import { GanyuLiutianArcheryContainerComponent } from './container.component';
 
 describe('ZhongliBurstContainerComponent', () => {
-  let component: ZhongliBurstContainerComponent;
-  let fixture: ComponentFixture<ZhongliBurstContainerComponent>;
+  let component: GanyuLiutianArcheryContainerComponent;
+  let fixture: ComponentFixture<GanyuLiutianArcheryContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ZhongliBurstContainerComponent],
+      declarations: [GanyuLiutianArcheryContainerComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ZhongliBurstContainerComponent);
+    fixture = TestBed.createComponent(GanyuLiutianArcheryContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

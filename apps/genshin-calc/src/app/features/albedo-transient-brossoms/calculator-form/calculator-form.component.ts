@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { FormValues } from '../types';
 
 @Component({
-  selector: 'app-zhongli-burst-calculator-form',
+  selector: 'app-albedo-transient-blossoms-calculator-form',
   templateUrl: './calculator-form.component.html',
   styleUrls: ['./calculator-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,12 +23,11 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   readonly form = new FormGroup<FormValues>({
     skillDamage: new FormGroup({
       talentLevel: new FormControl(),
-      atk: new FormControl(),
-      hp: new FormControl(),
+      def: new FormControl(),
     }),
     damageBonus: new FormGroup({
       elementalDamageBonus: new FormControl(),
-      burstDamageBonus: new FormControl(),
+      skillDamageBonus: new FormControl(),
       enableGeoResonance: new FormControl(),
     }),
     damageReduction: new FormGroup({

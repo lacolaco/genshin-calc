@@ -1,0 +1,25 @@
+<div class="border border-gray-200 bg-white rounded-md px-2 py-4 shadow">
+  <div class="grid grid-cols-3 items-center justify-items-center divide-x divide-gray-200">
+    <div class="flex justify-center w-full">
+      <div>
+        <span class="block text-xs text-gray-700"> 通常 </span>
+        <span class="block text-lg font-bold md:text-3xl {{ textColor }}">{{ calculationResult.baseline | number }}</span>
+      </div>
+    </div>
+    <div class="flex justify-center w-full">
+      <div>
+        <span class="block text-xs text-gray-700"> 会心 </span>
+        <span class="block text-lg font-bold md:text-3xl {{ textColor }}">{{ calculationResult.critical | number }}</span>
+      </div>
+    </div>
+    <div class="flex justify-center w-full">
+      <div>
+        <span class="block text-xs text-gray-700"> 期待値 </span>
+        <span class="block text-lg font-bold md:text-3xl {{ textColor }}">{{ calculationResult.average | number }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex flex-row justify-end">
+  <span class="text-xs text-gray-500">実際のダメージとは±1%程度の誤差があります</span>
+</div>
