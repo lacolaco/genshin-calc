@@ -1,24 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { UiFormsModule } from '@genshin-calc/ui';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorFormComponent } from './calculator-form.component';
 
 describe('CalculatorFormComponent', () => {
-  let component: CalculatorFormComponent;
-  let fixture: ComponentFixture<CalculatorFormComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CalculatorFormComponent],
-    }).compileComponents();
+  let spectator: Spectator<CalculatorFormComponent>;
+  const createComponent = createComponentFactory({
+    component: CalculatorFormComponent,
+    imports: [UiFormsModule, ReactiveFormsModule],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalculatorFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  test('should create', () => {
+    expect(spectator.component).toBeTruthy();
   });
 });

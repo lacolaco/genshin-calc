@@ -1,24 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorNavComponent } from './calculator-nav.component';
 
 describe('CalculatorNavComponent', () => {
-  let component: CalculatorNavComponent;
-  let fixture: ComponentFixture<CalculatorNavComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CalculatorNavComponent],
-    }).compileComponents();
+  let spectator: Spectator<CalculatorNavComponent>;
+  const createComponent = createComponentFactory({
+    component: CalculatorNavComponent,
+    imports: [RouterTestingModule],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalculatorNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  test('should create', () => {
+    expect(spectator.component).toBeTruthy();
   });
 });

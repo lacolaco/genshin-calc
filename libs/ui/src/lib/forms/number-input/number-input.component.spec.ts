@@ -1,24 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { ControlLabelComponent } from '../control-label/control-label.component';
 import { NumberInputComponent } from './number-input.component';
 
 describe('NumberInputComponent', () => {
-  let component: NumberInputComponent;
-  let fixture: ComponentFixture<NumberInputComponent>;
+  let spectator: Spectator<NumberInputComponent>;
+  const createComponent = createComponentFactory({
+    component: NumberInputComponent,
+    declarations: [ControlLabelComponent],
+  });
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [NumberInputComponent],
-    }).compileComponents();
+    spectator = createComponent({});
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NumberInputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  test('should create', () => {
+    expect(spectator.component).toBeTruthy();
   });
 });

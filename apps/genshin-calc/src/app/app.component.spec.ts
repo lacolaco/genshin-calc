@@ -1,31 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { AppComponent } from './app.component';
+import { CalculatorNavComponent } from './core/calculator-nav/calculator-nav.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-    }).compileComponents();
+  let spectator: Spectator<AppComponent>;
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    imports: [RouterTestingModule],
+    declarations: [CalculatorNavComponent],
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
-  it(`should have as title 'genshin-calc'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('genshin-calc');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to genshin-calc!'
-    );
+  it('should create', () => {
+    expect(spectator.component).toBeDefined();
   });
 });

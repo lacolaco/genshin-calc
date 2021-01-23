@@ -20,7 +20,7 @@ export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
 
   onFormValueChange(values: FormValues) {
     const { skillDamage, damageBonus, damageReduction, critical, elementalReaction } = values;
-    const result = calculator.calc({
+    const calculation = calculator.calc({
       skillDamage: {
         talentLevel: skillDamage.talentLevel,
         stats: {
@@ -50,8 +50,6 @@ export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
           }
         : undefined,
     });
-    setTimeout(() => {
-      this.set({ calculation: result });
-    });
+    this.set({ calculation });
   }
 }
