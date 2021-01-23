@@ -20,7 +20,7 @@ export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
 
   onFormValueChange(values: FormValues) {
     const { skillDamage, damageBonus, damageReduction, critical } = values;
-    const result = calculator.calc({
+    const calculation = calculator.calc({
       skillDamage: {
         talentLevel: skillDamage.talentLevel,
         stats: {
@@ -44,8 +44,6 @@ export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
         resistanceDebuff: 0,
       },
     });
-    setTimeout(() => {
-      this.set({ calculation: result });
-    });
+    this.set({ calculation });
   }
 }
