@@ -10,4 +10,4 @@ jobs:
           node-version: 14
       - run: yarn install --frozen-lockfile
       - run: yarn lint
-      - run: yarn affected:test 
+      - run: yarn all:test 
