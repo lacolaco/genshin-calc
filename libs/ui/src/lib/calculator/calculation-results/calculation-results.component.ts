@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CalculationResult } from '@genshincalc/core';
+import { CalculationResult } from '@genshin-calc/core';
 
 @Component({
   selector: 'ui-calculation-results',

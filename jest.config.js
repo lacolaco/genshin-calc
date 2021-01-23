@@ -1,3 +1,3 @@
 module.exports = {
-  projects: ['<rootDir>/apps/genshin-calc', '<rootDir>/libs/core', '<rootDir>/libs/ui/ui', '<rootDir>/libs/ui'],
+  projects: ['<rootDir>/apps/app', '<rootDir>/libs/core', '<rootDir>/libs/ui'],
 };
