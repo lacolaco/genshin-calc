@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Calculation } from '@genshincalc/core';
+import { Calculation } from '@genshin-calc/core';
 import { FormControl, FormGroup } from '@ngneat/reactive-forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

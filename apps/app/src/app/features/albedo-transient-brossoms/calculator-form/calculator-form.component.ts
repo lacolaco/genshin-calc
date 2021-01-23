@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Calculation } from '@genshincalc/core';
+import { Calculation } from '@genshin-calc/core';
 import { FormControl, FormGroup } from '@ngneat/reactive-forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -23,12 +23,12 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   readonly form = new FormGroup<FormValues>({
     skillDamage: new FormGroup({
       talentLevel: new FormControl(),
-      atk: new FormControl(),
+      def: new FormControl(),
     }),
     damageBonus: new FormGroup({
       elementalDamageBonus: new FormControl(),
+      skillDamageBonus: new FormControl(),
       enableGeoResonance: new FormControl(),
-      chargedAttackDamageBonus: new FormControl(),
     }),
     damageReduction: new FormGroup({
       characterLevel: new FormControl(),
@@ -38,11 +38,6 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     critical: new FormGroup({
       criticalRate: new FormControl(),
       criticalDamage: new FormControl(),
-    }),
-    elementalReaction: new FormGroup({
-      enableMeltReaction: new FormControl(),
-      elementalMastery: new FormControl(),
-      reactionBonus: new FormControl(),
     }),
   });
 

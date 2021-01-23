@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@genshincalc/core": ["libs/core/src/index.ts"],
+      "@genshin-calc/core": ["libs/core/src/index.ts"],
       "@genshin-calc/ui": ["libs/ui/src/index.ts"]
     }
   },

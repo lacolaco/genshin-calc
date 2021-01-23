@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { GanyuLiutianArcheryCalculator } from '@genshincalc/core';
+import { ZhongliPlanetBefallCalculator } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { initialState, State } from '../state';
 import { FormValues } from '../types';
 
-const calculator = new GanyuLiutianArcheryCalculator();
+const calculator = new ZhongliPlanetBefallCalculator();
 
 @Component({
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css'],
 })
-export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
+export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
   readonly state$ = this.select();
 
   constructor() {
@@ -19,18 +19,19 @@ export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
   }
 
   onFormValueChange(values: FormValues) {
-    const { skillDamage, damageBonus, damageReduction, critical, elementalReaction } = values;
+    const { skillDamage, damageBonus, damageReduction, critical } = values;
     const calculation = calculator.calc({
       skillDamage: {
         talentLevel: skillDamage.talentLevel,
         stats: {
           atk: skillDamage.atk,
+          hp: skillDamage.hp,
         },
       },
       damageBonus: {
         elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
+        burstDamageBonus: damageBonus.burstDamageBonus / 100,
         enableGeoResonance: damageBonus.enableGeoResonance,
-        chargedAttackDamageBonus: damageBonus.chargedAttackDamageBonus / 100,
       },
       critical: {
         criticalRate: critical.criticalRate / 100,
@@ -43,12 +44,6 @@ export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
         resistanceBonus: 0,
         resistanceDebuff: 0,
       },
-      elementalReaction: elementalReaction.enableMeltReaction
-        ? {
-            elementalMastery: elementalReaction.elementalMastery,
-            reactionBonus: elementalReaction.reactionBonus / 100,
-          }
-        : undefined,
     });
     this.set({ calculation });
   }

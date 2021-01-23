@@ -1,16 +1,14 @@
-import { TalentLevel } from '@genshincalc/core';
+import { TalentLevel } from '@genshin-calc/core';
 
 export type FormValues = {
   skillDamage: {
     talentLevel: TalentLevel;
-    atk: number;
-    hp: number;
+    def: number;
   };
   damageBonus: {
     elementalDamageBonus: number;
-    burstDamageBonus: number;
-
     enableGeoResonance: boolean;
+    skillDamageBonus: number;
   };
   damageReduction: {
     characterLevel: number;

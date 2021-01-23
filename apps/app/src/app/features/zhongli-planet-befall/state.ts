@@ -1,4 +1,4 @@
-import { Calculation } from '@genshincalc/core';
+import { Calculation } from '@genshin-calc/core';
 import { FormValues } from './types';
 
 export interface State {

@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { AlbedoTransientBlossomsCalculator } from '@genshincalc/core';
+import { GanyuLiutianArcheryCalculator } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { initialState, State } from '../state';
 import { FormValues } from '../types';
 
-const calculator = new AlbedoTransientBlossomsCalculator();
+const calculator = new GanyuLiutianArcheryCalculator();
 
 @Component({
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css'],
 })
-export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
+export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
   readonly state$ = this.select();
 
   constructor() {
@@ -19,18 +19,18 @@ export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
   }
 
   onFormValueChange(values: FormValues) {
-    const { skillDamage, damageBonus, damageReduction, critical } = values;
+    const { skillDamage, damageBonus, damageReduction, critical, elementalReaction } = values;
     const calculation = calculator.calc({
       skillDamage: {
         talentLevel: skillDamage.talentLevel,
         stats: {
-          def: skillDamage.def,
+          atk: skillDamage.atk,
         },
       },
       damageBonus: {
         elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
         enableGeoResonance: damageBonus.enableGeoResonance,
-        skillDamageBonus: damageBonus.skillDamageBonus / 100,
+        chargedAttackDamageBonus: damageBonus.chargedAttackDamageBonus / 100,
       },
       critical: {
         criticalRate: critical.criticalRate / 100,
@@ -43,6 +43,12 @@ export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
         resistanceBonus: 0,
         resistanceDebuff: 0,
       },
+      elementalReaction: elementalReaction.enableMeltReaction
+        ? {
+            elementalMastery: elementalReaction.elementalMastery,
+            reactionBonus: elementalReaction.reactionBonus / 100,
+          }
+        : undefined,
     });
     this.set({ calculation });
   }

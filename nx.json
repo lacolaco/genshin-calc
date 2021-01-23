@@ -16,8 +16,8 @@
     }
   },
   "projects": {
-    "genshin-calc": { "tags": [] },
-    "genshin-calc-e2e": { "tags": [], "implicitDependencies": ["genshin-calc"] },
+    "app": { "tags": [] },
+    "app-e2e": { "tags": [], "implicitDependencies": ["app"] },
     "core": { "tags": [] },
     "ui": { "tags": [] }
   }

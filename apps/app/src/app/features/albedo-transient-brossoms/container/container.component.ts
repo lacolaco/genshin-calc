@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { ZhongliPlanetBefallCalculator } from '@genshincalc/core';
+import { AlbedoTransientBlossomsCalculator } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { initialState, State } from '../state';
 import { FormValues } from '../types';
 
-const calculator = new ZhongliPlanetBefallCalculator();
+const calculator = new AlbedoTransientBlossomsCalculator();
 
 @Component({
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css'],
 })
-export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
+export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
   readonly state$ = this.select();
 
   constructor() {
@@ -24,14 +24,13 @@ export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
       skillDamage: {
         talentLevel: skillDamage.talentLevel,
         stats: {
-          atk: skillDamage.atk,
-          hp: skillDamage.hp,
+          def: skillDamage.def,
         },
       },
       damageBonus: {
         elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
-        burstDamageBonus: damageBonus.burstDamageBonus / 100,
         enableGeoResonance: damageBonus.enableGeoResonance,
+        skillDamageBonus: damageBonus.skillDamageBonus / 100,
       },
       critical: {
         criticalRate: critical.criticalRate / 100,
