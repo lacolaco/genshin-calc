@@ -1,47 +1,23 @@
 import { Component } from '@angular/core';
 import { calculateZhongliPlanetBefall } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
+import { useCalculator } from '../../../shared/operators/use-calculator';
 import { initialState, State } from '../state';
-import { FormValues } from '../types';
+import { CalculatorParams } from '../types';
 
 @Component({
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css'],
 })
 export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
-  readonly state$ = this.select();
+  readonly state$ = this.select().pipe(useCalculator(calculateZhongliPlanetBefall));
 
   constructor() {
     super();
     this.set(initialState);
   }
 
-  onFormValueChange(values: FormValues) {
-    const { skillDamage, damageBonus, damageReduction, critical } = values;
-    const calculation = calculateZhongliPlanetBefall({
-      talentLevel: skillDamage.talentLevel,
-      character: {
-        level: damageReduction.characterLevel,
-        stats: {
-          atk: skillDamage.atk,
-          hp: skillDamage.hp,
-          criticalRate: critical.criticalRate / 100,
-          criticalDamage: critical.criticalDamage / 100,
-        },
-        bonus: {
-          elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
-          attackTypeDamageBonus: damageBonus.burstDamageBonus / 100,
-          enableGeoResonanceBonus: damageBonus.enableGeoResonance,
-        },
-      },
-      enemy: {
-        level: damageReduction.enemyLevel,
-        resistance: {
-          baseResistance: damageReduction.baseResistance / 100,
-          resistanceBonus: 0,
-        },
-      },
-    });
-    this.set({ calculation });
+  calculate(calculatorParams: CalculatorParams) {
+    this.set({ calculatorParams });
   }
 }

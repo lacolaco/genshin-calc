@@ -34,7 +34,7 @@ describe('NumberInputComponent', () => {
       spectator.detectComponentChanges();
 
       const input = spectator.query<HTMLInputElement>('input');
-      expect(input && input.value).toBe('50');
+      expect(input && input.value).toBe('50.0');
     });
   });
 

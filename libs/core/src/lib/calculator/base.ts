@@ -1,4 +1,4 @@
-import { CharacterStats, ElementalReactions, TalentLevel } from '../types';
+import { Calculation, Calculator, CharacterStats, ElementalReactions, TalentLevel } from '../types';
 import { calculateDefenseMutiplier } from '../utils';
 
 export type TalentParams = {
@@ -50,15 +50,15 @@ type CalculatorFactory<SkillDamageParams, DamageBonusParams, AmplifiedDamageMult
 
 export function createCalculator<SkillDamageParams, DamageBonusMultiplierParams, AmplifiedDamageMultiplierParams>(
   factory: CalculatorFactory<SkillDamageParams, DamageBonusMultiplierParams, AmplifiedDamageMultiplierParams>,
-) {
-  return (
-    params: TalentParams &
-      SkillDamageParams &
-      DamageBonusMultiplierParams &
-      DamageReductionParams &
-      AmplifiedDamageMultiplierParams &
-      CriticalParams,
-  ) => {
+): Calculator<
+  TalentParams &
+    SkillDamageParams &
+    DamageBonusMultiplierParams &
+    DamageReductionParams &
+    AmplifiedDamageMultiplierParams &
+    CriticalParams
+> {
+  return (params) => {
     const skillDamage = factory.getSkillDamage(params);
     const damageBonus = factory.getDamageBonus(params);
     const damageReduction = calculateDefenseMutiplier(
@@ -77,7 +77,7 @@ export function createCalculator<SkillDamageParams, DamageBonusMultiplierParams,
     return {
       skillDamage: toInteger(skillDamage),
       damageBonus: damageBonus,
-      result: {
+      calculatedDamage: {
         baseline: toInteger(baseline),
         critical: toInteger(critical),
         average: toInteger(average),

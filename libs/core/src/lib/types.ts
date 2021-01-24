@@ -16,7 +16,7 @@ export type CharacterStats = {
 
 export type TalentLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
-export type CalculationResult = {
+export type CalculatedDamage = {
   baseline: number;
   critical: number;
   average: number;
@@ -25,5 +25,7 @@ export type CalculationResult = {
 export type Calculation = {
   skillDamage: number;
   damageBonus: number;
-  result: CalculationResult;
+  calculatedDamage: CalculatedDamage;
 };
+
+export type Calculator<Params> = (params: Params) => Calculation;

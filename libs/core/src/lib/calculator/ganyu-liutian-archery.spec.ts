@@ -72,6 +72,6 @@ describe('calculateGanyuLiutianArchery', () => {
         reaction: ElementalReactions.MeltByCryo,
       },
     });
-    expect(calc2.result.baseline).toBe(calc1.result.baseline * 1.5);
+    expect(calc2.calculatedDamage.baseline).toBe(calc1.calculatedDamage.baseline * 1.5);
   });
 });

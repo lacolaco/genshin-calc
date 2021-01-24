@@ -1,33 +1,37 @@
-import { FormValues } from './types';
-import { CalculatorContainerState, defaultValues } from '../../shared/calculator';
+import { ElementalReactions } from '@genshin-calc/core';
+import { CalculatorParams } from './types';
 
-export type State = CalculatorContainerState<FormValues>;
+export type State = {
+  calculatorParams: CalculatorParams;
+};
 
 export const initialState: State = {
-  inputValues: {
-    skillDamage: {
-      talentLevel: defaultValues.talentLebel,
-      atk: defaultValues.character.stats.atk,
+  calculatorParams: {
+    talentLevel: 6,
+    character: {
+      level: 80,
+      stats: {
+        atk: 1500,
+        elementalMastery: 50,
+        criticalRate: 0.1,
+        criticalDamage: 0.5,
+      },
+      bonus: {
+        elementalDamageBonus: 0.5,
+        attackTypeDamageBonus: 0.35,
+        enableGeoResonanceBonus: false,
+      },
     },
-    damageBonus: {
-      enableGeoResonance: defaultValues.character.bonus.enableGeoResonance,
-      elementalDamageBonus: defaultValues.character.bonus.elementalDamageBonus,
-      chargedAttackDamageBonus: defaultValues.character.bonus.chargedAttackDamageBonus,
-    },
-    damageReduction: {
-      characterLevel: defaultValues.character.level,
-      enemyLevel: defaultValues.enemy.level,
-      baseResistance: defaultValues.enemy.resistance.baseResistance,
-    },
-    critical: {
-      criticalRate: defaultValues.character.stats.criticalRate,
-      criticalDamage: defaultValues.character.stats.criticalDamage,
+    enemy: {
+      level: 80,
+      resistance: {
+        baseResistance: 0.1,
+        resistanceBonus: 0,
+      },
     },
     elementalReaction: {
-      enableMeltReaction: false,
-      elementalMastery: defaultValues.character.stats.elementalMastery,
+      reaction: ElementalReactions.None,
       reactionBonus: 0,
     },
   },
-  calculation: null,
 };

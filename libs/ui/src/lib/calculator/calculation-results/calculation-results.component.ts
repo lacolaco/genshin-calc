@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CalculationResult } from '@genshin-calc/core';
+import { CalculatedDamage } from '@genshin-calc/core';
 
 @Component({
   selector: 'ui-calculation-results',
@@ -9,7 +9,7 @@ import { CalculationResult } from '@genshin-calc/core';
 })
 export class CalculationResultsComponent {
   @Input()
-  calculationResult!: CalculationResult;
+  calculatedDamage!: CalculatedDamage;
 
   @Input() element?: 'geo' | 'cryo';
 

@@ -2,7 +2,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UiFormsModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { initialState } from '../state';
-import { FormValues } from '../types';
+import { CalculatorParams } from '../types';
 import { CalculatorFormComponent } from './calculator-form.component';
 
 describe('CalculatorFormComponent', () => {
@@ -13,7 +13,11 @@ describe('CalculatorFormComponent', () => {
   });
 
   beforeEach(() => {
-    spectator = createComponent();
+    spectator = createComponent({
+      props: {
+        value: initialState.calculatorParams,
+      },
+    });
   });
 
   test('should create', () => {
@@ -21,27 +25,16 @@ describe('CalculatorFormComponent', () => {
   });
 
   test('inputで受け取った値をフォームにセットする', () => {
-    const formValues = initialState.inputValues;
-    spectator.setInput('value', formValues);
-
-    expect(spectator.component.form.value).toEqual(formValues);
+    expect(spectator.component.form.value.skillDamage.talentLevel).toEqual(initialState.calculatorParams.talentLevel);
   });
 
   test('フォームが変更されたとき、新しい値をvalueChangeイベントで出力する', async () => {
-    spectator.setInput('value', initialState.inputValues);
-    const expectedValue: FormValues = {
-      ...initialState.inputValues,
-      elementalReaction: {
-        ...initialState.inputValues.elementalReaction,
-        elementalMastery: 100,
-      },
-    };
-    let outputValue;
-    spectator.output('valueChange').subscribe((value) => (outputValue = value));
+    let outputValue!: CalculatorParams;
+    spectator.output<CalculatorParams>('valueChange').subscribe((value) => (outputValue = value));
 
     spectator.component.form.patchValue({ elementalReaction: { elementalMastery: 100 } });
     spectator.detectChanges();
 
-    expect(outputValue).toEqual(expectedValue);
+    expect(outputValue.character.stats.elementalMastery).toBe(100);
   });
 });

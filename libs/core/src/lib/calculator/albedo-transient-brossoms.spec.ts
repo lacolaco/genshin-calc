@@ -8,7 +8,7 @@ export function expectDamage(actual: number, expected: number) {
 
 describe('calculateAlbedoTransientBlossoms', () => {
   test('case 1: minimal', () => {
-    const { result } = calculateAlbedoTransientBlossoms({
+    const { calculatedDamage } = calculateAlbedoTransientBlossoms({
       talentLevel: 6,
 
       character: {
@@ -32,8 +32,8 @@ describe('calculateAlbedoTransientBlossoms', () => {
         },
       },
     });
-    expectDamage(result.baseline, 2341);
-    expect(result).toMatchInlineSnapshot(`
+    expectDamage(calculatedDamage.baseline, 2341);
+    expect(calculatedDamage).toMatchInlineSnapshot(`
       Object {
         "average": 3063,
         "baseline": 2327,

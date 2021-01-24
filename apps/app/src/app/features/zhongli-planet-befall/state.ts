@@ -1,32 +1,32 @@
-import { Calculation } from '@genshin-calc/core';
-import { FormValues } from './types';
+import { CalculatorParams } from './types';
 
 export interface State {
-  inputValues: FormValues;
-  calculation: Calculation | null;
+  calculatorParams: CalculatorParams;
 }
 
 export const initialState: State = {
-  inputValues: {
-    skillDamage: {
-      talentLevel: 6,
-      atk: 1500,
-      hp: 25000,
+  calculatorParams: {
+    talentLevel: 6,
+    character: {
+      level: 80,
+      stats: {
+        atk: 1500,
+        hp: 25000,
+        criticalRate: 0.1,
+        criticalDamage: 0.5,
+      },
+      bonus: {
+        elementalDamageBonus: 0.58,
+        attackTypeDamageBonus: 0.2,
+        enableGeoResonanceBonus: false,
+      },
     },
-    damageBonus: {
-      elementalDamageBonus: 50,
-      burstDamageBonus: 20,
-      enableGeoResonance: false,
-    },
-    damageReduction: {
-      characterLevel: 80,
-      enemyLevel: 80,
-      baseResistance: 10,
-    },
-    critical: {
-      criticalRate: 10,
-      criticalDamage: 50,
+    enemy: {
+      level: 80,
+      resistance: {
+        baseResistance: 0.1,
+        resistanceBonus: 0,
+      },
     },
   },
-  calculation: null,
 };

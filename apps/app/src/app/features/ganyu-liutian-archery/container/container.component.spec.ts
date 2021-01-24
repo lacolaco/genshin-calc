@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CalculationResultsComponent, UiCalculatorModule } from '@genshin-calc/ui';
+import { UiCalculatorModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
 import { initialState } from '../state';
@@ -35,25 +35,19 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
 
   describe('フォーム入力に従ってダメージを計算する', () => {
     beforeEach(() => {
-      spectator.component.onFormValueChange(initialState.inputValues);
+      spectator.component.setCalculateParams(initialState.calculatorParams);
     });
 
-    test('フォーム入力の変更で計算結果を更新する', () => {
-      expect(spectator.component.get().calculation).toBeTruthy();
-    });
+    test('フォーム入力の変更で計算パラメータを更新する', () => {
+      spectator.component.setCalculateParams({
+        ...initialState.calculatorParams,
+        character: {
+          ...initialState.calculatorParams.character,
+          level: 100,
+        },
+      });
 
-    test('入力が同じなら計算結果が変わらない', () => {
-      expect(spectator.component.get().calculation).toMatchInlineSnapshot(`
-        Object {
-          "damageBonus": 0.85,
-          "result": Object {
-            "average": 6346,
-            "baseline": 6043,
-            "critical": 9065,
-          },
-          "skillDamage": 7260,
-        }
-      `);
+      expect(spectator.component.get().calculatorParams.character.level).toBe(100);
     });
   });
 

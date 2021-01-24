@@ -10,7 +10,7 @@ describe('CalculationResultsComponent', () => {
   beforeEach(() => {
     spectator = createComponent({
       props: {
-        calculationResult: {
+        calculatedDamage: {
           baseline: 1000,
           average: 1500,
           critical: 2000,

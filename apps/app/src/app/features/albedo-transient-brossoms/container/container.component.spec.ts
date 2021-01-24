@@ -2,6 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UiCalculatorModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
+import { initialState } from '../state';
 import { AlbedoTransientBlossomsContainerComponent } from './container.component';
 
 describe('AlbedoTransientBlossomsContainerComponent', () => {
@@ -26,6 +27,7 @@ describe('AlbedoTransientBlossomsContainerComponent', () => {
 
     expect(calculatorContent).toContain('アルベド: 元素スキル「創生術・疑似陽華」');
   });
+
   test('サブタイトルを表示する', () => {
     const calculatorContent = spectator.element.textContent;
 
@@ -33,29 +35,16 @@ describe('AlbedoTransientBlossomsContainerComponent', () => {
   });
 
   describe('フォーム入力に従ってダメージを計算する', () => {
-    test('フォーム入力の変更で計算結果を更新する', () => {
-      spectator.component.onFormValueChange({
-        skillDamage: {
-          def: 1,
-          talentLevel: 1,
-        },
-        damageBonus: {
-          skillDamageBonus: 0,
-          elementalDamageBonus: 0,
-          enableGeoResonance: false,
-        },
-        damageReduction: {
-          baseResistance: 1,
-          characterLevel: 1,
-          enemyLevel: 1,
-        },
-        critical: {
-          criticalDamage: 1,
-          criticalRate: 1,
+    test('フォーム入力の変更で計算パラメータを更新する', () => {
+      spectator.component.setCalculateParams({
+        ...initialState.calculatorParams,
+        character: {
+          ...initialState.calculatorParams.character,
+          level: 100,
         },
       });
 
-      expect(spectator.component.get().calculation).toBeTruthy();
+      expect(spectator.component.get().calculatorParams.character.level).toBe(100);
     });
   });
 

@@ -59,7 +59,7 @@ describe('CalculatorContainerComponent', () => {
       spectator.setInput('calculation', {
         skillDamage: 1,
         damageBonus: 1,
-        result: { baseline: 1, average: 1, critical: 1 },
+        calculatedDamage: { baseline: 1, average: 1, critical: 1 },
       });
       spectator.detectChanges();
 

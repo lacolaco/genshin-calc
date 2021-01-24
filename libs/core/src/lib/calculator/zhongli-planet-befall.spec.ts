@@ -8,7 +8,7 @@ export function expectDamage(actual: number, expected: number) {
 
 describe('burst damage', () => {
   test('case 1: minimal', () => {
-    const { result } = calculateZhongliPlanetBefall({
+    const { calculatedDamage } = calculateZhongliPlanetBefall({
       talentLevel: 7,
       character: {
         level: 80,
@@ -33,13 +33,13 @@ describe('burst damage', () => {
       },
     });
 
-    expectDamage(result.baseline, 3609);
-    expect(result.critical).toBeCloseTo(3609 * 1.5, -1);
-    expect(result.average).toBeCloseTo(3609 * (1 + 0.05 * 0.5), -1);
+    expectDamage(calculatedDamage.baseline, 3609);
+    expect(calculatedDamage.critical).toBeCloseTo(3609 * 1.5, -1);
+    expect(calculatedDamage.average).toBeCloseTo(3609 * (1 + 0.05 * 0.5), -1);
   });
 
   test('case 2: no buff', () => {
-    const { result } = calculateZhongliPlanetBefall({
+    const { calculatedDamage } = calculateZhongliPlanetBefall({
       talentLevel: 7,
       character: {
         level: 80,
@@ -63,11 +63,11 @@ describe('burst damage', () => {
         },
       },
     });
-    expectDamage(result.baseline, 15087);
+    expectDamage(calculatedDamage.baseline, 15087);
   });
 
   test('case 3: buff', () => {
-    const { result } = calculateZhongliPlanetBefall({
+    const { calculatedDamage } = calculateZhongliPlanetBefall({
       talentLevel: 7,
       character: {
         level: 80,
@@ -91,6 +91,6 @@ describe('burst damage', () => {
         },
       },
     });
-    expectDamage(result.baseline, 22062);
+    expectDamage(calculatedDamage.baseline, 22062);
   });
 });

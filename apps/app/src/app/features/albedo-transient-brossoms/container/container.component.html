@@ -1,12 +1,16 @@
 <ng-container *ngIf="state$ | async as state">
-  <ui-calculator-container [calculation]="state.calculation" [elementType]="'geo'">
+  <ui-calculator-container>
     <ui-calculator-title>アルベド: 元素スキル「創生術・疑似陽華」</ui-calculator-title>
     <ui-calculator-subtitle>刹那の花ダメージ</ui-calculator-subtitle>
 
+    <ng-container *ngIf="state.calculation as calculation">
+      <ui-calculation-results [element]="'geo'" [calculatedDamage]="calculation.calculatedDamage">
+      </ui-calculation-results>
+    </ng-container>
+
     <app-albedo-transient-blossoms-calculator-form
-      [value]="state.inputValues"
-      [calculation]="state.calculation"
-      (valueChange)="onFormValueChange($event)"
+      [value]="state.calculatorParams"
+      (valueChange)="setCalculateParams($event)"
     ></app-albedo-transient-blossoms-calculator-form>
   </ui-calculator-container>
 </ng-container>

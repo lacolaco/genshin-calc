@@ -1,46 +1,23 @@
 import { Component } from '@angular/core';
 import { calculateAlbedoTransientBlossoms } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
+import { useCalculator } from '../../../shared/operators/use-calculator';
 import { initialState, State } from '../state';
-import { FormValues } from '../types';
+import { CalculatorParams } from '../types';
 
 @Component({
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css'],
 })
 export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
-  readonly state$ = this.select();
+  readonly state$ = this.select().pipe(useCalculator(calculateAlbedoTransientBlossoms));
 
   constructor() {
     super();
     this.set(initialState);
   }
 
-  onFormValueChange(values: FormValues) {
-    const { skillDamage, damageBonus, damageReduction, critical } = values;
-    const calculation = calculateAlbedoTransientBlossoms({
-      talentLevel: skillDamage.talentLevel,
-      character: {
-        level: damageReduction.characterLevel,
-        stats: {
-          def: skillDamage.def,
-          criticalRate: critical.criticalRate / 100,
-          criticalDamage: critical.criticalDamage / 100,
-        },
-        bonus: {
-          elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
-          enableGeoResonanceBonus: damageBonus.enableGeoResonance,
-          attackTypeDamageBonus: damageBonus.skillDamageBonus / 100,
-        },
-      },
-      enemy: {
-        level: damageReduction.enemyLevel,
-        resistance: {
-          baseResistance: damageReduction.baseResistance / 100,
-          resistanceBonus: 0,
-        },
-      },
-    });
-    this.set({ calculation });
+  setCalculateParams(calculationParams: CalculatorParams) {
+    this.set({ calculatorParams: calculationParams });
   }
 }

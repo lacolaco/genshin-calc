@@ -7,10 +7,10 @@ type NumberInputMode = 'decimal' | 'percent';
 function convertInput(value: number, mode: NumberInputMode) {
   switch (mode) {
     case 'decimal': {
-      return value;
+      return value.toFixed(0);
     }
     case 'percent': {
-      return value * 100;
+      return (value * 100).toFixed(1);
     }
   }
 }
@@ -49,10 +49,15 @@ export class NumberInputComponent extends ControlValueAccessor<number> {
 
   @Input() mode: NumberInputMode = 'decimal';
 
-  value: number | null = null;
+  value: string | number | undefined;
 
-  writeValue(value: number): void {
-    this.value = convertInput(value, this.mode);
+  writeValue(value: number | undefined): void {
+    if (!value) {
+      this.value = 0;
+      return;
+    }
+    const newValue = convertInput(value, this.mode);
+    this.value = newValue;
   }
 
   onInputChange(value: string) {
