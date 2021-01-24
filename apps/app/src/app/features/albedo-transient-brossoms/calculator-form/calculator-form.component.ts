@@ -15,7 +15,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   @Input()
   value?: FormValues;
   @Input()
-  calculation?: Calculation;
+  calculation: Calculation | null = null;
 
   @Output()
   valueChange = new EventEmitter<FormValues>();

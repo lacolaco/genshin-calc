@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { UiCalculatorModule } from '@genshin-calc/ui';
+import { CalculationResultsComponent, UiCalculatorModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
 import { initialState } from '../state';
 import { GanyuLiutianArcheryContainerComponent } from './container.component';
 
@@ -9,6 +10,7 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: GanyuLiutianArcheryContainerComponent,
     imports: [UiCalculatorModule],
+    declarations: [CalculatorFormComponent],
     schemas: [NO_ERRORS_SCHEMA],
   });
 
@@ -18,6 +20,17 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
 
   test('should create', () => {
     expect(spectator.component).toBeTruthy();
+  });
+
+  test('タイトルを表示する', () => {
+    const calculatorContent = spectator.element.textContent;
+
+    expect(calculatorContent).toContain('甘雨: 通常攻撃・流天射術');
+  });
+  test('サブタイトルを表示する', () => {
+    const calculatorContent = spectator.element.textContent;
+
+    expect(calculatorContent).toContain('霜華の矢+霜華満開ダメージ');
   });
 
   describe('フォーム入力に従ってダメージを計算する', () => {
@@ -44,31 +57,9 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
     });
   });
 
-  describe('計算結果を表示する', () => {
-    test('計算結果がないときは結果を表示しない', () => {
-      spectator.component.set({
-        calculation: null,
-      });
-      spectator.detectChanges();
+  test('フォームを表示する', () => {
+    const formComponent = spectator.query(CalculatorFormComponent);
 
-      expect(spectator.query('ui-calculation-results')).toBeFalsy();
-    });
-
-    test('計算結果があるときは結果を表示する', () => {
-      spectator.component.set({
-        calculation: {
-          skillDamage: 1,
-          damageBonus: 1,
-          result: {
-            baseline: 1,
-            average: 1,
-            critical: 1,
-          },
-        },
-      });
-      spectator.detectChanges();
-
-      expect(spectator.query('ui-calculation-results')).toBeTruthy();
-    });
+    expect(formComponent).toBeTruthy();
   });
 });

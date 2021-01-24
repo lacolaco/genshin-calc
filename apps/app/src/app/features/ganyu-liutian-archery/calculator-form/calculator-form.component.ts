@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { FormValues } from '../types';
 
 @Component({
-  selector: 'app-albedo-transient-blossoms-calculator-form',
+  selector: 'app-ganyu-liutian-archery-calculator-form',
   templateUrl: './calculator-form.component.html',
   styleUrls: ['./calculator-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +22,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   }
 
   @Input()
-  calculation?: Calculation;
+  calculation: Calculation | null = null;
 
   @Output()
   valueChange = new EventEmitter<FormValues>();

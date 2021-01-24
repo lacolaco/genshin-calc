@@ -1,5 +1,5 @@
 import { FormValues } from './types';
-import { CalculatorContainerState, defaultValues } from '../../shared/calculator-container';
+import { CalculatorContainerState, defaultValues } from '../../shared/calculator';
 
 export type State = CalculatorContainerState<FormValues>;
 

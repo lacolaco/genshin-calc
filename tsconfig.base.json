@@ -14,11 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
       "@genshin-calc/core": ["libs/core/src/index.ts"],
       "@genshin-calc/ui": ["libs/ui/src/index.ts"]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "strictTemplates": true,
+    "strictDomEventTypes": false
   },
   "exclude": ["node_modules", "tmp"]
 }

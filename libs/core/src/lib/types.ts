@@ -1,3 +1,5 @@
+export type ElementType = 'geo' | 'cryo';
+
 export const enum ElementalReactions {
   None,
   MeltByCryo,
