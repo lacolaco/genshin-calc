@@ -10,7 +10,7 @@ import { CalculatorParams } from '../types';
   styleUrls: ['./container.component.css'],
 })
 export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
-  readonly state$ = this.select().pipe(useCalculator(calculateZhongliPlanetBefall));
+  readonly state$ = this.select(useCalculator(calculateZhongliPlanetBefall));
 
   constructor() {
     super();

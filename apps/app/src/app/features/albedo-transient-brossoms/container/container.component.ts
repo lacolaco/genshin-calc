@@ -10,7 +10,7 @@ import { CalculatorParams } from '../types';
   styleUrls: ['./container.component.css'],
 })
 export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
-  readonly state$ = this.select().pipe(useCalculator(calculateAlbedoTransientBlossoms));
+  readonly state$ = this.select(useCalculator(calculateAlbedoTransientBlossoms));
 
   constructor() {
     super();
