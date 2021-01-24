@@ -10,7 +10,7 @@ import { CalculatorParams } from '../types';
   styleUrls: ['./container.component.css'],
 })
 export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
-  readonly state$ = this.select().pipe(useCalculator(calculateGanyuLiutianArchery));
+  readonly state$ = this.select(useCalculator(calculateGanyuLiutianArchery));
 
   constructor() {
     super();
