@@ -29,6 +29,6 @@ export class TalentLevelSelectComponent extends ControlValueAccessor<number> {
   }
 
   onSelect(value: number) {
-    this.onChange(value);
+    this.onChange && this.onChange(value);
   }
 }

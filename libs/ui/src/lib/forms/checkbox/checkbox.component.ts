@@ -23,6 +23,6 @@ export class CheckboxComponent extends ControlValueAccessor<boolean> {
   }
 
   onChecked(checked: boolean) {
-    this.onChange(checked);
+    this.onChange && this.onChange(checked);
   }
 }

@@ -1,5 +1,5 @@
-import { BaseDamageBonusParams, BaseDamageReductionParams, BaseSkillDamageParams, CharacterStats, TalentLevel } from '../types';
-import { Calculator } from './base';
+import { TalentLevel } from '../types';
+import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentParams } from './base';
 
 const skillDamageMap: Record<TalentLevel, number> = {
   1: 1.34,
@@ -19,16 +19,15 @@ const skillDamageMap: Record<TalentLevel, number> = {
   15: 3.17,
 } as const;
 
-type SkillDamageParams = BaseSkillDamageParams<Pick<CharacterStats, 'def'>>;
-type DamageBonusParams = BaseDamageBonusParams & { skillDamageBonus: number };
-type DamageReductionParams = BaseDamageReductionParams;
-
-export class AlbedoTransientBlossomsCalculator extends Calculator<SkillDamageParams, DamageBonusParams, DamageReductionParams> {
-  protected getSkillDamage({ talentLevel, stats }: SkillDamageParams) {
-    return stats.def * skillDamageMap[talentLevel];
-  }
-
-  protected getDamageBonusMultiplier({ elementalDamageBonus, enableGeoResonance, skillDamageBonus }: DamageBonusParams) {
-    return elementalDamageBonus + skillDamageBonus + (enableGeoResonance ? 0.15 : 0);
-  }
-}
+export const calculateAlbedoTransientBlossoms = createCalculator({
+  getSkillDamage: ({ talentLevel, character }: TalentParams & CharacterStatsParams<'def'>) => {
+    return character.stats.def * skillDamageMap[talentLevel];
+  },
+  getDamageBonus: ({ character }: CharacterBonusParams) => {
+    return (
+      character.bonus.elementalDamageBonus +
+      character.bonus.attackTypeDamageBonus +
+      (character.bonus.enableGeoResonanceBonus ? 0.15 : 0)
+    );
+  },
+});

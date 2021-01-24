@@ -9,9 +9,9 @@ import { CalculationResult } from '@genshin-calc/core';
 })
 export class CalculationResultsComponent {
   @Input()
-  calculationResult: CalculationResult;
+  calculationResult!: CalculationResult;
 
-  @Input() element: 'geo' | 'cryo';
+  @Input() element?: 'geo' | 'cryo';
 
   get textColor() {
     switch (this.element) {

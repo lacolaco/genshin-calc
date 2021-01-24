@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UiCalculatorModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { initialState } from '../state';
 import { GanyuLiutianArcheryContainerComponent } from './container.component';
 
 describe('GanyuLiutianArcheryContainerComponent', () => {
@@ -20,34 +21,26 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
   });
 
   describe('フォーム入力に従ってダメージを計算する', () => {
-    test('フォーム入力の変更で計算結果を更新する', () => {
-      spectator.component.onFormValueChange({
-        skillDamage: {
-          atk: 1,
-          talentLevel: 1,
-        },
-        damageBonus: {
-          chargedAttackDamageBonus: 0,
-          elementalDamageBonus: 0,
-          enableGeoResonance: false,
-        },
-        damageReduction: {
-          baseResistance: 1,
-          characterLevel: 1,
-          enemyLevel: 1,
-        },
-        critical: {
-          criticalDamage: 1,
-          criticalRate: 1,
-        },
-        elementalReaction: {
-          elementalMastery: 0,
-          enableMeltReaction: false,
-          reactionBonus: 0,
-        },
-      });
+    beforeEach(() => {
+      spectator.component.onFormValueChange(initialState.inputValues);
+    });
 
+    test('フォーム入力の変更で計算結果を更新する', () => {
       expect(spectator.component.get().calculation).toBeTruthy();
+    });
+
+    test('入力が同じなら計算結果が変わらない', () => {
+      expect(spectator.component.get().calculation).toMatchInlineSnapshot(`
+        Object {
+          "damageBonus": 0.85,
+          "result": Object {
+            "average": 6346,
+            "baseline": 6043,
+            "critical": 9065,
+          },
+          "skillDamage": 7260,
+        }
+      `);
     });
   });
 

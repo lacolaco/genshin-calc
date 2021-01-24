@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { ZhongliPlanetBefallCalculator } from '@genshin-calc/core';
+import { calculateZhongliPlanetBefall } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { initialState, State } from '../state';
 import { FormValues } from '../types';
-
-const calculator = new ZhongliPlanetBefallCalculator();
 
 @Component({
   templateUrl: './container.component.html',
@@ -20,29 +18,28 @@ export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
 
   onFormValueChange(values: FormValues) {
     const { skillDamage, damageBonus, damageReduction, critical } = values;
-    const calculation = calculator.calc({
-      skillDamage: {
-        talentLevel: skillDamage.talentLevel,
+    const calculation = calculateZhongliPlanetBefall({
+      talentLevel: skillDamage.talentLevel,
+      character: {
+        level: damageReduction.characterLevel,
         stats: {
           atk: skillDamage.atk,
           hp: skillDamage.hp,
+          criticalRate: critical.criticalRate / 100,
+          criticalDamage: critical.criticalDamage / 100,
+        },
+        bonus: {
+          elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
+          attackTypeDamageBonus: damageBonus.burstDamageBonus / 100,
+          enableGeoResonanceBonus: damageBonus.enableGeoResonance,
         },
       },
-      damageBonus: {
-        elementalDamageBonus: damageBonus.elementalDamageBonus / 100,
-        burstDamageBonus: damageBonus.burstDamageBonus / 100,
-        enableGeoResonance: damageBonus.enableGeoResonance,
-      },
-      critical: {
-        criticalRate: critical.criticalRate / 100,
-        criticalDamage: critical.criticalDamage / 100,
-      },
-      damageReduction: {
-        characterLevel: damageReduction.characterLevel,
-        enemyLevel: damageReduction.enemyLevel,
-        baseResistance: damageReduction.baseResistance / 100,
-        resistanceBonus: 0,
-        resistanceDebuff: 0,
+      enemy: {
+        level: damageReduction.enemyLevel,
+        resistance: {
+          baseResistance: damageReduction.baseResistance / 100,
+          resistanceBonus: 0,
+        },
       },
     });
     this.set({ calculation });

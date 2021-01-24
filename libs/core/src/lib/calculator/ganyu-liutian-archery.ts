@@ -1,6 +1,12 @@
-import { ElementalReactions } from '../reactions';
-import { BaseDamageBonusParams, BaseDamageReductionParams, BaseSkillDamageParams, CharacterStats, TalentLevel } from '../types';
-import { Calculator } from './base';
+import { ElementalReactions, TalentLevel } from '../types';
+import { calculateAmplifiedDamageMultiplier } from '../utils';
+import {
+  CharacterBonusParams,
+  CharacterStatsParams,
+  createCalculator,
+  ElementalReactionParams,
+  TalentParams,
+} from './base';
 
 const arrowDamageMap: Record<TalentLevel, number> = {
   1: 1.28,
@@ -38,20 +44,28 @@ const arrowBloomDamageMap: Record<TalentLevel, number> = {
   15: 4.13,
 } as const;
 
-type SkillDamageParams = BaseSkillDamageParams<Pick<CharacterStats, 'atk'>>;
-type DamageBonusParams = BaseDamageBonusParams & { chargedAttackDamageBonus: number };
-type DamageReductionParams = BaseDamageReductionParams;
-
-export class GanyuLiutianArcheryCalculator extends Calculator<SkillDamageParams, DamageBonusParams, DamageReductionParams> {
-  protected getSkillDamage({ talentLevel, stats }: SkillDamageParams) {
-    return stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
-  }
-
-  protected getDamageBonusMultiplier({ elementalDamageBonus, enableGeoResonance, chargedAttackDamageBonus }: DamageBonusParams) {
-    return elementalDamageBonus + chargedAttackDamageBonus + (enableGeoResonance ? 0.15 : 0);
-  }
-
-  protected getAmplifiedReaction() {
-    return ElementalReactions.MeltByCryo;
-  }
-}
+export const calculateGanyuLiutianArchery = createCalculator({
+  getSkillDamage: ({ talentLevel, character }: TalentParams & CharacterStatsParams<'atk'>) => {
+    return character.stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
+  },
+  getDamageBonus: ({ character }: CharacterBonusParams) => {
+    return (
+      character.bonus.elementalDamageBonus +
+      character.bonus.attackTypeDamageBonus +
+      (character.bonus.enableGeoResonanceBonus ? 0.15 : 0)
+    );
+  },
+  getAmplifiedDamageMultiplier: ({
+    elementalReaction,
+    character,
+  }: ElementalReactionParams<ElementalReactions.MeltByCryo>) => {
+    if (elementalReaction.reaction === ElementalReactions.MeltByCryo) {
+      return calculateAmplifiedDamageMultiplier(
+        ElementalReactions.MeltByCryo,
+        character.stats.elementalMastery,
+        elementalReaction.reactionBonus,
+      );
+    }
+    return 1;
+  },
+});

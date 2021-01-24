@@ -1,4 +1,4 @@
-import { ZhongliPlanetBefallCalculator } from './zhongli-planet-befall';
+import { calculateZhongliPlanetBefall } from './zhongli-planet-befall';
 
 export function expectDamage(actual: number, expected: number) {
   const delta = expected * 0.01;
@@ -8,31 +8,28 @@ export function expectDamage(actual: number, expected: number) {
 
 describe('burst damage', () => {
   test('case 1: minimal', () => {
-    const calculator = new ZhongliPlanetBefallCalculator();
-
-    const { result } = calculator.calc({
-      skillDamage: {
-        talentLevel: 7,
+    const { result } = calculateZhongliPlanetBefall({
+      talentLevel: 7,
+      character: {
+        level: 80,
         stats: {
           hp: 14289,
           atk: 259,
+          criticalRate: 0.05,
+          criticalDamage: 0.5,
+        },
+        bonus: {
+          elementalDamageBonus: 0.216,
+          attackTypeDamageBonus: 0,
+          enableGeoResonanceBonus: false,
         },
       },
-      damageBonus: {
-        elementalDamageBonus: 0.216,
-        burstDamageBonus: 0,
-        enableGeoResonance: false,
-      },
-      damageReduction: {
-        characterLevel: 80,
-        enemyLevel: 77,
-        baseResistance: 0.1,
-        resistanceBonus: 0,
-        resistanceDebuff: 0,
-      },
-      critical: {
-        criticalRate: 0.05,
-        criticalDamage: 0.5,
+      enemy: {
+        level: 77,
+        resistance: {
+          baseResistance: 0.1,
+          resistanceBonus: 0,
+        },
       },
     });
 
@@ -42,62 +39,56 @@ describe('burst damage', () => {
   });
 
   test('case 2: no buff', () => {
-    const calculator = new ZhongliPlanetBefallCalculator();
-
-    const { result } = calculator.calc({
-      skillDamage: {
-        talentLevel: 7,
+    const { result } = calculateZhongliPlanetBefall({
+      talentLevel: 7,
+      character: {
+        level: 80,
         stats: {
           hp: 24782,
           atk: 1305,
+          criticalRate: 0.1,
+          criticalDamage: 0.5,
+        },
+        bonus: {
+          elementalDamageBonus: 0.714,
+          attackTypeDamageBonus: 0.2,
+          enableGeoResonanceBonus: false,
         },
       },
-      damageBonus: {
-        elementalDamageBonus: 0.714,
-        burstDamageBonus: 0.2,
-        enableGeoResonance: false,
-      },
-      damageReduction: {
-        characterLevel: 80,
-        enemyLevel: 77,
-        baseResistance: 0.1,
-        resistanceBonus: 0,
-        resistanceDebuff: 0,
-      },
-      critical: {
-        criticalRate: 0.1,
-        criticalDamage: 0.5,
+      enemy: {
+        level: 77,
+        resistance: {
+          baseResistance: 0.1,
+          resistanceBonus: 0,
+        },
       },
     });
     expectDamage(result.baseline, 15087);
   });
 
   test('case 3: buff', () => {
-    const calculator = new ZhongliPlanetBefallCalculator();
-
-    const { result } = calculator.calc({
-      skillDamage: {
-        talentLevel: 7,
+    const { result } = calculateZhongliPlanetBefall({
+      talentLevel: 7,
+      character: {
+        level: 80,
         stats: {
           hp: 24782,
           atk: 2185,
+          criticalRate: 0.1,
+          criticalDamage: 0.5,
+        },
+        bonus: {
+          enableGeoResonanceBonus: true,
+          elementalDamageBonus: 0.714,
+          attackTypeDamageBonus: 0.2,
         },
       },
-      damageBonus: {
-        enableGeoResonance: true,
-        elementalDamageBonus: 0.714,
-        burstDamageBonus: 0.2,
-      },
-      damageReduction: {
-        characterLevel: 80,
-        enemyLevel: 77,
-        baseResistance: 0.1,
-        resistanceBonus: 0,
-        resistanceDebuff: 0,
-      },
-      critical: {
-        criticalRate: 0.1,
-        criticalDamage: 0.5,
+      enemy: {
+        level: 77,
+        resistance: {
+          baseResistance: 0.1,
+          resistanceBonus: 0,
+        },
       },
     });
     expectDamage(result.baseline, 22062);

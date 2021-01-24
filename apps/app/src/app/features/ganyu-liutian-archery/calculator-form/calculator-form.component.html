@@ -17,8 +17,16 @@
         <span class="text-lg font-bold">{{ calculation?.damageBonus | percent }}</span>
       </div>
       <ui-form-fields>
-        <ui-number-input label="氷元素ダメージ%" formControlName="elementalDamageBonus"></ui-number-input>
-        <ui-number-input label="重撃ダメージ%" formControlName="chargedAttackDamageBonus"></ui-number-input>
+        <ui-number-input
+          mode="percent"
+          label="氷元素ダメージ%"
+          formControlName="elementalDamageBonus"
+        ></ui-number-input>
+        <ui-number-input
+          mode="percent"
+          label="重撃ダメージ%"
+          formControlName="chargedAttackDamageBonus"
+        ></ui-number-input>
       </ui-form-fields>
       <div class="flex flex-col space-y-2">
         <ui-checkbox formControlName="enableGeoResonance">岩元素共鳴ボーナス (ダメージ+15%)</ui-checkbox>
@@ -29,7 +37,7 @@
       <ui-form-fields>
         <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
         <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
-        <ui-number-input label="敵の氷元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="敵の氷元素耐性%" formControlName="baseResistance"></ui-number-input>
       </ui-form-fields>
     </div>
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="elementalReaction">
@@ -39,14 +47,14 @@
       </div>
       <ui-form-fields>
         <ui-number-input label="元素熟知" formControlName="elementalMastery"></ui-number-input>
-        <ui-number-input label="反応による加算効果%" formControlName="reactionBonus"></ui-number-input>
+        <ui-number-input mode="percent" label="反応による加算効果%" formControlName="reactionBonus"></ui-number-input>
       </ui-form-fields>
     </div>
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="critical">
       <span class="block text-sm font-bold">会心ダメージ</span>
       <ui-form-fields>
-        <ui-number-input label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
-        <ui-number-input label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
       </ui-form-fields>
     </div>
   </div>

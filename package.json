@@ -94,5 +94,8 @@
     "ts-node": "9.1.1",
     "tslint": "6.1.3",
     "typescript": "4.0.5"
+  },
+  "resolutions": {
+    "@schematics/angular": "~11.0.0"
   }
 }

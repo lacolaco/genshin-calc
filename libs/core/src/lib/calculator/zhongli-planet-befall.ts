@@ -1,5 +1,5 @@
-import { BaseDamageBonusParams, BaseDamageReductionParams, BaseSkillDamageParams, CharacterStats, TalentLevel } from '../types';
-import { Calculator } from './base';
+import { TalentLevel } from '../types';
+import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentParams } from './base';
 
 const skillDamageMap: Record<TalentLevel, number> = {
   1: 4.01,
@@ -19,16 +19,15 @@ const skillDamageMap: Record<TalentLevel, number> = {
   15: 11.92,
 } as const;
 
-type SkillDamageParams = BaseSkillDamageParams<Pick<CharacterStats, 'atk' | 'hp'>>;
-type DamageBonusParams = BaseDamageBonusParams & { burstDamageBonus: number };
-type DamageReductionParams = BaseDamageReductionParams;
-
-export class ZhongliPlanetBefallCalculator extends Calculator<SkillDamageParams, DamageBonusParams, DamageReductionParams> {
-  protected getSkillDamage({ talentLevel, stats }: SkillDamageParams) {
-    return stats.atk * skillDamageMap[talentLevel] + stats.hp * 0.33;
-  }
-
-  protected getDamageBonusMultiplier({ elementalDamageBonus, enableGeoResonance, burstDamageBonus }: DamageBonusParams) {
-    return elementalDamageBonus + burstDamageBonus + (enableGeoResonance ? 0.15 : 0);
-  }
-}
+export const calculateZhongliPlanetBefall = createCalculator({
+  getSkillDamage: ({ talentLevel, character }: TalentParams & CharacterStatsParams<'atk' | 'hp'>) => {
+    return character.stats.atk * skillDamageMap[talentLevel] + character.stats.hp * 0.33;
+  },
+  getDamageBonus: ({ character }: CharacterBonusParams) => {
+    return (
+      character.bonus.elementalDamageBonus +
+      character.bonus.attackTypeDamageBonus +
+      (character.bonus.enableGeoResonanceBonus ? 0.15 : 0)
+    );
+  },
+});

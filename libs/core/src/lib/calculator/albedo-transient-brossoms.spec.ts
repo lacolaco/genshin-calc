@@ -1,4 +1,4 @@
-import { AlbedoTransientBlossomsCalculator } from './albedo-transient-brossoms';
+import { calculateAlbedoTransientBlossoms } from './albedo-transient-brossoms';
 
 export function expectDamage(actual: number, expected: number) {
   const delta = expected * 0.01;
@@ -6,32 +6,30 @@ export function expectDamage(actual: number, expected: number) {
   expect(actual).toBeGreaterThanOrEqual(expected - delta);
 }
 
-describe('AlbedoTransientBlossomsCalculator', () => {
+describe('calculateAlbedoTransientBlossoms', () => {
   test('case 1: minimal', () => {
-    const calculator = new AlbedoTransientBlossomsCalculator();
+    const { result } = calculateAlbedoTransientBlossoms({
+      talentLevel: 6,
 
-    const { result } = calculator.calc({
-      skillDamage: {
-        talentLevel: 6,
+      character: {
+        level: 80,
         stats: {
           def: 1583,
+          criticalRate: 0.05 + 0.28,
+          criticalDamage: 0.957,
+        },
+        bonus: {
+          elementalDamageBonus: 0.733,
+          enableGeoResonanceBonus: false,
+          attackTypeDamageBonus: 0,
         },
       },
-      damageBonus: {
-        elementalDamageBonus: 0.733,
-        enableGeoResonance: false,
-        skillDamageBonus: 0,
-      },
-      damageReduction: {
-        characterLevel: 80,
-        enemyLevel: 77,
-        baseResistance: 0.1,
-        resistanceBonus: 0,
-        resistanceDebuff: 0,
-      },
-      critical: {
-        criticalRate: 0.05 + 0.28,
-        criticalDamage: 0.957,
+      enemy: {
+        level: 77,
+        resistance: {
+          baseResistance: 0.1,
+          resistanceBonus: 0,
+        },
       },
     });
     expectDamage(result.baseline, 2341);

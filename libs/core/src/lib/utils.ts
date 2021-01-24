@@ -1,4 +1,4 @@
-import { ElementalReactions } from './reactions';
+import { ElementalReactions } from './types';
 
 export function getReactionMultipiler(reaction: ElementalReactions): number {
   switch (reaction) {
@@ -25,7 +25,11 @@ export function calculateDefenseMutiplier(characterLevel: number, enemyLevel: nu
   return (1 - defenseReduction) * (1 - resistance);
 }
 
-export function calculateAmplifiedDamageMultiplier(reaction: ElementalReactions, elementalMastery: number, reactionBonus: number) {
+export function calculateAmplifiedDamageMultiplier(
+  reaction: ElementalReactions,
+  elementalMastery: number,
+  reactionBonus: number,
+) {
   const emBonus = (2.78 * elementalMastery) / (1400 + elementalMastery);
   return getReactionMultipiler(reaction) * (1 + emBonus + reactionBonus);
 }

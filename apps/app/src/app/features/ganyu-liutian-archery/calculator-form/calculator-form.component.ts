@@ -12,8 +12,15 @@ import { FormValues } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalculatorFormComponent implements OnInit, OnDestroy {
+  private _value: FormValues | null = null;
   @Input()
-  value?: FormValues;
+  set value(value: FormValues) {
+    if (this._value !== value) {
+      this._value = value;
+      this.form.setValue(value);
+    }
+  }
+
   @Input()
   calculation?: Calculation;
 
@@ -49,9 +56,6 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   private readonly onDestroy$ = new Subject();
 
   ngOnInit() {
-    if (this.value) {
-      this.form.setValue(this.value);
-    }
     this.form.value$.pipe(takeUntil(this.onDestroy$)).subscribe(this.valueChange);
   }
 
