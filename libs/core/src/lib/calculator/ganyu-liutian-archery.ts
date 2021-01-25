@@ -1,12 +1,5 @@
-import { ElementalReactions, TalentLevel } from '../types';
-import { calculateAmplifiedDamageMultiplier } from '../utils';
-import {
-  CharacterBonusParams,
-  CharacterStatsParams,
-  createCalculator,
-  ElementalReactionParams,
-  TalentParams,
-} from './base';
+import { TalentLevel } from '../types';
+import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentLevelParams } from './base';
 
 const arrowDamageMap: Record<TalentLevel, number> = {
   1: 1.28,
@@ -45,7 +38,7 @@ const arrowBloomDamageMap: Record<TalentLevel, number> = {
 } as const;
 
 export const calculateGanyuLiutianArchery = createCalculator({
-  getSkillDamage: ({ talentLevel, character }: TalentParams & CharacterStatsParams<'atk'>) => {
+  getBaseDamage: ({ talentLevel, character }: TalentLevelParams & CharacterStatsParams<'atk'>) => {
     return character.stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
   },
   getDamageBonus: ({ character }: CharacterBonusParams) => {
@@ -54,18 +47,5 @@ export const calculateGanyuLiutianArchery = createCalculator({
       character.bonus.attackTypeDamageBonus +
       (character.bonus.enableGeoResonanceBonus ? 0.15 : 0)
     );
-  },
-  getAmplifiedDamageMultiplier: ({
-    elementalReaction,
-    character,
-  }: ElementalReactionParams<ElementalReactions.MeltByCryo>) => {
-    if (elementalReaction.reaction === ElementalReactions.MeltByCryo) {
-      return calculateAmplifiedDamageMultiplier(
-        ElementalReactions.MeltByCryo,
-        character.stats.elementalMastery,
-        elementalReaction.reactionBonus,
-      );
-    }
-    return 1;
   },
 });

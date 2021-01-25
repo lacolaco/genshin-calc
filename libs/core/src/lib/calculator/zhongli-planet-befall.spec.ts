@@ -31,6 +31,7 @@ describe('burst damage', () => {
           resistanceBonus: 0,
         },
       },
+      critical: { criticalRate: 0.05, criticalDamage: 0.5 },
     });
 
     expectDamage(calculatedDamage.baseline, 3609);
@@ -62,6 +63,7 @@ describe('burst damage', () => {
           resistanceBonus: 0,
         },
       },
+      critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });
     expectDamage(calculatedDamage.baseline, 15087);
   });
@@ -90,6 +92,7 @@ describe('burst damage', () => {
           resistanceBonus: 0,
         },
       },
+      critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });
     expectDamage(calculatedDamage.baseline, 22062);
   });

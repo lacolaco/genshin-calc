@@ -11,8 +11,6 @@ export const initialState: State = {
       level: 80,
       stats: {
         def: 1500,
-        criticalRate: 0.1,
-        criticalDamage: 0.5,
       },
       bonus: {
         elementalDamageBonus: 0.5,
@@ -27,5 +25,6 @@ export const initialState: State = {
         resistanceBonus: 0,
       },
     },
+    critical: { criticalRate: 0.1, criticalDamage: 0.5 },
   },
 };

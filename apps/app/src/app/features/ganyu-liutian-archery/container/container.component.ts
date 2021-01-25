@@ -17,7 +17,7 @@ export class GanyuLiutianArcheryContainerComponent extends RxState<State> {
     this.set(initialState);
   }
 
-  setCalculateParams(calculationParams: CalculatorParams) {
-    this.set({ calculatorParams: calculationParams });
+  setCalculateParams(calculatorParams: CalculatorParams) {
+    this.set({ calculatorParams });
   }
 }

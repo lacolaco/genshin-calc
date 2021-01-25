@@ -1,5 +1,5 @@
 import { TalentLevel } from '../types';
-import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentParams } from './base';
+import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentLevelParams } from './base';
 
 const skillDamageMap: Record<TalentLevel, number> = {
   1: 4.01,
@@ -20,7 +20,7 @@ const skillDamageMap: Record<TalentLevel, number> = {
 } as const;
 
 export const calculateZhongliPlanetBefall = createCalculator({
-  getSkillDamage: ({ talentLevel, character }: TalentParams & CharacterStatsParams<'atk' | 'hp'>) => {
+  getBaseDamage: ({ talentLevel, character }: TalentLevelParams & CharacterStatsParams<'atk' | 'hp'>) => {
     return character.stats.atk * skillDamageMap[talentLevel] + character.stats.hp * 0.33;
   },
   getDamageBonus: ({ character }: CharacterBonusParams) => {

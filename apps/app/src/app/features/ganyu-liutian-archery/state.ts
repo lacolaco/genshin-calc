@@ -12,9 +12,6 @@ export const initialState: State = {
       level: 80,
       stats: {
         atk: 1500,
-        elementalMastery: 50,
-        criticalRate: 0.1,
-        criticalDamage: 0.5,
       },
       bonus: {
         elementalDamageBonus: 0.5,
@@ -29,8 +26,10 @@ export const initialState: State = {
         resistanceBonus: 0,
       },
     },
-    elementalReaction: {
+    critical: { criticalRate: 0.1, criticalDamage: 0.5 },
+    amplificationReaction: {
       reaction: ElementalReactions.None,
+      elementalMastery: 50,
       reactionBonus: 0,
     },
   },

@@ -32,9 +32,9 @@ describe('CalculatorFormComponent', () => {
     let outputValue!: CalculatorParams;
     spectator.output<CalculatorParams>('valueChange').subscribe((value) => (outputValue = value));
 
-    spectator.component.form.patchValue({ elementalReaction: { elementalMastery: 100 } });
+    spectator.component.form.patchValue({ skillDamage: { talentLevel: 10 } });
     spectator.detectChanges();
 
-    expect(outputValue.character.stats.elementalMastery).toBe(100);
+    expect(outputValue.talentLevel).toBe(10);
   });
 });

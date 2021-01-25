@@ -10,7 +10,6 @@ describe('calculateAlbedoTransientBlossoms', () => {
   test('case 1: minimal', () => {
     const { calculatedDamage } = calculateAlbedoTransientBlossoms({
       talentLevel: 6,
-
       character: {
         level: 80,
         stats: {
@@ -31,8 +30,11 @@ describe('calculateAlbedoTransientBlossoms', () => {
           resistanceBonus: 0,
         },
       },
+      critical: {
+        criticalRate: 0.05 + 0.28,
+        criticalDamage: 0.957,
+      },
     });
-    expectDamage(calculatedDamage.baseline, 2341);
     expect(calculatedDamage).toMatchInlineSnapshot(`
       Object {
         "average": 3063,

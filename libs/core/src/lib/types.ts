@@ -22,10 +22,10 @@ export type CalculatedDamage = {
   average: number;
 };
 
-export type Calculation = {
+export type Calculation = Readonly<{
   skillDamage: number;
   damageBonus: number;
   calculatedDamage: CalculatedDamage;
-};
+}>;
 
 export type Calculator<Params> = (params: Params) => Calculation;

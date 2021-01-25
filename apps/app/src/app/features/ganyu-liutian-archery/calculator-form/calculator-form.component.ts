@@ -58,8 +58,6 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
             stats: {
               atk: skillDamage.atk,
               elementalMastery: elementalReaction.elementalMastery,
-              criticalRate: critical.criticalRate,
-              criticalDamage: critical.criticalDamage,
             },
             bonus: {
               elementalDamageBonus: damageBonus.elementalDamageBonus,
@@ -74,10 +72,17 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
               resistanceBonus: 0,
             },
           },
-          elementalReaction: {
-            reaction: elementalReaction.enableMeltReaction ? ElementalReactions.MeltByCryo : ElementalReactions.None,
-            reactionBonus: elementalReaction.reactionBonus,
+          critical: {
+            criticalRate: critical.criticalRate,
+            criticalDamage: critical.criticalDamage,
           },
+          amplificationReaction: elementalReaction.enableMeltReaction
+            ? {
+                reaction: ElementalReactions.MeltByCryo,
+                elementalMastery: elementalReaction.elementalMastery,
+                reactionBonus: elementalReaction.reactionBonus,
+              }
+            : undefined,
         });
       });
   }
@@ -86,7 +91,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
   }
 
-  private setFormValue({ talentLevel, character, enemy, elementalReaction }: CalculatorParams) {
+  private setFormValue({ talentLevel, character, enemy, critical, amplificationReaction }: CalculatorParams) {
     this.form.setValue(
       {
         skillDamage: {
@@ -104,13 +109,13 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           baseResistance: enemy.resistance.baseResistance,
         },
         critical: {
-          criticalRate: character.stats.criticalRate,
-          criticalDamage: character.stats.criticalDamage,
+          criticalRate: critical?.criticalRate ?? 0,
+          criticalDamage: critical?.criticalDamage ?? 0,
         },
         elementalReaction: {
-          elementalMastery: character.stats.elementalMastery,
-          enableMeltReaction: elementalReaction.reaction === ElementalReactions.MeltByCryo,
-          reactionBonus: elementalReaction.reactionBonus,
+          elementalMastery: amplificationReaction?.elementalMastery ?? 0,
+          enableMeltReaction: amplificationReaction != null,
+          reactionBonus: amplificationReaction?.reactionBonus ?? 0,
         },
       },
       { emitEvent: false },

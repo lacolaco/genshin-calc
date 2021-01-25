@@ -25,16 +25,8 @@ describe('calculateGanyuLiutianArchery', () => {
         resistanceBonus: 0,
       },
     },
-    elementalReaction: {
-      reaction: ElementalReactions.None,
-      reactionBonus: 0,
-    },
+    critical: { criticalRate: 0, criticalDamage: 0 },
   } as const;
-
-  test('Calculationを返す', () => {
-    const calculation = calculateGanyuLiutianArchery(baseParams);
-    expect(calculation).toBeTruthy();
-  });
 
   test('スキルダメージはATKに依存する', () => {
     const calc1 = calculateGanyuLiutianArchery({ ...baseParams });
@@ -67,9 +59,10 @@ describe('calculateGanyuLiutianArchery', () => {
     const calc1 = calculateGanyuLiutianArchery({ ...baseParams });
     const calc2 = calculateGanyuLiutianArchery({
       ...baseParams,
-      elementalReaction: {
-        ...baseParams.elementalReaction,
+      amplificationReaction: {
         reaction: ElementalReactions.MeltByCryo,
+        elementalMastery: 0,
+        reactionBonus: 0,
       },
     });
     expect(calc2.calculatedDamage.baseline).toBe(calc1.calculatedDamage.baseline * 1.5);

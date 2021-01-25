@@ -1,7 +1,8 @@
-import { Calculation, Calculator, CharacterStats, ElementalReactions, TalentLevel } from '../types';
+import { AmplificationReactionParams, calculateOutgoingDamage, CriticalParams } from '../damage';
+import { Calculation, CharacterStats, ElementalReactions, TalentLevel } from '../types';
 import { calculateDefenseMutiplier } from '../utils';
 
-export type TalentParams = {
+export type TalentLevelParams = {
   talentLevel: TalentLevel;
 };
 
@@ -40,42 +41,43 @@ export type DamageReductionParams = CharacterParams<{ level: number }> &
       resistanceBonus: number;
     };
   }>;
-export type CriticalParams = CharacterStatsParams<'criticalRate' | 'criticalDamage'>;
 
-type CalculatorFactory<SkillDamageParams, DamageBonusParams, AmplifiedDamageMultiplierParams> = {
-  getSkillDamage: (params: SkillDamageParams) => number;
+type CalculatorFactory<BaseDamageParams, DamageBonusParams> = {
+  getBaseDamage: (params: BaseDamageParams) => number;
   getDamageBonus: (params: DamageBonusParams) => number;
-  getAmplifiedDamageMultiplier?: (params: AmplifiedDamageMultiplierParams) => number;
 };
 
-export function createCalculator<SkillDamageParams, DamageBonusMultiplierParams, AmplifiedDamageMultiplierParams>(
-  factory: CalculatorFactory<SkillDamageParams, DamageBonusMultiplierParams, AmplifiedDamageMultiplierParams>,
-): Calculator<
-  TalentParams &
-    SkillDamageParams &
-    DamageBonusMultiplierParams &
-    DamageReductionParams &
-    AmplifiedDamageMultiplierParams &
-    CriticalParams
-> {
-  return (params) => {
-    const skillDamage = factory.getSkillDamage(params);
+export function createCalculator<BaseDamageParams, DamageBonusParams>(
+  factory: CalculatorFactory<BaseDamageParams, DamageBonusParams>,
+) {
+  return (
+    params: BaseDamageParams &
+      DamageBonusParams &
+      DamageReductionParams & {
+        critical?: CriticalParams;
+        amplificationReaction?: AmplificationReactionParams;
+      },
+  ): Calculation => {
+    const baseDamage = factory.getBaseDamage(params);
     const damageBonus = factory.getDamageBonus(params);
+    const outgoingDamage = calculateOutgoingDamage(
+      baseDamage,
+      damageBonus,
+      params.critical,
+      params.amplificationReaction,
+    );
     const damageReduction = calculateDefenseMutiplier(
       params.character.level,
       params.enemy.level,
       params.enemy.resistance.baseResistance + params.enemy.resistance.resistanceBonus,
     );
-    const amplifiedDamageMultiplier = factory.getAmplifiedDamageMultiplier
-      ? factory.getAmplifiedDamageMultiplier(params)
-      : 1;
 
-    const baseline = skillDamage * (1 + damageBonus) * amplifiedDamageMultiplier * damageReduction;
-    const critical = baseline * (1 + params.character.stats.criticalDamage);
-    const average = baseline * (1 + params.character.stats.criticalDamage * params.character.stats.criticalRate);
+    const baseline = outgoingDamage.baseline * damageReduction;
+    const critical = outgoingDamage.critical * damageReduction;
+    const average = outgoingDamage.average * damageReduction;
     const toInteger = Math.floor;
     return {
-      skillDamage: toInteger(skillDamage),
+      skillDamage: toInteger(baseDamage),
       damageBonus: damageBonus,
       calculatedDamage: {
         baseline: toInteger(baseline),
