@@ -1,6 +1,10 @@
-import { AmplificationReactionParams, calculateOutgoingDamage, CriticalParams } from '../damage';
+import {
+  AmplificationReactionParams,
+  calculateIncomingDamage,
+  calculateOutgoingDamage,
+  CriticalParams,
+} from '../damage';
 import { Calculation, CharacterStats, ElementalReactions, TalentLevel } from '../types';
-import { calculateDefenseMutiplier } from '../utils';
 
 export type TalentLevelParams = {
   talentLevel: TalentLevel;
@@ -66,23 +70,24 @@ export function createCalculator<BaseDamageParams, DamageBonusParams>(
       params.critical,
       params.amplificationReaction,
     );
-    const damageReduction = calculateDefenseMutiplier(
-      params.character.level,
-      params.enemy.level,
-      params.enemy.resistance.baseResistance + params.enemy.resistance.resistanceBonus,
+    const finalDamage = calculateIncomingDamage(
+      outgoingDamage,
+      {
+        characterLevel: params.character.level,
+        enemyLevel: params.enemy.level,
+        defenseBonus: 0,
+      },
+      params.enemy.resistance,
     );
 
-    const baseline = outgoingDamage.baseline * damageReduction;
-    const critical = outgoingDamage.critical * damageReduction;
-    const average = outgoingDamage.average * damageReduction;
     const toInteger = Math.floor;
     return {
       skillDamage: toInteger(baseDamage),
       damageBonus: damageBonus,
       calculatedDamage: {
-        baseline: toInteger(baseline),
-        critical: toInteger(critical),
-        average: toInteger(average),
+        baseline: toInteger(finalDamage.baseline),
+        critical: toInteger(finalDamage.critical),
+        average: toInteger(finalDamage.average),
       },
     };
   };

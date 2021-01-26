@@ -1,6 +1,6 @@
 import { ElementalReactions } from './types';
 
-export interface OutgoingDamage {
+export interface Damage {
   readonly baseline: number;
   readonly critical: number;
   readonly average: number;
@@ -27,7 +27,7 @@ export function calculateOutgoingDamage(
   damageBonus: number,
   critical?: CriticalParams,
   amplificationReaction?: AmplificationReactionParams,
-): OutgoingDamage {
+): Damage {
   const amplificationBonus = amplificationReaction ? calculateAmplificationBonus(amplificationReaction) : 1;
   const baseline = baseDamage * (1 + damageBonus) * amplificationBonus;
   const criticalDamage = critical?.criticalDamage ?? 0;
@@ -46,6 +46,52 @@ function calculateAmplificationBonus(amplification: AmplificationReactionParams)
   );
 }
 
+/**
+ * Calculate EM bonus
+ * @param elementalMastery
+ */
 function calculateAmplifiedReactionEMBonus(elementalMastery: number): number {
-  return (25 / 9) * (elementalMastery / (1401 + elementalMastery));
+  return (25 / 9) * (elementalMastery / (1400 + elementalMastery));
+}
+
+export interface DefenseReductionParams {
+  readonly characterLevel: number;
+  readonly enemyLevel: number;
+  readonly defenseBonus: number;
+}
+
+export interface ResistanceReductionParams {
+  readonly baseResistance: number;
+  readonly resistanceBonus: number;
+}
+
+export function calculateIncomingDamage(
+  outgoingDamage: Damage,
+  defense: DefenseReductionParams,
+  resistance: ResistanceReductionParams,
+): Damage {
+  const defenseReduction = calculateDefenseReduction(defense);
+  const resistanceReduction = calculateResistanceReduction(resistance);
+
+  const reduceDamage = (damage: number) => damage * (1 - defenseReduction) * (1 - resistanceReduction);
+  return {
+    baseline: reduceDamage(outgoingDamage.baseline),
+    critical: reduceDamage(outgoingDamage.critical),
+    average: reduceDamage(outgoingDamage.average),
+  };
+}
+
+function calculateDefenseReduction({ characterLevel, enemyLevel, defenseBonus }: DefenseReductionParams): number {
+  return 1 / (1 + (characterLevel + 100) / ((1 + defenseBonus) * (enemyLevel + 100)));
+}
+
+function calculateResistanceReduction({ baseResistance, resistanceBonus }: ResistanceReductionParams): number {
+  const res = baseResistance + resistanceBonus;
+  if (res < 0) {
+    return res / 2;
+  }
+  if (res >= 0.75) {
+    return 1 / (1 + 1 / (4 * res));
+  }
+  return res;
 }

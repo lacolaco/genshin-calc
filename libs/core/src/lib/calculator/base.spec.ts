@@ -51,7 +51,6 @@ describe('createCalculator は Calculator を返す', () => {
     });
   });
   describe('Calculatorは与ダメージを計算できる', () => {
-    test.todo('');
     test('渡した関数にしたがってダメージを計算する', () => {
       const calculator = createCalculator({
         getBaseDamage: () => 0,
