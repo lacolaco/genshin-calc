@@ -8,11 +8,11 @@ export type State = {
 export const initialState: State = {
   calculatorParams: {
     talentLevel: 6,
+    stats: {
+      atk: 1500,
+    },
     character: {
       level: 80,
-      stats: {
-        atk: 1500,
-      },
       bonus: {
         elementalDamageBonus: 0.5,
         attackTypeDamageBonus: 0.35,

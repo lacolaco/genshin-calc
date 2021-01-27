@@ -49,12 +49,12 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
       .subscribe(({ skillDamage, damageBonus, damageReduction, critical }) => {
         this.valueChange.emit({
           talentLevel: skillDamage.talentLevel,
+          stats: {
+            atk: skillDamage.atk,
+            hp: skillDamage.hp,
+          },
           character: {
             level: damageReduction.characterLevel,
-            stats: {
-              atk: skillDamage.atk,
-              hp: skillDamage.hp,
-            },
             bonus: {
               elementalDamageBonus: damageBonus.elementalDamageBonus,
               enableGeoResonanceBonus: damageBonus.enableGeoResonance,
@@ -80,13 +80,13 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
   }
 
-  setFormValue({ character, enemy, talentLevel, critical }: CalculatorParams) {
+  setFormValue({ character, stats, enemy, talentLevel, critical }: CalculatorParams) {
     this.form.setValue(
       {
         skillDamage: {
           talentLevel,
-          hp: character.stats.hp,
-          atk: character.stats.atk,
+          hp: stats.hp,
+          atk: stats.atk,
         },
         damageBonus: {
           burstDamageBonus: character.bonus.attackTypeDamageBonus,

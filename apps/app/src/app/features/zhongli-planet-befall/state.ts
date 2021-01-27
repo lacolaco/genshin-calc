@@ -7,12 +7,12 @@ export interface State {
 export const initialState: State = {
   calculatorParams: {
     talentLevel: 6,
+    stats: {
+      atk: 1500,
+      hp: 25000,
+    },
     character: {
       level: 80,
-      stats: {
-        atk: 1500,
-        hp: 25000,
-      },
       bonus: {
         elementalDamageBonus: 0.58,
         attackTypeDamageBonus: 0.2,

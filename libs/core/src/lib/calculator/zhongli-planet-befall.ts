@@ -20,8 +20,8 @@ const skillDamageMap: Record<TalentLevel, number> = {
 } as const;
 
 export const calculateZhongliPlanetBefall = createCalculator({
-  getBaseDamage: ({ talentLevel, character }: TalentLevelParams & CharacterStatsParams<'atk' | 'hp'>) => {
-    return character.stats.atk * skillDamageMap[talentLevel] + character.stats.hp * 0.33;
+  getBaseDamage: ({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'atk' | 'hp'>) => {
+    return stats.atk * skillDamageMap[talentLevel] + stats.hp * 0.33;
   },
   getDamageBonus: ({ character }: CharacterBonusParams) => {
     return (

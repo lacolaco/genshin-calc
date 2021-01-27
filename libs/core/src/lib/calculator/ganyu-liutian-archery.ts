@@ -38,8 +38,8 @@ const arrowBloomDamageMap: Record<TalentLevel, number> = {
 } as const;
 
 export const calculateGanyuLiutianArchery = createCalculator({
-  getBaseDamage: ({ talentLevel, character }: TalentLevelParams & CharacterStatsParams<'atk'>) => {
-    return character.stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
+  getBaseDamage: ({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'atk'>) => {
+    return stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
   },
   getDamageBonus: ({ character }: CharacterBonusParams) => {
     return (

@@ -35,6 +35,6 @@ describe('CalculatorFormComponent', () => {
     spectator.component.form.patchValue({ skillDamage: { def: 2000 } });
     spectator.detectChanges();
 
-    expect(outputValue.character.stats.def).toBe(2000);
+    expect(outputValue.stats.def).toBe(2000);
   });
 });

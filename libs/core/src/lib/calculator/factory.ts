@@ -4,7 +4,7 @@ import {
   calculateOutgoingDamage,
   CriticalParams,
 } from '../damage';
-import { Calculation, CharacterStats, ElementalReactions, TalentLevel } from '../types';
+import { Calculation, CharacterStats, TalentLevel } from '../types';
 
 export type TalentLevelParams = {
   talentLevel: TalentLevel;
@@ -18,9 +18,9 @@ export type EnemyParams<Fields> = {
   enemy: Fields;
 };
 
-export type CharacterStatsParams<P extends keyof CharacterStats> = CharacterParams<{
+export type CharacterStatsParams<P extends keyof CharacterStats> = {
   stats: Pick<CharacterStats, P>;
-}>;
+};
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type CharacterBonusParams<P = Record<string, number | boolean>> = CharacterParams<{
   bonus: {
@@ -29,13 +29,6 @@ export type CharacterBonusParams<P = Record<string, number | boolean>> = Charact
     attackTypeDamageBonus: number;
   } & P;
 }>;
-
-export type ElementalReactionParams<R extends ElementalReactions> = CharacterStatsParams<'elementalMastery'> & {
-  elementalReaction: {
-    reaction: ElementalReactions.None | R;
-    reactionBonus: number;
-  };
-};
 
 export type DamageReductionParams = CharacterParams<{ level: number }> &
   EnemyParams<{

@@ -20,8 +20,8 @@ const skillDamageMap: Record<TalentLevel, number> = {
 } as const;
 
 export const calculateAlbedoTransientBlossoms = createCalculator({
-  getBaseDamage: ({ talentLevel, character }: TalentLevelParams & CharacterStatsParams<'def'>) => {
-    return character.stats.def * skillDamageMap[talentLevel];
+  getBaseDamage: ({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'def'>) => {
+    return stats.def * skillDamageMap[talentLevel];
   },
   getDamageBonus: ({ character }: CharacterBonusParams) => {
     return (

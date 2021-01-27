@@ -10,14 +10,12 @@ describe('burst damage', () => {
   test('case 1: minimal', () => {
     const { calculatedDamage } = calculateZhongliPlanetBefall({
       talentLevel: 7,
+      stats: {
+        hp: 14289,
+        atk: 259,
+      },
       character: {
         level: 80,
-        stats: {
-          hp: 14289,
-          atk: 259,
-          criticalRate: 0.05,
-          criticalDamage: 0.5,
-        },
         bonus: {
           elementalDamageBonus: 0.216,
           attackTypeDamageBonus: 0,
@@ -42,14 +40,12 @@ describe('burst damage', () => {
   test('case 2: no buff', () => {
     const { calculatedDamage } = calculateZhongliPlanetBefall({
       talentLevel: 7,
+      stats: {
+        hp: 24782,
+        atk: 1305,
+      },
       character: {
         level: 80,
-        stats: {
-          hp: 24782,
-          atk: 1305,
-          criticalRate: 0.1,
-          criticalDamage: 0.5,
-        },
         bonus: {
           elementalDamageBonus: 0.714,
           attackTypeDamageBonus: 0.2,
@@ -71,14 +67,12 @@ describe('burst damage', () => {
   test('case 3: buff', () => {
     const { calculatedDamage } = calculateZhongliPlanetBefall({
       talentLevel: 7,
+      stats: {
+        hp: 24782,
+        atk: 2185,
+      },
       character: {
         level: 80,
-        stats: {
-          hp: 24782,
-          atk: 2185,
-          criticalRate: 0.1,
-          criticalDamage: 0.5,
-        },
         bonus: {
           enableGeoResonanceBonus: true,
           elementalDamageBonus: 0.714,
