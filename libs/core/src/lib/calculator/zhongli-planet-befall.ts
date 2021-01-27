@@ -1,5 +1,5 @@
 import { TalentLevel } from '../types';
-import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentLevelParams } from './base';
+import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
 
 const skillDamageMap: Record<TalentLevel, number> = {
   1: 4.01,

@@ -1,4 +1,4 @@
-import { createCalculator } from './base';
+import { createCalculator } from './factory';
 
 describe('createCalculator は Calculator を返す', () => {
   test('Calculator は functionである', () => {
