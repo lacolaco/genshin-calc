@@ -6,7 +6,7 @@ export interface Damage {
   readonly average: number;
 }
 
-export type DamageBonus = {
+export type DamageBonusParams = {
   elementalDamageBonus?: number;
   attackTypeDamageBonus?: number;
   anyDamageBonus?: number;
@@ -30,7 +30,7 @@ const amplificationReactionMultiplier: Record<ElementalReactions, number> = {
 
 export function calculateOutgoingDamage(
   baseDamage: number,
-  damageBonus: DamageBonus,
+  damageBonus: DamageBonusParams,
   critical?: CriticalParams,
   amplificationReaction?: AmplificationReactionParams,
 ): Damage {
@@ -49,7 +49,7 @@ function calculateDamageBonus({
   anyDamageBonus = 0,
   attackTypeDamageBonus = 0,
   elementalDamageBonus = 0,
-}: DamageBonus): number {
+}: DamageBonusParams): number {
   return anyDamageBonus + attackTypeDamageBonus + elementalDamageBonus;
 }
 
@@ -71,7 +71,7 @@ function calculateAmplifiedReactionEMBonus(elementalMastery: number): number {
 export interface DefenseReductionParams {
   readonly characterLevel: number;
   readonly enemyLevel: number;
-  readonly defenseBonus: number;
+  readonly defenseBonus?: number;
 }
 
 export interface ResistanceReductionParams {
@@ -95,7 +95,7 @@ export function calculateIncomingDamage(
   };
 }
 
-function calculateDefenseReduction({ characterLevel, enemyLevel, defenseBonus }: DefenseReductionParams): number {
+function calculateDefenseReduction({ characterLevel, enemyLevel, defenseBonus = 0 }: DefenseReductionParams): number {
   return 1 / (1 + (characterLevel + 100) / ((1 + defenseBonus) * (enemyLevel + 100)));
 }
 

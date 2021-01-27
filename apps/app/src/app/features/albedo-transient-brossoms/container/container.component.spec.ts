@@ -38,13 +38,10 @@ describe('AlbedoTransientBlossomsContainerComponent', () => {
     test('フォーム入力の変更で計算パラメータを更新する', () => {
       spectator.component.setCalculateParams({
         ...initialState.calculatorParams,
-        character: {
-          ...initialState.calculatorParams.character,
-          level: 100,
-        },
+        talentLevel: 10,
       });
 
-      expect(spectator.component.get().calculatorParams.character.level).toBe(100);
+      expect(spectator.component.get().calculatorParams.talentLevel).toBe(10);
     });
   });
 

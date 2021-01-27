@@ -10,11 +10,7 @@ export const initialState: State = {
     stats: {
       def: 1500,
     },
-    character: {
-      level: 80,
-    },
     enemy: {
-      level: 80,
       resistance: {
         baseResistance: 0.1,
         resistanceBonus: 0,
@@ -25,6 +21,7 @@ export const initialState: State = {
       attackTypeDamageBonus: 0.15,
       anyDamageBonus: 0,
     },
+    defense: { characterLevel: 80, enemyLevel: 80 },
     critical: { criticalRate: 0.1, criticalDamage: 0.5 },
   },
 };

@@ -53,11 +53,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
             atk: skillDamage.atk,
             hp: skillDamage.hp,
           },
-          character: {
-            level: damageReduction.characterLevel,
-          },
           enemy: {
-            level: damageReduction.enemyLevel,
             resistance: {
               baseResistance: damageReduction.baseResistance,
               resistanceBonus: 0,
@@ -67,6 +63,10 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
             elementalDamageBonus: damageBonus.elementalDamageBonus,
             attackTypeDamageBonus: damageBonus.attackTypeDamageBonus,
             anyDamageBonus: damageBonus.anyDamageBonus,
+          },
+          defense: {
+            characterLevel: damageReduction.characterLevel,
+            enemyLevel: damageReduction.enemyLevel,
           },
           critical: {
             criticalRate: critical.criticalRate,
@@ -80,7 +80,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
   }
 
-  setFormValue({ character, stats, enemy, talentLevel, damageBonus, critical }: CalculatorParams) {
+  setFormValue({ stats, enemy, talentLevel, damageBonus, defense, critical }: CalculatorParams) {
     this.form.setValue(
       {
         skillDamage: {
@@ -94,8 +94,8 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           anyDamageBonus: damageBonus?.anyDamageBonus ?? 0,
         },
         damageReduction: {
-          characterLevel: character.level,
-          enemyLevel: enemy.level,
+          characterLevel: defense.characterLevel,
+          enemyLevel: defense.enemyLevel,
           baseResistance: enemy.resistance.baseResistance,
         },
         critical: {

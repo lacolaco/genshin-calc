@@ -3,16 +3,13 @@ import {
   calculateIncomingDamage,
   calculateOutgoingDamage,
   CriticalParams,
-  DamageBonus,
+  DamageBonusParams,
+  DefenseReductionParams,
 } from '../damage';
 import { Calculation, CharacterStats, TalentLevel } from '../types';
 
 export type TalentLevelParams = {
   talentLevel: TalentLevel;
-};
-
-export type CharacterParams<Fields> = {
-  character: Fields;
 };
 
 export type EnemyParams<Fields> = {
@@ -30,15 +27,14 @@ type CalculatorFactory<BaseDamageParams> = {
 export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<BaseDamageParams>) {
   return (
     params: BaseDamageParams &
-      CharacterParams<{ level: number }> &
       EnemyParams<{
-        level: number;
         resistance: {
           baseResistance: number;
           resistanceBonus: number;
         };
       }> & {
-        damageBonus: DamageBonus;
+        damageBonus: DamageBonusParams;
+        defense: DefenseReductionParams;
         critical?: CriticalParams;
         amplificationReaction?: AmplificationReactionParams;
       },
@@ -50,15 +46,7 @@ export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<Ba
       params.critical,
       params.amplificationReaction,
     );
-    const finalDamage = calculateIncomingDamage(
-      outgoingDamage,
-      {
-        characterLevel: params.character.level,
-        enemyLevel: params.enemy.level,
-        defenseBonus: 0,
-      },
-      params.enemy.resistance,
-    );
+    const finalDamage = calculateIncomingDamage(outgoingDamage, params.defense, params.enemy.resistance);
 
     const toInteger = Math.floor;
     return {

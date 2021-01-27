@@ -7,17 +7,14 @@ describe('calculateGanyuLiutianArchery', () => {
     stats: {
       atk: 1000,
     },
-    character: {
-      level: 1,
-    },
     enemy: {
-      level: 1,
       resistance: {
         baseResistance: 0,
         resistanceBonus: 0,
       },
     },
     damageBonus: {},
+    defense: { characterLevel: 1, enemyLevel: 1 },
     critical: { criticalRate: 0, criticalDamage: 0 },
     amplificationReaction: {
       reaction: ElementalReactions.None,
@@ -31,9 +28,6 @@ describe('calculateGanyuLiutianArchery', () => {
     const calc2 = calculateGanyuLiutianArchery({
       ...baseParams,
       stats: { ...baseParams.stats, atk: 2000 },
-      character: {
-        ...baseParams.character,
-      },
     });
     expect(calc2.skillDamage).toBeGreaterThan(calc1.skillDamage);
   });

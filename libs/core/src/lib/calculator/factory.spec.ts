@@ -17,11 +17,8 @@ describe('createCalculator は Calculator を返す', () => {
       const calculation = calculator({
         skillDamage: 100,
         damageBonus: {},
-        character: {
-          level: 0,
-        },
+        defense: { characterLevel: 0, enemyLevel: 0 },
         enemy: {
-          level: 0,
           resistance: { baseResistance: 0, resistanceBonus: 0 },
         },
       });
@@ -37,11 +34,8 @@ describe('createCalculator は Calculator を返す', () => {
       });
       const calculation = calculator({
         damageBonus: { anyDamageBonus: 0.5 },
-        character: {
-          level: 0,
-        },
+        defense: { characterLevel: 0, enemyLevel: 0 },
         enemy: {
-          level: 0,
           resistance: { baseResistance: 0, resistanceBonus: 0 },
         },
       });
