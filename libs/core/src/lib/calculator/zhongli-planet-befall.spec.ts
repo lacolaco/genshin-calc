@@ -16,11 +16,6 @@ describe('burst damage', () => {
       },
       character: {
         level: 80,
-        bonus: {
-          elementalDamageBonus: 0.216,
-          attackTypeDamageBonus: 0,
-          enableGeoResonanceBonus: false,
-        },
       },
       enemy: {
         level: 77,
@@ -28,6 +23,9 @@ describe('burst damage', () => {
           baseResistance: 0.1,
           resistanceBonus: 0,
         },
+      },
+      damageBonus: {
+        elementalDamageBonus: 0.216,
       },
       critical: { criticalRate: 0.05, criticalDamage: 0.5 },
     });
@@ -46,11 +44,6 @@ describe('burst damage', () => {
       },
       character: {
         level: 80,
-        bonus: {
-          elementalDamageBonus: 0.714,
-          attackTypeDamageBonus: 0.2,
-          enableGeoResonanceBonus: false,
-        },
       },
       enemy: {
         level: 77,
@@ -58,6 +51,10 @@ describe('burst damage', () => {
           baseResistance: 0.1,
           resistanceBonus: 0,
         },
+      },
+      damageBonus: {
+        elementalDamageBonus: 0.714,
+        attackTypeDamageBonus: 0.2,
       },
       critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });
@@ -73,11 +70,6 @@ describe('burst damage', () => {
       },
       character: {
         level: 80,
-        bonus: {
-          enableGeoResonanceBonus: true,
-          elementalDamageBonus: 0.714,
-          attackTypeDamageBonus: 0.2,
-        },
       },
       enemy: {
         level: 77,
@@ -85,6 +77,11 @@ describe('burst damage', () => {
           baseResistance: 0.1,
           resistanceBonus: 0,
         },
+      },
+      damageBonus: {
+        elementalDamageBonus: 0.714,
+        attackTypeDamageBonus: 0.2,
+        anyDamageBonus: 0.15,
       },
       critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });

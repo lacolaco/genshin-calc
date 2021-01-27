@@ -26,8 +26,8 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     }),
     damageBonus: new FormGroup({
       elementalDamageBonus: new FormControl<number>(),
-      enableGeoResonance: new FormControl<boolean>(),
-      chargedAttackDamageBonus: new FormControl<number>(),
+      attackTypeDamageBonus: new FormControl<number>(),
+      anyDamageBonus: new FormControl<number>(),
     }),
     damageReduction: new FormGroup({
       characterLevel: new FormControl<number>(),
@@ -58,11 +58,6 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           },
           character: {
             level: damageReduction.characterLevel,
-            bonus: {
-              elementalDamageBonus: damageBonus.elementalDamageBonus,
-              enableGeoResonanceBonus: damageBonus.enableGeoResonance,
-              attackTypeDamageBonus: damageBonus.chargedAttackDamageBonus,
-            },
           },
           enemy: {
             level: damageReduction.enemyLevel,
@@ -74,6 +69,11 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           critical: {
             criticalRate: critical.criticalRate,
             criticalDamage: critical.criticalDamage,
+          },
+          damageBonus: {
+            elementalDamageBonus: damageBonus.elementalDamageBonus,
+            attackTypeDamageBonus: damageBonus.attackTypeDamageBonus,
+            anyDamageBonus: damageBonus.anyDamageBonus,
           },
           amplificationReaction: elementalReaction.enableMeltReaction
             ? {
@@ -90,7 +90,15 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
   }
 
-  private setFormValue({ talentLevel, stats, character, enemy, critical, amplificationReaction }: CalculatorParams) {
+  private setFormValue({
+    talentLevel,
+    stats,
+    character,
+    enemy,
+    damageBonus,
+    critical,
+    amplificationReaction,
+  }: CalculatorParams) {
     this.form.setValue(
       {
         skillDamage: {
@@ -98,9 +106,9 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           atk: stats.atk,
         },
         damageBonus: {
-          enableGeoResonance: character.bonus.enableGeoResonanceBonus,
-          chargedAttackDamageBonus: character.bonus.attackTypeDamageBonus,
-          elementalDamageBonus: character.bonus.elementalDamageBonus,
+          anyDamageBonus: damageBonus?.anyDamageBonus ?? 0,
+          attackTypeDamageBonus: damageBonus?.attackTypeDamageBonus ?? 0,
+          elementalDamageBonus: damageBonus?.elementalDamageBonus ?? 0,
         },
         damageReduction: {
           characterLevel: character.level,

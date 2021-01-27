@@ -3,6 +3,7 @@ import {
   calculateIncomingDamage,
   calculateOutgoingDamage,
   CriticalParams,
+  DamageBonus,
 } from '../damage';
 import { Calculation, CharacterStats, TalentLevel } from '../types';
 
@@ -21,45 +22,31 @@ export type EnemyParams<Fields> = {
 export type CharacterStatsParams<P extends keyof CharacterStats> = {
   stats: Pick<CharacterStats, P>;
 };
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type CharacterBonusParams<P = Record<string, number | boolean>> = CharacterParams<{
-  bonus: {
-    elementalDamageBonus: number;
-    enableGeoResonanceBonus: boolean;
-    attackTypeDamageBonus: number;
-  } & P;
-}>;
 
-export type DamageReductionParams = CharacterParams<{ level: number }> &
-  EnemyParams<{
-    level: number;
-    resistance: {
-      baseResistance: number;
-      resistanceBonus: number;
-    };
-  }>;
-
-type CalculatorFactory<BaseDamageParams, DamageBonusParams> = {
+type CalculatorFactory<BaseDamageParams> = {
   getBaseDamage: (params: BaseDamageParams) => number;
-  getDamageBonus: (params: DamageBonusParams) => number;
 };
 
-export function createCalculator<BaseDamageParams, DamageBonusParams>(
-  factory: CalculatorFactory<BaseDamageParams, DamageBonusParams>,
-) {
+export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<BaseDamageParams>) {
   return (
     params: BaseDamageParams &
-      DamageBonusParams &
-      DamageReductionParams & {
+      CharacterParams<{ level: number }> &
+      EnemyParams<{
+        level: number;
+        resistance: {
+          baseResistance: number;
+          resistanceBonus: number;
+        };
+      }> & {
+        damageBonus: DamageBonus;
         critical?: CriticalParams;
         amplificationReaction?: AmplificationReactionParams;
       },
   ): Calculation => {
     const baseDamage = factory.getBaseDamage(params);
-    const damageBonus = factory.getDamageBonus(params);
     const outgoingDamage = calculateOutgoingDamage(
       baseDamage,
-      damageBonus,
+      params.damageBonus,
       params.critical,
       params.amplificationReaction,
     );
@@ -76,7 +63,6 @@ export function createCalculator<BaseDamageParams, DamageBonusParams>(
     const toInteger = Math.floor;
     return {
       skillDamage: toInteger(baseDamage),
-      damageBonus: damageBonus,
       calculatedDamage: {
         baseline: toInteger(finalDamage.baseline),
         critical: toInteger(finalDamage.critical),

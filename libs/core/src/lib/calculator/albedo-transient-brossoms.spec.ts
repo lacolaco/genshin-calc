@@ -15,11 +15,6 @@ describe('calculateAlbedoTransientBlossoms', () => {
       },
       character: {
         level: 80,
-        bonus: {
-          elementalDamageBonus: 0.733,
-          enableGeoResonanceBonus: false,
-          attackTypeDamageBonus: 0,
-        },
       },
       enemy: {
         level: 77,
@@ -27,6 +22,9 @@ describe('calculateAlbedoTransientBlossoms', () => {
           baseResistance: 0.1,
           resistanceBonus: 0,
         },
+      },
+      damageBonus: {
+        elementalDamageBonus: 0.733,
       },
       critical: {
         criticalRate: 0.05 + 0.28,

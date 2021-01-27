@@ -13,11 +13,6 @@ export const initialState: State = {
     },
     character: {
       level: 80,
-      bonus: {
-        elementalDamageBonus: 0.5,
-        attackTypeDamageBonus: 0.35,
-        enableGeoResonanceBonus: false,
-      },
     },
     enemy: {
       level: 80,
@@ -25,6 +20,11 @@ export const initialState: State = {
         baseResistance: 0.1,
         resistanceBonus: 0,
       },
+    },
+    damageBonus: {
+      elementalDamageBonus: 0.5,
+      attackTypeDamageBonus: 0.35,
+      anyDamageBonus: 0,
     },
     critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     amplificationReaction: {

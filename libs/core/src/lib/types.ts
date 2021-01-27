@@ -24,7 +24,6 @@ export type CalculatedDamage = {
 
 export type Calculation = Readonly<{
   skillDamage: number;
-  damageBonus: number;
   calculatedDamage: CalculatedDamage;
 }>;
 

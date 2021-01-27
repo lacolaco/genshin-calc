@@ -1,5 +1,5 @@
 import { TalentLevel } from '../types';
-import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
+import { CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
 
 const skillDamageMap: Record<TalentLevel, number> = {
   1: 1.34,
@@ -22,12 +22,5 @@ const skillDamageMap: Record<TalentLevel, number> = {
 export const calculateAlbedoTransientBlossoms = createCalculator({
   getBaseDamage: ({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'def'>) => {
     return stats.def * skillDamageMap[talentLevel];
-  },
-  getDamageBonus: ({ character }: CharacterBonusParams) => {
-    return (
-      character.bonus.elementalDamageBonus +
-      character.bonus.attackTypeDamageBonus +
-      (character.bonus.enableGeoResonanceBonus ? 0.15 : 0)
-    );
   },
 });

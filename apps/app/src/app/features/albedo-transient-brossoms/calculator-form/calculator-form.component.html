@@ -23,12 +23,10 @@
         <ui-number-input
           mode="percent"
           label="元素スキルダメージ%"
-          formControlName="skillDamageBonus"
+          formControlName="attackTypeDamageBonus"
         ></ui-number-input>
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
       </ui-form-fields>
-      <div class="flex flex-col space-y-2">
-        <ui-checkbox formControlName="enableGeoResonance">岩元素共鳴ボーナス (ダメージ+15%)</ui-checkbox>
-      </div>
     </div>
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
       <span class="block text-sm font-bold">ダメージ減衰</span>

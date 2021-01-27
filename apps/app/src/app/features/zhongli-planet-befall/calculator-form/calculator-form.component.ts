@@ -27,8 +27,8 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     }),
     damageBonus: new FormGroup({
       elementalDamageBonus: new FormControl<number>(),
-      burstDamageBonus: new FormControl<number>(),
-      enableGeoResonance: new FormControl<boolean>(),
+      attackTypeDamageBonus: new FormControl<number>(),
+      anyDamageBonus: new FormControl<number>(),
     }),
     damageReduction: new FormGroup({
       characterLevel: new FormControl<number>(),
@@ -55,11 +55,6 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           },
           character: {
             level: damageReduction.characterLevel,
-            bonus: {
-              elementalDamageBonus: damageBonus.elementalDamageBonus,
-              enableGeoResonanceBonus: damageBonus.enableGeoResonance,
-              attackTypeDamageBonus: damageBonus.burstDamageBonus,
-            },
           },
           enemy: {
             level: damageReduction.enemyLevel,
@@ -67,6 +62,11 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
               baseResistance: damageReduction.baseResistance,
               resistanceBonus: 0,
             },
+          },
+          damageBonus: {
+            elementalDamageBonus: damageBonus.elementalDamageBonus,
+            attackTypeDamageBonus: damageBonus.attackTypeDamageBonus,
+            anyDamageBonus: damageBonus.anyDamageBonus,
           },
           critical: {
             criticalRate: critical.criticalRate,
@@ -80,7 +80,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
   }
 
-  setFormValue({ character, stats, enemy, talentLevel, critical }: CalculatorParams) {
+  setFormValue({ character, stats, enemy, talentLevel, damageBonus, critical }: CalculatorParams) {
     this.form.setValue(
       {
         skillDamage: {
@@ -89,9 +89,9 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           atk: stats.atk,
         },
         damageBonus: {
-          burstDamageBonus: character.bonus.attackTypeDamageBonus,
-          elementalDamageBonus: character.bonus.elementalDamageBonus,
-          enableGeoResonance: character.bonus.enableGeoResonanceBonus,
+          attackTypeDamageBonus: damageBonus?.attackTypeDamageBonus ?? 0,
+          elementalDamageBonus: damageBonus?.elementalDamageBonus ?? 0,
+          anyDamageBonus: damageBonus?.anyDamageBonus ?? 0,
         },
         damageReduction: {
           characterLevel: character.level,

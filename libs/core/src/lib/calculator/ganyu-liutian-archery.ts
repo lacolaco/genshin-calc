@@ -1,5 +1,5 @@
 import { TalentLevel } from '../types';
-import { CharacterBonusParams, CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
+import { CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
 
 const arrowDamageMap: Record<TalentLevel, number> = {
   1: 1.28,
@@ -40,12 +40,5 @@ const arrowBloomDamageMap: Record<TalentLevel, number> = {
 export const calculateGanyuLiutianArchery = createCalculator({
   getBaseDamage: ({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'atk'>) => {
     return stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
-  },
-  getDamageBonus: ({ character }: CharacterBonusParams) => {
-    return (
-      character.bonus.elementalDamageBonus +
-      character.bonus.attackTypeDamageBonus +
-      (character.bonus.enableGeoResonanceBonus ? 0.15 : 0)
-    );
   },
 });

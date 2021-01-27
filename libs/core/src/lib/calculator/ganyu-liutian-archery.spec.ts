@@ -9,11 +9,6 @@ describe('calculateGanyuLiutianArchery', () => {
     },
     character: {
       level: 1,
-      bonus: {
-        elementalDamageBonus: 0,
-        attackTypeDamageBonus: 0,
-        enableGeoResonanceBonus: false,
-      },
     },
     enemy: {
       level: 1,
@@ -22,6 +17,7 @@ describe('calculateGanyuLiutianArchery', () => {
         resistanceBonus: 0,
       },
     },
+    damageBonus: {},
     critical: { criticalRate: 0, criticalDamage: 0 },
     amplificationReaction: {
       reaction: ElementalReactions.None,
@@ -40,21 +36,6 @@ describe('calculateGanyuLiutianArchery', () => {
       },
     });
     expect(calc2.skillDamage).toBeGreaterThan(calc1.skillDamage);
-  });
-
-  test('ダメージバフを計算する', () => {
-    const calc = calculateGanyuLiutianArchery({
-      ...baseParams,
-      character: {
-        ...baseParams.character,
-        bonus: {
-          elementalDamageBonus: 0.1,
-          attackTypeDamageBonus: 0.2,
-          enableGeoResonanceBonus: true,
-        },
-      },
-    });
-    expect(calc.damageBonus).toBe(0.1 + 0.2 + 0.15);
   });
 
   test('溶解反応はダメージを1.5倍にする', () => {

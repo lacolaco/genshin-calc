@@ -6,6 +6,12 @@ export interface Damage {
   readonly average: number;
 }
 
+export type DamageBonus = {
+  elementalDamageBonus?: number;
+  attackTypeDamageBonus?: number;
+  anyDamageBonus?: number;
+};
+
 export interface CriticalParams {
   readonly criticalRate: number;
   readonly criticalDamage: number;
@@ -24,12 +30,12 @@ const amplificationReactionMultiplier: Record<ElementalReactions, number> = {
 
 export function calculateOutgoingDamage(
   baseDamage: number,
-  damageBonus: number,
+  damageBonus: DamageBonus,
   critical?: CriticalParams,
   amplificationReaction?: AmplificationReactionParams,
 ): Damage {
   const amplificationBonus = amplificationReaction ? calculateAmplificationBonus(amplificationReaction) : 1;
-  const baseline = baseDamage * (1 + damageBonus) * amplificationBonus;
+  const baseline = baseDamage * (1 + calculateDamageBonus(damageBonus)) * amplificationBonus;
   const criticalDamage = critical?.criticalDamage ?? 0;
   const criticalRate = critical?.criticalRate ?? 0;
   return {
@@ -37,6 +43,14 @@ export function calculateOutgoingDamage(
     critical: baseline * (1 + criticalDamage),
     average: baseline * (1 + criticalDamage * criticalRate),
   };
+}
+
+function calculateDamageBonus({
+  anyDamageBonus = 0,
+  attackTypeDamageBonus = 0,
+  elementalDamageBonus = 0,
+}: DamageBonus): number {
+  return anyDamageBonus + attackTypeDamageBonus + elementalDamageBonus;
 }
 
 function calculateAmplificationBonus(amplification: AmplificationReactionParams): number {
