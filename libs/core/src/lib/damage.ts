@@ -19,8 +19,8 @@ export interface CriticalParams {
 
 export interface AmplificationReactionParams {
   readonly reaction: ElementalReactions;
-  readonly elementalMastery: number;
-  readonly reactionBonus: number;
+  readonly elementalMastery?: number;
+  readonly reactionBonus?: number;
 }
 
 const amplificationReactionMultiplier: Record<ElementalReactions, number> = {
@@ -53,10 +53,14 @@ function calculateDamageBonus({
   return anyDamageBonus + attackTypeDamageBonus + elementalDamageBonus;
 }
 
-function calculateAmplificationBonus(amplification: AmplificationReactionParams): number {
+function calculateAmplificationBonus({
+  reaction,
+  elementalMastery = 0,
+  reactionBonus = 0,
+}: AmplificationReactionParams): number {
   return (
-    amplificationReactionMultiplier[amplification.reaction] *
-    (1 + calculateAmplifiedReactionEMBonus(amplification.elementalMastery) + amplification.reactionBonus)
+    amplificationReactionMultiplier[reaction] *
+    (1 + calculateAmplifiedReactionEMBonus(elementalMastery) + reactionBonus)
   );
 }
 
@@ -76,7 +80,7 @@ export interface DefenseReductionParams {
 
 export interface ResistanceReductionParams {
   readonly baseResistance: number;
-  readonly resistanceBonus: number;
+  readonly resistanceBonus?: number;
 }
 
 export function calculateIncomingDamage(
@@ -99,7 +103,7 @@ function calculateDefenseReduction({ characterLevel, enemyLevel, defenseBonus = 
   return 1 / (1 + (characterLevel + 100) / ((1 + defenseBonus) * (enemyLevel + 100)));
 }
 
-function calculateResistanceReduction({ baseResistance, resistanceBonus }: ResistanceReductionParams): number {
+function calculateResistanceReduction({ baseResistance, resistanceBonus = 0 }: ResistanceReductionParams): number {
   const res = baseResistance + resistanceBonus;
   if (res < 0) {
     return res / 2;

@@ -71,7 +71,7 @@ describe('発信ダメージが計算される', () => {
             100,
             {},
             { criticalRate: 0, criticalDamage: 0 },
-            { reaction: ElementalReactions.MeltByCryo, elementalMastery: 10, reactionBonus: 0 },
+            { reaction: ElementalReactions.MeltByCryo, elementalMastery: 10 },
           );
           expect(outgoingDamage.critical).toBeCloseTo(152.96);
         });
@@ -82,7 +82,7 @@ describe('発信ダメージが計算される', () => {
             100,
             {},
             { criticalRate: 0, criticalDamage: 1 },
-            { reaction: ElementalReactions.MeltByCryo, elementalMastery: 0, reactionBonus: 0 },
+            { reaction: ElementalReactions.MeltByCryo, elementalMastery: 0 },
           );
           expect(outgoingDamage.critical).toBeCloseTo(300);
         });
@@ -98,7 +98,7 @@ describe('受信ダメージが計算される', () => {
         const incomingDamage = calculateIncomingDamage(
           { baseline: 100, critical: 100, average: 100 },
           { characterLevel: 100, enemyLevel: 100, defenseBonus: 0 },
-          { baseResistance: 0, resistanceBonus: 0 },
+          { baseResistance: 0 },
         );
         expect(incomingDamage.baseline).toBeCloseTo(50);
       });
@@ -106,7 +106,7 @@ describe('受信ダメージが計算される', () => {
         const incomingDamage = calculateIncomingDamage(
           { baseline: 100, critical: 100, average: 100 },
           { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-          { baseResistance: 0, resistanceBonus: 0 },
+          { baseResistance: 0 },
         );
         expect(incomingDamage.baseline).toBeCloseTo(100);
       });
@@ -128,7 +128,7 @@ describe('受信ダメージが計算される', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
             { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: -0.5, resistanceBonus: 0 },
+            { baseResistance: -0.5 },
           );
           expect(incomingDamage.baseline).toBeCloseTo(125);
         });
@@ -138,7 +138,7 @@ describe('受信ダメージが計算される', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
             { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 0.5, resistanceBonus: 0 },
+            { baseResistance: 0.5 },
           );
           expect(incomingDamage.baseline).toBeCloseTo(50);
         });
@@ -148,7 +148,7 @@ describe('受信ダメージが計算される', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
             { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 0.75, resistanceBonus: 0 },
+            { baseResistance: 0.75 },
           );
           expect(incomingDamage.baseline).toBeCloseTo(25);
         });
@@ -156,7 +156,7 @@ describe('受信ダメージが計算される', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
             { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 1, resistanceBonus: 0 },
+            { baseResistance: 1 },
           );
           expect(incomingDamage.baseline).toBeCloseTo(20);
         });
