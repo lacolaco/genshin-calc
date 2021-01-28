@@ -97,16 +97,14 @@ describe('受信ダメージが計算される', () => {
       test('発信ダメージ 100 / キャラレベル 100 / 敵レベル 100 / 防御バフ 0% のとき、のとき、 防御ダメージ減衰は 50% となり受信ダメージは 50 になる', () => {
         const incomingDamage = calculateIncomingDamage(
           { baseline: 100, critical: 100, average: 100 },
-          { characterLevel: 100, enemyLevel: 100, defenseBonus: 0 },
-          { baseResistance: 0 },
+          { defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: 0 } },
         );
         expect(incomingDamage.baseline).toBeCloseTo(50);
       });
       test('発信ダメージ 100 / キャラレベル 100 / 敵レベル 100 / 防御バフ -100% のとき、 防御ダメージ減衰は 0% となり受信ダメージは 100 になる', () => {
         const incomingDamage = calculateIncomingDamage(
           { baseline: 100, critical: 100, average: 100 },
-          { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-          { baseResistance: 0 },
+          { defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 } },
         );
         expect(incomingDamage.baseline).toBeCloseTo(100);
       });
@@ -117,8 +115,10 @@ describe('受信ダメージが計算される', () => {
         test('発信ダメージ 100 / 防御ダメージ減衰 0% / 基礎耐性 10% / 耐性ボーナス 10% のとき、耐性ダメージ減衰は 20% となり受信ダメージは 80 になる', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
-            { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 0.1, resistanceBonus: 0.1 },
+            {
+              defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
+              resistance: { baseResistance: 0.1, resistanceBonus: 0.1 },
+            },
           );
           expect(incomingDamage.baseline).toBeCloseTo(80);
         });
@@ -127,8 +127,10 @@ describe('受信ダメージが計算される', () => {
         test('発信ダメージ 100 / 防御ダメージ減衰 0% / 耐性 -50% のとき、耐性ダメージ減衰は -25% となり受信ダメージは 125 になる', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
-            { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: -0.5 },
+            {
+              defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
+              resistance: { baseResistance: -0.5 },
+            },
           );
           expect(incomingDamage.baseline).toBeCloseTo(125);
         });
@@ -137,8 +139,10 @@ describe('受信ダメージが計算される', () => {
         test('発信ダメージ 100 / 防御ダメージ減衰 0% / 耐性 50% のとき、耐性ダメージ減衰は 50% となり受信ダメージは 50 になる', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
-            { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 0.5 },
+            {
+              defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
+              resistance: { baseResistance: 0.5 },
+            },
           );
           expect(incomingDamage.baseline).toBeCloseTo(50);
         });
@@ -147,16 +151,20 @@ describe('受信ダメージが計算される', () => {
         test('発信ダメージ 100 / 防御ダメージ減衰 0% / 耐性 75% のとき、耐性ダメージ減衰は 75% となり受信ダメージは 25 になる', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
-            { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 0.75 },
+            {
+              defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
+              resistance: { baseResistance: 0.75 },
+            },
           );
           expect(incomingDamage.baseline).toBeCloseTo(25);
         });
         test('発信ダメージ 100 / 防御ダメージ減衰 0% / 元素ダメージ耐性 100% のとき、耐性ダメージ減衰は 80% となり受信ダメージは 20 になる', () => {
           const incomingDamage = calculateIncomingDamage(
             { baseline: 100, critical: 100, average: 100 },
-            { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
-            { baseResistance: 1 },
+            {
+              defense: { characterLevel: 100, enemyLevel: 100, defenseBonus: -1 },
+              resistance: { baseResistance: 1 },
+            },
           );
           expect(incomingDamage.baseline).toBeCloseTo(20);
         });

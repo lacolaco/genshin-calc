@@ -30,12 +30,13 @@ const amplificationReactionMultiplier: Record<ElementalReactions, number> = {
 
 export function calculateOutgoingDamage(
   baseDamage: number,
-  damageBonus: DamageBonusParams,
+  damageBonus?: DamageBonusParams,
   critical?: CriticalParams,
   amplificationReaction?: AmplificationReactionParams,
 ): Damage {
+  const damageBonusMultiplier = damageBonus ? 1 + calculateDamageBonus(damageBonus) : 1;
   const amplificationBonus = amplificationReaction ? calculateAmplificationBonus(amplificationReaction) : 1;
-  const baseline = baseDamage * (1 + calculateDamageBonus(damageBonus)) * amplificationBonus;
+  const baseline = baseDamage * damageBonusMultiplier * amplificationBonus;
   const criticalDamage = critical?.criticalDamage ?? 0;
   const criticalRate = critical?.criticalRate ?? 0;
   return {
@@ -85,13 +86,15 @@ export interface ResistanceReductionParams {
 
 export function calculateIncomingDamage(
   outgoingDamage: Damage,
-  defense: DefenseReductionParams,
-  resistance: ResistanceReductionParams,
+  params: {
+    defense?: DefenseReductionParams;
+    resistance?: ResistanceReductionParams;
+  } = {},
 ): Damage {
-  const defenseReduction = calculateDefenseReduction(defense);
-  const resistanceReduction = calculateResistanceReduction(resistance);
+  const defenseReductionMultipler = params.defense ? 1 - calculateDefenseReduction(params.defense) : 1;
+  const resistanceReductionMultiplier = params.resistance ? 1 - calculateResistanceReduction(params.resistance) : 1;
 
-  const reduceDamage = (damage: number) => damage * (1 - defenseReduction) * (1 - resistanceReduction);
+  const reduceDamage = (damage: number) => damage * defenseReductionMultipler * resistanceReductionMultiplier;
   return {
     baseline: reduceDamage(outgoingDamage.baseline),
     critical: reduceDamage(outgoingDamage.critical),

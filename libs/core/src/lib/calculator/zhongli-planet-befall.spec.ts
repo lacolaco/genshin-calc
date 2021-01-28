@@ -14,15 +14,10 @@ describe('burst damage', () => {
         hp: 14289,
         atk: 259,
       },
-      enemy: {
-        resistance: {
-          baseResistance: 0.1,
-          resistanceBonus: 0,
-        },
-      },
       damageBonus: {
         elementalDamageBonus: 0.216,
       },
+      resistance: { baseResistance: 0.1, resistanceBonus: 0 },
       defense: { characterLevel: 80, enemyLevel: 77 },
       critical: { criticalRate: 0.05, criticalDamage: 0.5 },
     });
@@ -39,16 +34,11 @@ describe('burst damage', () => {
         hp: 24782,
         atk: 1305,
       },
-      enemy: {
-        resistance: {
-          baseResistance: 0.1,
-          resistanceBonus: 0,
-        },
-      },
       damageBonus: {
         elementalDamageBonus: 0.714,
         attackTypeDamageBonus: 0.2,
       },
+      resistance: { baseResistance: 0.1, resistanceBonus: 0 },
       defense: { characterLevel: 80, enemyLevel: 77 },
       critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });
@@ -62,17 +52,12 @@ describe('burst damage', () => {
         hp: 24782,
         atk: 2185,
       },
-      enemy: {
-        resistance: {
-          baseResistance: 0.1,
-          resistanceBonus: 0,
-        },
-      },
       damageBonus: {
         elementalDamageBonus: 0.714,
         attackTypeDamageBonus: 0.2,
         anyDamageBonus: 0.15,
       },
+      resistance: { baseResistance: 0.1, resistanceBonus: 0 },
       defense: { characterLevel: 80, enemyLevel: 77 },
       critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });

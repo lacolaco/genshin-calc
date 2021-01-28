@@ -5,15 +5,12 @@ import {
   CriticalParams,
   DamageBonusParams,
   DefenseReductionParams,
+  ResistanceReductionParams,
 } from '../damage';
 import { Calculation, CharacterStats, TalentLevel } from '../types';
 
 export type TalentLevelParams = {
   talentLevel: TalentLevel;
-};
-
-export type EnemyParams<Fields> = {
-  enemy: Fields;
 };
 
 export type CharacterStatsParams<P extends keyof CharacterStats> = {
@@ -26,18 +23,13 @@ type CalculatorFactory<BaseDamageParams> = {
 
 export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<BaseDamageParams>) {
   return (
-    params: BaseDamageParams &
-      EnemyParams<{
-        resistance: {
-          baseResistance: number;
-          resistanceBonus: number;
-        };
-      }> & {
-        damageBonus: DamageBonusParams;
-        defense: DefenseReductionParams;
-        critical?: CriticalParams;
-        amplificationReaction?: AmplificationReactionParams;
-      },
+    params: BaseDamageParams & {
+      damageBonus: DamageBonusParams;
+      defense: DefenseReductionParams;
+      resistance?: ResistanceReductionParams;
+      critical?: CriticalParams;
+      amplificationReaction?: AmplificationReactionParams;
+    },
   ): Calculation => {
     const baseDamage = factory.getBaseDamage(params);
     const outgoingDamage = calculateOutgoingDamage(
@@ -46,7 +38,10 @@ export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<Ba
       params.critical,
       params.amplificationReaction,
     );
-    const finalDamage = calculateIncomingDamage(outgoingDamage, params.defense, params.enemy.resistance);
+    const finalDamage = calculateIncomingDamage(outgoingDamage, {
+      defense: params.defense,
+      resistance: params.resistance,
+    });
 
     const toInteger = Math.floor;
     return {

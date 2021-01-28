@@ -11,18 +11,13 @@ export const initialState: State = {
       atk: 1500,
       hp: 25000,
     },
-    enemy: {
-      resistance: {
-        baseResistance: 0.1,
-        resistanceBonus: 0,
-      },
-    },
     damageBonus: {
       elementalDamageBonus: 0.58,
       attackTypeDamageBonus: 0.2,
       anyDamageBonus: 0,
     },
     defense: { characterLevel: 80, enemyLevel: 80 },
+    resistance: { baseResistance: 0.1, resistanceBonus: 0 },
     critical: { criticalRate: 0.1, criticalDamage: 0.5 },
   },
 };

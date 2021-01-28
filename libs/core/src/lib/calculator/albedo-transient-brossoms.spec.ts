@@ -13,15 +13,10 @@ describe('calculateAlbedoTransientBlossoms', () => {
       stats: {
         def: 1583,
       },
-      enemy: {
-        resistance: {
-          baseResistance: 0.1,
-          resistanceBonus: 0,
-        },
-      },
       damageBonus: {
         elementalDamageBonus: 0.733,
       },
+      resistance: { baseResistance: 0.1, resistanceBonus: 0 },
       defense: { characterLevel: 80, enemyLevel: 77 },
       critical: {
         criticalRate: 0.05 + 0.28,

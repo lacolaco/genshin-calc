@@ -7,13 +7,8 @@ describe('calculateGanyuLiutianArchery', () => {
     stats: {
       atk: 1000,
     },
-    enemy: {
-      resistance: {
-        baseResistance: 0,
-        resistanceBonus: 0,
-      },
-    },
     damageBonus: {},
+    resistance: { baseResistance: 0, resistanceBonus: 0 },
     defense: { characterLevel: 1, enemyLevel: 1 },
     critical: { criticalRate: 0, criticalDamage: 0 },
     amplificationReaction: {
