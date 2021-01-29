@@ -24,8 +24,8 @@ type CalculatorFactory<BaseDamageParams> = {
 export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<BaseDamageParams>) {
   return (
     params: BaseDamageParams & {
-      damageBonus: DamageBonusParams;
-      defense: DefenseReductionParams;
+      damageBonus?: DamageBonusParams;
+      defense?: DefenseReductionParams;
       resistance?: ResistanceReductionParams;
       critical?: CriticalParams;
       amplificationReaction?: AmplificationReactionParams;

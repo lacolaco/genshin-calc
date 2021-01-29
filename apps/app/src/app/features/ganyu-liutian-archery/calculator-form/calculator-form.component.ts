@@ -109,8 +109,8 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           elementalDamageBonus: damageBonus?.elementalDamageBonus ?? 0,
         },
         damageReduction: {
-          characterLevel: defense.characterLevel,
-          enemyLevel: defense.enemyLevel,
+          characterLevel: defense?.characterLevel ?? 0,
+          enemyLevel: defense?.enemyLevel ?? 0,
           baseResistance: resistance?.baseResistance ?? 0,
         },
         critical: {
