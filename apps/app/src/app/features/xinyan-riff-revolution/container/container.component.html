@@ -1,18 +1,18 @@
 <ng-container *ngIf="state$ | async as state">
   <ui-calculator-container>
-    <ui-calculator-title>鍾離: 元素爆発「天星」</ui-calculator-title>
+    <ui-calculator-title>辛炎: 元素爆発「反逆の弾き」</ui-calculator-title>
     <ui-calculator-subtitle>スキルダメージ</ui-calculator-subtitle>
 
     <ui-calculation-results
       *ngIf="state.calculation as calculation"
-      [element]="'geo'"
+      [element]="'physical'"
       [calculatedDamage]="calculation.calculatedDamage"
     >
     </ui-calculation-results>
 
-    <app-zhongli-planet-befall-calculator-form
+    <app-xinyan-riff-revolution-calculator-form
       [value]="state.calculatorParams"
       (valueChange)="calculate($event)"
-    ></app-zhongli-planet-befall-calculator-form>
+    ></app-xinyan-riff-revolution-calculator-form>
   </ui-calculator-container>
 </ng-container>

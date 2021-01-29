@@ -15,7 +15,7 @@ describe('CalculatorContainerComponent', () => {
 
   beforeEach(() => {
     spectator = createHost(
-      `<ui-calculator-container [calculation]="calculation" [elementType]="'geo'">
+      `<ui-calculator-container [elementType]="'geo'">
       <ui-calculator-title>タイトル</ui-calculator-title>
       <ui-calculator-subtitle>サブタイトル</ui-calculator-subtitle>
     </ui-calculator-container>`,
@@ -44,26 +44,6 @@ describe('CalculatorContainerComponent', () => {
       const content = spectator.query('ui-calculator-subtitle')?.textContent;
 
       expect(content).toContain('サブタイトル');
-    });
-  });
-
-  describe('計算結果を表示する', () => {
-    test('calculationがないときは結果を表示しない', () => {
-      spectator.setInput('calculation', null);
-      spectator.detectChanges();
-
-      expect(spectator.query(CalculationResultsComponent)).toBeFalsy();
-    });
-
-    test('calculationがあるときは結果を表示する', () => {
-      spectator.setInput('calculation', {
-        skillDamage: 1,
-        damageBonus: 1,
-        calculatedDamage: { baseline: 1, average: 1, critical: 1 },
-      });
-      spectator.detectChanges();
-
-      expect(spectator.query(CalculationResultsComponent)).toBeTruthy();
     });
   });
 });

@@ -10,11 +10,6 @@
 
   <div class="sticky top-4">
     <ng-content select="ui-calculation-results"></ng-content>
-    <ui-calculation-results
-      *ngIf="calculation"
-      [calculatedDamage]="calculation.calculatedDamage"
-      [element]="elementType"
-    ></ui-calculation-results>
   </div>
 
   <div class="flex-auto">

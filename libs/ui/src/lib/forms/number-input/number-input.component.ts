@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ControlValueAccessor } from '@ngneat/reactive-forms';
+import { fromEvent, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 type NumberInputMode = 'decimal' | 'percent';
 
@@ -41,7 +51,7 @@ function convertOutput(value: number, mode: NumberInputMode) {
     },
   ],
 })
-export class NumberInputComponent extends ControlValueAccessor<number> {
+export class NumberInputComponent extends ControlValueAccessor<number> implements AfterViewInit, OnDestroy {
   @Input() label = '';
 
   @Input() min = 0;
@@ -49,11 +59,29 @@ export class NumberInputComponent extends ControlValueAccessor<number> {
 
   @Input() mode: NumberInputMode = 'decimal';
 
+  @ViewChild('input', { static: true }) inputElement: ElementRef<HTMLInputElement>;
+
   value: string | number | undefined;
+
+  private readonly onDestroy$ = new Subject();
+
+  ngAfterViewInit() {
+    fromEvent(this.inputElement.nativeElement, 'input')
+      .pipe(takeUntil(this.onDestroy$), debounceTime(300))
+      .subscribe((event) => {
+        if (event.target) {
+          this.onInputChange((event.target as HTMLInputElement).value);
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.onDestroy$.next();
+  }
 
   writeValue(value: number | undefined): void {
     if (!value) {
-      this.value = 0;
+      this.value = value;
       return;
     }
     const newValue = convertInput(value, this.mode);
@@ -61,6 +89,13 @@ export class NumberInputComponent extends ControlValueAccessor<number> {
   }
 
   onInputChange(value: string) {
-    this.onChange && this.onChange(convertOutput(parseFloat(value), this.mode));
+    if (!this.onChange) {
+      return;
+    }
+    if (!value) {
+      this.onChange(0);
+      return;
+    }
+    this.onChange(convertOutput(parseFloat(value), this.mode));
   }
 }

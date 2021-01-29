@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AlbedoTransientBlossomsContainerComponent } from './features/albedo-transient-brossoms/container/container.component';
 import { GanyuLiutianArcheryContainerComponent } from './features/ganyu-liutian-archery/container/container.component';
+import { ContainerComponent as XinyanRiffRevolutionContainer } from './features/xinyan-riff-revolution/container/container.component';
 import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet-befall/container/container.component';
 
 @NgModule({
@@ -19,6 +20,10 @@ import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet
         {
           path: 'albedo-transient-blossoms',
           component: AlbedoTransientBlossomsContainerComponent,
+        },
+        {
+          path: 'xinyan-riff-revolution',
+          component: XinyanRiffRevolutionContainer,
         },
         {
           path: '',

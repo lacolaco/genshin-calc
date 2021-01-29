@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Calculation, ElementType } from '@genshin-calc/core';
+import { ElementType } from '@genshin-calc/core';
 
 @Component({
   selector: 'ui-calculator-title',
@@ -20,9 +20,6 @@ export class CalculatorSubtitleComponent {}
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalculatorContainerComponent {
-  @Input()
-  calculation: Calculation | null = null;
-
   @Input()
   elementType!: ElementType;
 }

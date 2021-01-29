@@ -11,7 +11,7 @@ export class CalculationResultsComponent {
   @Input()
   calculatedDamage!: CalculatedDamage;
 
-  @Input() element?: 'geo' | 'cryo';
+  @Input() element?: 'geo' | 'cryo' | 'physical';
 
   get textColor() {
     switch (this.element) {
@@ -20,6 +20,9 @@ export class CalculationResultsComponent {
       }
       case 'cryo': {
         return 'text-blue-300';
+      }
+      case 'physical': {
+        return 'text-gray-700';
       }
       default: {
         return '';

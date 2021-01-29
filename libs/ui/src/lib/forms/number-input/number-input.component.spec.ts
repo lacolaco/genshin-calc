@@ -1,3 +1,4 @@
+import { fakeAsync } from '@angular/core/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { ControlLabelComponent } from '../control-label/control-label.component';
 import { NumberInputComponent } from './number-input.component';
@@ -10,7 +11,11 @@ describe('NumberInputComponent', () => {
   });
 
   beforeEach(async () => {
-    spectator = createComponent({});
+    spectator = createComponent({
+      props: {
+        onChange: jest.fn(),
+      },
+    });
   });
 
   test('should create', () => {
@@ -42,7 +47,7 @@ describe('NumberInputComponent', () => {
     test('decimalモードのとき、input要素のvalueをそのまま出力する', () => {
       jest.spyOn(spectator.component, 'onChange');
       spectator.setInput({ mode: 'decimal' });
-      spectator.typeInElement('100', 'input');
+      spectator.component.onInputChange('100');
 
       expect(spectator.component.onChange).toHaveBeenCalledWith(100);
     });
@@ -50,7 +55,7 @@ describe('NumberInputComponent', () => {
     test('percentモードのとき、input要素のvalueを百分率から戻して出力する', () => {
       jest.spyOn(spectator.component, 'onChange');
       spectator.setInput({ mode: 'percent' });
-      spectator.typeInElement('100', 'input');
+      spectator.component.onInputChange('100');
 
       expect(spectator.component.onChange).toHaveBeenCalledWith(1);
     });
