@@ -17,9 +17,9 @@ describe('Noelle', () => {
       expect(calculation).toMatchInlineSnapshot(`
         Object {
           "calculatedDamage": Object {
-            "average": 27422,
-            "baseline": 27422,
-            "critical": 27422,
+            "average": 13711,
+            "baseline": 13711,
+            "critical": 13711,
           },
           "skillDamage": 27422,
         }

@@ -91,7 +91,7 @@ export function calculateIncomingDamage(
     resistance?: ResistanceReductionParams;
   } = {},
 ): Damage {
-  const defenseReductionMultipler = params.defense ? 1 - calculateDefenseReduction(params.defense) : 1;
+  const defenseReductionMultipler = params.defense ? 1 - calculateDefenseReduction(params.defense) : 0.5;
   const resistanceReductionMultiplier = params.resistance ? 1 - calculateResistanceReduction(params.resistance) : 1;
 
   const reduceDamage = (damage: number) => damage * defenseReductionMultipler * resistanceReductionMultiplier;
