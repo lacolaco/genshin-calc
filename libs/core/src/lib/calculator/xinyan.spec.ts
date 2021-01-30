@@ -28,5 +28,16 @@ describe('Xinyan', () => {
         }
       `);
     });
+    test('Fit to real damage', () => {
+      const { calculatedDamage } = calculateXinyanRiffRevolution({
+        talentLevel: 7,
+        stats: { atk: 1154 },
+        critical: { criticalRate: 1, criticalDamage: 0.683 },
+        damageBonus: { elementalDamageBonus: 0.479, attackTypeDamageBonus: 0.2 },
+        defense: { characterLevel: 60, enemyLevel: 76 },
+        resistance: { baseResistance: 0.7, resistanceBonus: -0.15 },
+      });
+      expect(calculatedDamage.critical).toBeWithinErrorMargin(3572);
+    });
   });
 });

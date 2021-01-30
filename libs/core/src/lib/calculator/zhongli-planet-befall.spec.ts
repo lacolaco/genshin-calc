@@ -1,11 +1,5 @@
 import { calculateZhongliPlanetBefall } from './zhongli-planet-befall';
 
-export function expectDamage(actual: number, expected: number) {
-  const delta = expected * 0.01;
-  expect(actual).toBeLessThanOrEqual(expected + delta);
-  expect(actual).toBeGreaterThanOrEqual(expected - delta);
-}
-
 describe('burst damage', () => {
   test('case 1: minimal', () => {
     const { calculatedDamage } = calculateZhongliPlanetBefall({
@@ -22,9 +16,9 @@ describe('burst damage', () => {
       critical: { criticalRate: 0.05, criticalDamage: 0.5 },
     });
 
-    expectDamage(calculatedDamage.baseline, 3609);
-    expect(calculatedDamage.critical).toBeCloseTo(3609 * 1.5, -1);
-    expect(calculatedDamage.average).toBeCloseTo(3609 * (1 + 0.05 * 0.5), -1);
+    expect(calculatedDamage.baseline).toBeWithinErrorMargin(3609);
+    expect(calculatedDamage.critical).toBeWithinErrorMargin(3609 * 1.5);
+    expect(calculatedDamage.average).toBeWithinErrorMargin(3609 * (1 + 0.05 * 0.5));
   });
 
   test('case 2: no buff', () => {
@@ -42,7 +36,7 @@ describe('burst damage', () => {
       defense: { characterLevel: 80, enemyLevel: 77 },
       critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });
-    expectDamage(calculatedDamage.baseline, 15087);
+    expect(calculatedDamage.baseline).toBeWithinErrorMargin(15087);
   });
 
   test('case 3: buff', () => {
@@ -61,6 +55,6 @@ describe('burst damage', () => {
       defense: { characterLevel: 80, enemyLevel: 77 },
       critical: { criticalRate: 0.1, criticalDamage: 0.5 },
     });
-    expectDamage(calculatedDamage.baseline, 22062);
+    expect(calculatedDamage.baseline).toBeWithinErrorMargin(22062);
   });
 });

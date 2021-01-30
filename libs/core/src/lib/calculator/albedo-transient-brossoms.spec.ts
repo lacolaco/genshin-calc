@@ -1,11 +1,5 @@
 import { calculateAlbedoTransientBlossoms } from './albedo-transient-brossoms';
 
-export function expectDamage(actual: number, expected: number) {
-  const delta = expected * 0.01;
-  expect(actual).toBeLessThanOrEqual(expected + delta);
-  expect(actual).toBeGreaterThanOrEqual(expected - delta);
-}
-
 describe('calculateAlbedoTransientBlossoms', () => {
   test('case 1: minimal', () => {
     const { calculatedDamage } = calculateAlbedoTransientBlossoms({
@@ -30,5 +24,23 @@ describe('calculateAlbedoTransientBlossoms', () => {
         "critical": 4555,
       }
     `);
+  });
+  test('Fit to real damage', () => {
+    const { calculatedDamage } = calculateAlbedoTransientBlossoms({
+      talentLevel: 6,
+      stats: {
+        def: 1609,
+      },
+      damageBonus: {
+        elementalDamageBonus: 0.832,
+      },
+      resistance: { baseResistance: 0.1, resistanceBonus: 0 },
+      defense: { characterLevel: 80, enemyLevel: 76 },
+      critical: {
+        criticalRate: 0.377,
+        criticalDamage: 0.948,
+      },
+    });
+    expect(calculatedDamage.critical).toBeWithinErrorMargin(4888);
   });
 });

@@ -39,4 +39,16 @@ describe('calculateGanyuLiutianArchery', () => {
     });
     expect(calc2.calculatedDamage.baseline).toBe(calc1.calculatedDamage.baseline * 1.5);
   });
+
+  test('Fit to real damage', () => {
+    const { calculatedDamage } = calculateGanyuLiutianArchery({
+      talentLevel: 8,
+      stats: { atk: 1317 },
+      critical: { criticalRate: 0.251, criticalDamage: 1.476 },
+      damageBonus: { elementalDamageBonus: 0.391 },
+      defense: { characterLevel: 80, enemyLevel: 76 },
+      resistance: { baseResistance: 0.1, resistanceBonus: -0.15 },
+    });
+    expect(calculatedDamage.critical).toBeWithinErrorMargin(4814 + 8184);
+  });
 });
