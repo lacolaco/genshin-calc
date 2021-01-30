@@ -30,7 +30,7 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
   test('サブタイトルを表示する', () => {
     const calculatorContent = spectator.element.textContent;
 
-    expect(calculatorContent).toContain('霜華の矢+霜華満開ダメージ');
+    expect(calculatorContent).toContain('霜華の矢+霜華満開 合計ダメージ');
   });
 
   describe('フォーム入力に従ってダメージを計算する', () => {
