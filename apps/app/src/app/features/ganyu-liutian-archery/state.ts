@@ -18,7 +18,7 @@ export const initialState: State = {
     },
     defense: { characterLevel: 80, enemyLevel: 80 },
     resistance: { baseResistance: 0.1, resistanceBonus: 0 },
-    critical: { criticalRate: 0.1, criticalDamage: 0.5 },
+    critical: { criticalRate: 0.05, criticalDamage: 0.5 },
     amplificationReaction: {
       reaction: ElementalReactions.None,
       elementalMastery: 50,

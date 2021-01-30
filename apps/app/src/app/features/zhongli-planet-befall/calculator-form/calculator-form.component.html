@@ -2,6 +2,9 @@
   <div class="space-y-2">
     <div class="block border border-gray-500 rounded-md p-4">
       <span class="text-sm font-bold mr-2">基本ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>固有天賦 (ダメージ量がHP上限の33%分上昇する)</li>
+      </ul>
 
       <ui-form-fields formGroupName="skillDamage">
         <ui-talent-level-select formControlName="talentLevel"></ui-talent-level-select>
@@ -17,9 +20,9 @@
       <span class="text-sm font-bold mr-2">ダメージバフ</span>
 
       <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>悠久の磐岩 2セット効果 (岩元素ダメージ+15%)</li>
         <li>岩共鳴効果 (シールドが存在するとき、与えるダメージ+15%)</li>
         <li>旧貴族のしつけ 2セット効果 (元素爆発ダメージ+20%)</li>
-        <li>命ノ星座 Lv6 (陽華のエリア内、結晶反応シールド状態にあるとき、与えるダメージ+17%)</li>
       </ul>
       <ui-form-fields>
         <ui-number-input mode="percent" label="岩元素ダメージ%" formControlName="elementalDamageBonus">
