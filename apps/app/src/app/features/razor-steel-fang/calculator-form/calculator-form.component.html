@@ -1,0 +1,54 @@
+<form [formGroup]="form">
+  <div class="space-y-2">
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">基本ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>命ノ星座 Lv3 (HPが30％以下の敵を攻撃する時、会心率+10％)</li>
+      </ul>
+
+      <ui-form-fields formGroupName="skillDamage">
+        <ui-talent-level-select formControlName="talentLevel"></ui-talent-level-select>
+        <ui-number-input label="攻撃力" formControlName="atk"></ui-number-input>
+        <ui-number-input label="積算ヒット数 (1〜4)" [min]="1" [max]="4" formControlName="hitCount"></ui-number-input>
+      </ui-form-fields>
+      <ui-form-fields formGroupName="critical">
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageBonus">
+      <span class="text-sm font-bold mr-2">ダメージバフ</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>命ノ星座 Lv1 (レザーが元素オーブまたは原素粒子を獲得した8秒内、与えるダメージ+10％)</li>
+        <li>剣闘士のフィナーレ 4セット効果 (通常攻撃ダメージ+35%)</li>
+        <li>血染めの騎士道 2セット効果 (物理ダメージ+25%)</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input mode="percent" label="物理ダメージ%" formControlName="elementalDamageBonus"></ui-number-input>
+        <ui-number-input mode="percent" label="通常攻撃ダメージ%" formControlName="attackTypeDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
+      <span class="block text-sm font-bold">ダメージ減衰</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>超電導 (物理耐性-45%)</li>
+        <li>命ノ星座 Lv4 (鋭い爪と蒼雷の一回押しで攻撃時、命中された敵の防御力-15％)</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
+        <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input
+          mode="percent"
+          label="敵防御力バフ%"
+          [min]="-100"
+          formControlName="defenseBonus"
+        ></ui-number-input>
+        <ui-number-input mode="percent" label="基礎物理耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="物理耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+  </div>
+</form>

@@ -4,6 +4,7 @@ import { AlbedoTransientBlossomsContainerComponent } from './features/albedo-tra
 import { ContainerComponent as FischlNightriderOzContainer } from './features/fischl-nightrider-oz/container/container.component';
 import { GanyuLiutianArcheryContainerComponent } from './features/ganyu-liutian-archery/container/container.component';
 import { ContainerComponent as XinyanRiffRevolutionContainer } from './features/xinyan-riff-revolution/container/container.component';
+import { ContainerComponent as RazorSteelFangContainer } from './features/razor-steel-fang/container/container.component';
 import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet-befall/container/container.component';
 
 @NgModule({
@@ -29,6 +30,10 @@ import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet
         {
           path: 'fischl-nightrider-oz',
           component: FischlNightriderOzContainer,
+        },
+        {
+          path: 'razor-steel-fang',
+          component: RazorSteelFangContainer,
         },
         {
           path: '',

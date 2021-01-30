@@ -1,0 +1,18 @@
+<ng-container *ngIf="state$ | async as state">
+  <ui-calculator-container>
+    <ui-calculator-title>レザー: 通常攻撃・鋼の脊</ui-calculator-title>
+    <ui-calculator-subtitle>通常ダメージ</ui-calculator-subtitle>
+
+    <ui-calculation-results
+      *ngIf="state.calculation as calculation"
+      [element]="'physical'"
+      [calculatedDamage]="calculation.calculatedDamage"
+    >
+    </ui-calculation-results>
+
+    <app-razor-steel-fang-calculator-form
+      [value]="state.calculatorParams"
+      (valueChange)="calculate($event)"
+    ></app-razor-steel-fang-calculator-form>
+  </ui-calculator-container>
+</ng-container>
