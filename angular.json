@@ -16,7 +16,7 @@
             "polyfills": "apps/app/src/polyfills.ts",
             "tsConfig": "apps/app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/app/src/favicon.svg", "apps/app/src/assets"],
+            "assets": ["apps/app/src/favicon.svg", "apps/app/src/robots.txt", "apps/app/src/assets"],
             "styles": ["apps/app/src/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
