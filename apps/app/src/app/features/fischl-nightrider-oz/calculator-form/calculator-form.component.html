@@ -1,0 +1,44 @@
+<form [formGroup]="form">
+  <div class="space-y-2">
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">基本ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500"></ul>
+
+      <ui-form-fields formGroupName="skillDamage">
+        <ui-talent-level-select formControlName="talentLevel"></ui-talent-level-select>
+        <ui-number-input label="攻撃力" formControlName="atk"></ui-number-input>
+      </ui-form-fields>
+      <ui-form-fields formGroupName="critical">
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageBonus">
+      <span class="text-sm font-bold mr-2">ダメージバフ</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>雷のような怒り 2セット効果 (雷元素ダメージ+15%)</li>
+        <li>絶弦 武器効果 (元素スキルダメージ+24%)</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input mode="percent" label="雷元素ダメージ%" formControlName="elementalDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="元素スキルダメージ%" formControlName="attackTypeDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
+      <span class="block text-sm font-bold">ダメージ減衰</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>北斗 命ノ星座 Lv6 (雷斫り継続中、周囲の敵の雷耐性-15％)</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
+        <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input mode="percent" label="敵の雷元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="雷元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,18 @@
+<ng-container *ngIf="state$ | async as state">
+  <ui-calculator-container>
+    <ui-calculator-title>フィッシュル: 元素スキル「夜巡りの翼」</ui-calculator-title>
+    <ui-calculator-subtitle>オズの攻撃ダメージ</ui-calculator-subtitle>
+
+    <ui-calculation-results
+      *ngIf="state.calculation as calculation"
+      [element]="'electro'"
+      [calculatedDamage]="calculation.calculatedDamage"
+    >
+    </ui-calculation-results>
+
+    <app-xinyan-riff-revolution-calculator-form
+      [value]="state.calculatorParams"
+      (valueChange)="calculate($event)"
+    ></app-xinyan-riff-revolution-calculator-form>
+  </ui-calculator-container>
+</ng-container>

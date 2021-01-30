@@ -10,6 +10,7 @@ import { AlbedoTransientBlossomsModule } from './features/albedo-transient-bross
 import { ZhongliPlanetBefallModule } from './features/zhongli-planet-befall/module';
 import { GanyuLiutianArcheryModule } from './features/ganyu-liutian-archery/module';
 import { XinyanRiffRevolutionModule } from './features/xinyan-riff-revolution/module';
+import { FischlNightriderOzModule } from './features/fischl-nightrider-oz/module';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { environment } from '../environments/environment';
     AlbedoTransientBlossomsModule,
     GanyuLiutianArcheryModule,
     XinyanRiffRevolutionModule,
+    FischlNightriderOzModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

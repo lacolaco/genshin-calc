@@ -1,4 +1,3 @@
-import { fakeAsync } from '@angular/core/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { ControlLabelComponent } from '../control-label/control-label.component';
 import { NumberInputComponent } from './number-input.component';
