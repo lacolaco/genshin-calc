@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { CalculatorParams } from '../types';
 
 @Component({
-  selector: 'app-xinyan-riff-revolution-calculator-form',
+  selector: 'app-fischl-nightrider-oz-calculator-form',
   templateUrl: './calculator-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
