@@ -13,7 +13,7 @@ export const initialState: State = {
     damageBonus: {
       elementalDamageBonus: 0.15,
       attackTypeDamageBonus: 0,
-      anyDamageBonus: 0.32,
+      anyDamageBonus: 0.15,
     },
     defense: { characterLevel: 80, enemyLevel: 80 },
     resistance: { baseResistance: 0.1, resistanceBonus: 0 },
