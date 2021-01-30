@@ -22,13 +22,11 @@
       <ul class="block list-inside list-disc text-xs text-gray-500">
         <li>固有天賦 (降衆天華エリア内、氷元素ダメージ+20%)</li>
         <li>氷風を彷徨う勇士 2セット効果 (氷元素ダメージ+15%)</li>
+        <li>大地を流浪する楽団 4セット効果 (重撃ダメージ+35%)</li>
       </ul>
       <ui-form-fields>
-        <ui-number-input
-          mode="percent"
-          label="氷元素ダメージ%"
-          formControlName="elementalDamageBonus"
-        ></ui-number-input>
+        <ui-number-input mode="percent" label="氷元素ダメージ%" formControlName="elementalDamageBonus">
+        </ui-number-input>
         <ui-number-input mode="percent" label="重撃ダメージ%" formControlName="attackTypeDamageBonus"></ui-number-input>
         <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
       </ui-form-fields>
@@ -38,7 +36,9 @@
       <ui-form-fields>
         <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
         <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
-        <ui-number-input mode="percent" label="敵の氷元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎氷元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="氷元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
       </ui-form-fields>
     </div>
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="elementalReaction">

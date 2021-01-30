@@ -18,28 +18,26 @@
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageBonus">
       <span class="text-sm font-bold mr-2">ダメージバフ</span>
       <ul class="block list-inside list-disc text-xs text-gray-500">
-        <li>固有天賦2 (情熱の薙ぎ払いのシールド時、物理ダメージ+15%)</li>
+        <li>固有天賦2 (情熱の薙ぎ払いのシールドが存在する時、物理ダメージ+15%)</li>
         <li>旧貴族のしつけ 2セット効果 (元素爆発ダメージ+20%)</li>
+        <li>血染めの騎士道 2セット効果 (物理ダメージ+25%)</li>
       </ul>
       <ui-form-fields>
         <ui-number-input mode="percent" label="物理ダメージ%" formControlName="elementalDamageBonus"></ui-number-input>
-        <ui-number-input
-          mode="percent"
-          label="元素爆発ダメージ%"
-          formControlName="attackTypeDamageBonus"
-        ></ui-number-input>
+        <ui-number-input mode="percent" label="元素爆発ダメージ%" formControlName="attackTypeDamageBonus">
+        </ui-number-input>
         <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
       </ui-form-fields>
     </div>
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
       <span class="block text-sm font-bold">ダメージ減衰</span>
       <ul class="block list-inside list-disc text-xs text-gray-500">
-        <li>命ノ星座 Lv4 (敵の物理耐性-15%)</li>
+        <li>命ノ星座 Lv4 (情熱の薙ぎ払いの振り回しダメージを受けた敵の物理耐性-15%)</li>
       </ul>
       <ui-form-fields>
         <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
         <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
-        <ui-number-input mode="percent" label="敵の物理耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎物理耐性%" formControlName="baseResistance"></ui-number-input>
         <ui-number-input mode="percent" label="物理耐性バフ%" [min]="-100" formControlName="resistanceBonus">
         </ui-number-input>
       </ui-form-fields>

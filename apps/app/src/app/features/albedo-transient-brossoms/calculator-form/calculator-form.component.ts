@@ -33,6 +33,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
       characterLevel: new FormControl<number>(),
       enemyLevel: new FormControl<number>(),
       baseResistance: new FormControl<number>(),
+      resistanceBonus: new FormControl<number>(),
     }),
     critical: new FormGroup({
       criticalRate: new FormControl<number>(),
@@ -62,7 +63,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           },
           resistance: {
             baseResistance: damageReduction.baseResistance,
-            resistanceBonus: 0,
+            resistanceBonus: damageReduction.resistanceBonus,
           },
           critical: {
             criticalRate: critical.criticalRate,
@@ -92,6 +93,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           characterLevel: defense?.characterLevel ?? 0,
           enemyLevel: defense?.enemyLevel ?? 0,
           baseResistance: resistance?.baseResistance ?? 0,
+          resistanceBonus: resistance?.resistanceBonus ?? 0,
         },
         critical: {
           criticalRate: critical?.criticalRate ?? 0,

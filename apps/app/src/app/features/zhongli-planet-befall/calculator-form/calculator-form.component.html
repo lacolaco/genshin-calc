@@ -37,7 +37,9 @@
       <ui-form-fields>
         <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
         <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
-        <ui-number-input mode="percent" label="敵の岩元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎岩元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="岩元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
       </ui-form-fields>
     </div>
   </div>
