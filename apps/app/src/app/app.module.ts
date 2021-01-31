@@ -12,6 +12,7 @@ import { GanyuLiutianArcheryModule } from './features/ganyu-liutian-archery/modu
 import { XinyanRiffRevolutionModule } from './features/xinyan-riff-revolution/module';
 import { FischlNightriderOzModule } from './features/fischl-nightrider-oz/module';
 import { RazorSteelFangModule } from './features/razor-steel-fang/module';
+import { BasicAttackModule } from './features/basic-attack/module';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { environment } from '../environments/environment';
     XinyanRiffRevolutionModule,
     FischlNightriderOzModule,
     RazorSteelFangModule,
+    BasicAttackModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

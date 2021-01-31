@@ -1,0 +1,40 @@
+<form [formGroup]="form">
+  <div class="space-y-2">
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">基本ステータス</span>
+
+      <ui-form-fields formGroupName="skillDamage">
+        <ui-number-input mode="percent" label="スキルダメージ%" formControlName="skillDamage"></ui-number-input>
+        <ui-number-input label="攻撃力" formControlName="atk"></ui-number-input>
+      </ui-form-fields>
+      <ui-form-fields formGroupName="critical">
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageBonus">
+      <span class="text-sm font-bold mr-2">ダメージバフ</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>攻撃種別 = 通常攻撃/重撃/元素スキル/元素爆発など</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input mode="percent" label="元素/物理ダメージ%" formControlName="elementalDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="攻撃種別ダメージ%" formControlName="attackTypeDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
+      <span class="block text-sm font-bold">ダメージ減衰</span>
+      <ui-form-fields>
+        <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
+        <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input mode="percent" label="敵の防御力バフ%" formControlName="defenseBonus"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="敵の耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+  </div>
+</form>

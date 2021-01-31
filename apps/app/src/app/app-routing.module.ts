@@ -5,6 +5,7 @@ import { ContainerComponent as FischlNightriderOzContainer } from './features/fi
 import { GanyuLiutianArcheryContainerComponent } from './features/ganyu-liutian-archery/container/container.component';
 import { ContainerComponent as XinyanRiffRevolutionContainer } from './features/xinyan-riff-revolution/container/container.component';
 import { ContainerComponent as RazorSteelFangContainer } from './features/razor-steel-fang/container/container.component';
+import { ContainerComponent as BasicAttackContainer } from './features/basic-attack/container/container.component';
 import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet-befall/container/container.component';
 
 @NgModule({
@@ -34,6 +35,10 @@ import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet
         {
           path: 'razor-steel-fang',
           component: RazorSteelFangContainer,
+        },
+        {
+          path: 'basic-attack',
+          component: BasicAttackContainer,
         },
         {
           path: '',
