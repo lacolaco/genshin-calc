@@ -120,8 +120,8 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           criticalDamage: critical?.criticalDamage ?? 0,
         },
         elementalReaction: {
+          enableMeltReaction: amplificationReaction?.reaction === ElementalReactions.MeltByCryo,
           elementalMastery: amplificationReaction?.elementalMastery ?? 0,
-          enableMeltReaction: amplificationReaction != null,
           reactionBonus: amplificationReaction?.reactionBonus ?? 0,
         },
       },
