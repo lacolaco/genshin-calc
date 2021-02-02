@@ -1,0 +1,15 @@
+<nav class="flex flex-col md:flex-row border-b border-gray-400">
+  <div class="flex items-center px-6 py-2 space-x-2">
+    <img src="/assets/images/characters/ganyu.png" height="48" width="48" />
+    <h2 class="font-bold">甘雨</h2>
+  </div>
+  <a
+    routerLink="liutian-archery"
+    [routerLinkActive]="['border-blue-500', 'text-blue-500']"
+    class="flex items-center border-b-2 focus:outline-none text-gray-600 hover:text-blue-500 px-6 py-2"
+  >
+    通常攻撃・流天射術
+  </a>
+</nav>
+
+<router-outlet></router-outlet>

@@ -8,10 +8,10 @@ import { ElementType } from '@genshin-calc/core';
 export class CalculatorTitleComponent {}
 
 @Component({
-  selector: 'ui-calculator-subtitle',
+  selector: 'ui-calculator-description',
   template: `<ng-content></ng-content>`,
 })
-export class CalculatorSubtitleComponent {}
+export class CalculatorDescriptionComponent {}
 
 @Component({
   selector: 'ui-calculator-container',

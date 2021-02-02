@@ -2,7 +2,7 @@ import { createHostFactory, Spectator } from '@ngneat/spectator';
 import { CalculationResultsComponent } from '../calculation-results/calculation-results.component';
 import {
   CalculatorContainerComponent,
-  CalculatorSubtitleComponent,
+  CalculatorDescriptionComponent,
   CalculatorTitleComponent,
 } from './calculator-container.component';
 
@@ -10,14 +10,14 @@ describe('CalculatorContainerComponent', () => {
   let spectator: Spectator<CalculatorContainerComponent>;
   const createHost = createHostFactory({
     component: CalculatorContainerComponent,
-    declarations: [CalculationResultsComponent, CalculatorTitleComponent, CalculatorSubtitleComponent],
+    declarations: [CalculationResultsComponent, CalculatorTitleComponent, CalculatorDescriptionComponent],
   });
 
   beforeEach(() => {
     spectator = createHost(
       `<ui-calculator-container [elementType]="'geo'">
       <ui-calculator-title>タイトル</ui-calculator-title>
-      <ui-calculator-subtitle>サブタイトル</ui-calculator-subtitle>
+      <ui-calculator-description>説明文</ui-calculator-description>
     </ui-calculator-container>`,
       {
         hostProps: {
@@ -39,11 +39,11 @@ describe('CalculatorContainerComponent', () => {
     });
   });
 
-  describe('サブタイトルを表示する', () => {
-    test('ui-calculator-subtitle 要素のコンテンツを表示する', () => {
-      const content = spectator.query('ui-calculator-subtitle')?.textContent;
+  describe('説明文を表示する', () => {
+    test('ui-calculator-description 要素のコンテンツを表示する', () => {
+      const content = spectator.query('ui-calculator-description')?.textContent;
 
-      expect(content).toContain('サブタイトル');
+      expect(content).toContain('説明文');
     });
   });
 });

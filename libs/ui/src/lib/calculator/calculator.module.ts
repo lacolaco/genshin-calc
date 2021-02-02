@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CalculationResultsComponent } from './calculation-results/calculation-results.component';
 import {
   CalculatorContainerComponent,
-  CalculatorSubtitleComponent,
+  CalculatorDescriptionComponent,
   CalculatorTitleComponent,
 } from './calculator-container/calculator-container.component';
 
@@ -12,14 +12,14 @@ import {
     CalculationResultsComponent,
     CalculatorContainerComponent,
     CalculatorTitleComponent,
-    CalculatorSubtitleComponent,
+    CalculatorDescriptionComponent,
   ],
   imports: [CommonModule],
   exports: [
     CalculationResultsComponent,
     CalculatorContainerComponent,
     CalculatorTitleComponent,
-    CalculatorSubtitleComponent,
+    CalculatorDescriptionComponent,
   ],
 })
 export class UiCalculatorModule {}

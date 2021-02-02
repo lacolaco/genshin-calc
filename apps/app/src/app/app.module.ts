@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AlbedoTransientBlossomsModule } from './features/albedo-transient-brossoms/module';
 import { ZhongliPlanetBefallModule } from './features/zhongli-planet-befall/module';
-import { GanyuLiutianArcheryModule } from './features/ganyu-liutian-archery/module';
 import { XinyanRiffRevolutionModule } from './features/xinyan-riff-revolution/module';
 import { FischlNightriderOzModule } from './features/fischl-nightrider-oz/module';
 import { RazorSteelFangModule } from './features/razor-steel-fang/module';
@@ -26,7 +25,6 @@ import { environment } from '../environments/environment';
     CoreModule,
     ZhongliPlanetBefallModule,
     AlbedoTransientBlossomsModule,
-    GanyuLiutianArcheryModule,
     XinyanRiffRevolutionModule,
     FischlNightriderOzModule,
     RazorSteelFangModule,
