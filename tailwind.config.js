@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   prefix: '',
   purge: {
@@ -8,7 +10,11 @@ module.exports = {
   },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cryo: colors.blue['300'],
+      },
+    },
   },
   variants: {
     extend: {},

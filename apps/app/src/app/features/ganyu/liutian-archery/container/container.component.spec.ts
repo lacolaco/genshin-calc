@@ -22,11 +22,6 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
     expect(spectator.component).toBeTruthy();
   });
 
-  test('タイトルを表示する', () => {
-    const calculatorContent = spectator.element.textContent;
-
-    expect(calculatorContent).toContain('甘雨: 通常攻撃・流天射術');
-  });
   test('サブタイトルを表示する', () => {
     const calculatorContent = spectator.element.textContent;
 
