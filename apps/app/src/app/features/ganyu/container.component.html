@@ -1,0 +1,13 @@
+<ui-character-nav thumbnailSrc="/assets/images/characters/ganyu.png" characterName="甘雨">
+  <a
+    routerLink="liutian-archery"
+    routerLinkActive
+    #rla="routerLinkActive"
+    ui-character-nav-item
+    [isActive]="rla.isActive"
+  >
+    通常攻撃・流天射術
+  </a>
+</ui-character-nav>
+
+<router-outlet></router-outlet>

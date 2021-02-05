@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GanyuContainerComponent } from './container/container.component';
+import { GanyuContainerComponent } from './container.component';
 import { GanyuLiutianArcheryContainerComponent } from './liutian-archery/container/container.component';
 
 @NgModule({
