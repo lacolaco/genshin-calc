@@ -33,6 +33,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
     damageReduction: new FormGroup({
       characterLevel: new FormControl<number>(),
       enemyLevel: new FormControl<number>(),
+      defenseBonus: new FormControl<number>(),
       baseResistance: new FormControl<number>(),
       resistanceBonus: new FormControl<number>(),
     }),
@@ -62,6 +63,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           defense: {
             characterLevel: damageReduction.characterLevel,
             enemyLevel: damageReduction.enemyLevel,
+            defenseBonus: damageReduction.defenseBonus,
           },
           resistance: {
             baseResistance: damageReduction.baseResistance,
@@ -95,6 +97,7 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
         damageReduction: {
           characterLevel: defense?.characterLevel ?? 0,
           enemyLevel: defense?.enemyLevel ?? 0,
+          defenseBonus: defense?.defenseBonus ?? 0,
           baseResistance: resistance?.baseResistance ?? 0,
           resistanceBonus: resistance?.resistanceBonus ?? 0,
         },

@@ -34,9 +34,14 @@
     </div>
     <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
       <span class="block text-sm font-bold">ダメージ減衰</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>岩共鳴効果 (シールドが存在するとき、敵にダメージを与えたとき敵の岩元素耐性-20%)</li>
+        <li>玉璋シールド (付近範囲内の敵の全元素耐性と物理耐性-20%)</li>
+      </ul>
       <ui-form-fields>
         <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
         <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input mode="percent" label="敵防御力バフ" formControlName="defenseBonus"></ui-number-input>
         <ui-number-input mode="percent" label="基礎岩元素耐性%" formControlName="baseResistance"></ui-number-input>
         <ui-number-input mode="percent" label="岩元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
         </ui-number-input>
