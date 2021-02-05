@@ -2015,10 +2015,10 @@
     replace-in-file "^4.1.3"
     tslib "^2.0.0"
 
-"@ngneat/tailwind@5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-5.2.3.tgz#5a1dd6c32a618d143c77cbf4acbc245658729688"
-  integrity sha512-yPKzLf9cbXuRSLSXNvb8Gq9bYBA+VNUdWoH6We/oK2+EPJD3EZXUVzxDgFBDiF5N5l3lRcR++FQxEFFXsh9uog==
+"@ngneat/tailwind@5.2.5":
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/@ngneat/tailwind/-/tailwind-5.2.5.tgz#9b821128f28d32b3ad571bb47033aa59cabe04bb"
+  integrity sha512-4S8RMcJP67XT8JxOtAumer3J2W34aG11ynXr2M4pvakcRidytDsS3kxJ42RHl7aRgdvfS2uUCoIdCixQTR4JMw==
 
 "@ngtools/webpack@11.0.7":
   version "11.0.7"
