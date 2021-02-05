@@ -7,7 +7,14 @@ import { CalculatorParams } from '../types';
 
 @Component({
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.css'],
+  styles: [
+    `
+      :host {
+        display: block;
+        height: 100%;
+      }
+    `,
+  ],
 })
 export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
   readonly state$ = this.select(useCalculator(calculateAlbedoTransientBlossoms));

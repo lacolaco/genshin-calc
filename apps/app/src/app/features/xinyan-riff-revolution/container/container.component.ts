@@ -7,7 +7,14 @@ import { CalculatorParams } from '../types';
 
 @Component({
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.css'],
+  styles: [
+    `
+      :host {
+        display: block;
+        height: 100%;
+      }
+    `,
+  ],
 })
 export class ContainerComponent extends RxState<State> {
   readonly state$ = this.select(useCalculator(calculateXinyanRiffRevolution));

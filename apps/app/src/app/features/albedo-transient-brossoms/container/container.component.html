@@ -1,6 +1,9 @@
+<ui-character-nav [thumbnailSrc]="'/assets/images/characters/albedo.png'" [characterName]="'アルベド'">
+  <div ui-character-nav-item [isActive]="true">元素スキル「創生術・疑似陽華」</div>
+</ui-character-nav>
+
 <ng-container *ngIf="state$ | async as state">
   <ui-calculator-container>
-    <ui-calculator-title>アルベド: 元素スキル「創生術・疑似陽華」</ui-calculator-title>
     <ui-calculator-description>刹那の花ダメージ</ui-calculator-description>
 
     <ui-calculation-results

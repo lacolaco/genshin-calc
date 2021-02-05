@@ -1,6 +1,9 @@
+<ui-character-nav [thumbnailSrc]="'/assets/images/characters/razor.png'" [characterName]="'レザー'">
+  <div ui-character-nav-item [isActive]="true">通常攻撃・鋼の脊</div>
+</ui-character-nav>
+
 <ng-container *ngIf="state$ | async as state">
   <ui-calculator-container>
-    <ui-calculator-title>レザー: 通常攻撃・鋼の脊</ui-calculator-title>
     <ui-calculator-description>通常ダメージ</ui-calculator-description>
 
     <ui-calculation-results

@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { UiCalculatorModule } from '@genshin-calc/ui';
+import { UiCalculatorModule, UiCharacterNavModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
 import { initialState } from '../state';
@@ -10,7 +10,7 @@ describe('AlbedoTransientBlossomsContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: AlbedoTransientBlossomsContainerComponent,
     declarations: [CalculatorFormComponent],
-    imports: [UiCalculatorModule],
+    imports: [UiCalculatorModule, UiCharacterNavModule],
     schemas: [NO_ERRORS_SCHEMA],
   });
 
@@ -22,10 +22,16 @@ describe('AlbedoTransientBlossomsContainerComponent', () => {
     expect(spectator.component).toBeTruthy();
   });
 
-  test('タイトルを表示する', () => {
+  test('キャラクター名を表示する', () => {
     const calculatorContent = spectator.element.textContent;
 
-    expect(calculatorContent).toContain('アルベド: 元素スキル「創生術・疑似陽華」');
+    expect(calculatorContent).toContain('アルベド');
+  });
+
+  test('スキル名を表示する', () => {
+    const calculatorContent = spectator.element.textContent;
+
+    expect(calculatorContent).toContain('元素スキル「創生術・疑似陽華」');
   });
 
   test('サブタイトルを表示する', () => {

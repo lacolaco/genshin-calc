@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { UiCalculatorModule } from '@genshin-calc/ui';
+import { UiCalculatorModule, UiCharacterNavModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
 import { initialState } from '../state';
@@ -10,7 +10,7 @@ describe('ZhongliPlanetBefallContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: ZhongliPlanetBefallContainerComponent,
     declarations: [CalculatorFormComponent],
-    imports: [UiCalculatorModule],
+    imports: [UiCalculatorModule, UiCharacterNavModule],
     schemas: [NO_ERRORS_SCHEMA],
   });
 
@@ -22,10 +22,16 @@ describe('ZhongliPlanetBefallContainerComponent', () => {
     expect(spectator.component).toBeTruthy();
   });
 
-  test('タイトルを表示する', () => {
+  test('キャラクター名を表示する', () => {
     const calculatorContent = spectator.element.textContent;
 
-    expect(calculatorContent).toContain('鍾離: 元素爆発「天星」');
+    expect(calculatorContent).toContain('鍾離');
+  });
+
+  test('スキル名を表示する', () => {
+    const calculatorContent = spectator.element.textContent;
+
+    expect(calculatorContent).toContain('元素爆発「天星」');
   });
 
   test('サブタイトルを表示する', () => {

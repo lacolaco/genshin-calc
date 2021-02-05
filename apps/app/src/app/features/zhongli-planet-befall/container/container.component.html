@@ -1,6 +1,9 @@
+<ui-character-nav [thumbnailSrc]="'/assets/images/characters/zhongli.png'" [characterName]="'鍾離'">
+  <div ui-character-nav-item [isActive]="true">元素爆発「天星」</div>
+</ui-character-nav>
+
 <ng-container *ngIf="state$ | async as state">
   <ui-calculator-container>
-    <ui-calculator-title>鍾離: 元素爆発「天星」</ui-calculator-title>
     <ui-calculator-description>スキルダメージ</ui-calculator-description>
 
     <ui-calculation-results
