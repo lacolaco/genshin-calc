@@ -1,0 +1,17 @@
+<ng-container *ngIf="state$ | async as state">
+  <ui-calculator-container>
+    <ui-calculator-description>氷柱ダメージ</ui-calculator-description>
+
+    <ui-calculation-results
+      *ngIf="state.calculation as calculation"
+      [element]="'cryo'"
+      [calculatedDamage]="calculation.calculatedDamage"
+    >
+    </ui-calculation-results>
+
+    <app-ganyu-celestial-shower-calculator-form
+      [value]="state.calculatorParams"
+      (valueChange)="setCalculateParams($event)"
+    ></app-ganyu-celestial-shower-calculator-form>
+  </ui-calculator-container>
+</ng-container>

@@ -1,0 +1,59 @@
+<form [formGroup]="form">
+  <div class="space-y-2">
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">基本ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>固有天賦 (霜華の矢を放った5秒以内の会心率+20%)</li>
+        <li>氷共鳴効果 (氷元素付着または凍結状態の敵に会心率+15%)</li>
+        <li>氷風を彷徨う勇士 4セット効果 (氷元素影響下の敵に会心率+20%、凍結状態の敵にさらに会心率+20%)</li>
+      </ul>
+
+      <ui-form-fields formGroupName="skillDamage">
+        <ui-talent-level-select formControlName="talentLevel"></ui-talent-level-select>
+        <ui-number-input label="攻撃力" formControlName="atk"></ui-number-input>
+      </ui-form-fields>
+      <ui-form-fields formGroupName="critical">
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageBonus">
+      <span class="text-sm font-bold mr-2">ダメージバフ</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>固有天賦 (降衆天華エリア内、氷元素ダメージ+20%)</li>
+        <li>氷風を彷徨う勇士 2セット効果 (氷元素ダメージ+15%)</li>
+        <li>旧貴族のしつけ 2セット効果 (元素爆発ダメージ+20%)</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input mode="percent" label="氷元素ダメージ%" formControlName="elementalDamageBonus">
+        </ui-number-input>
+        <ui-number-input
+          mode="percent"
+          label="元素爆発ダメージ%"
+          formControlName="attackTypeDamageBonus"
+        ></ui-number-input>
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
+      <span class="block text-sm font-bold">ダメージ減衰</span>
+      <ui-form-fields>
+        <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
+        <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎氷元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="氷元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="elementalReaction">
+      <span class="block text-sm font-bold">元素反応</span>
+      <div class="flex flex-col space-y-2">
+        <ui-checkbox formControlName="enableMeltReaction">溶解反応 (ダメージ+50%)</ui-checkbox>
+      </div>
+      <ui-form-fields>
+        <ui-number-input label="元素熟知" formControlName="elementalMastery"></ui-number-input>
+        <ui-number-input mode="percent" label="反応による加算効果%" formControlName="reactionBonus"></ui-number-input>
+      </ui-form-fields>
+    </div>
+  </div>
+</form>

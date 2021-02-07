@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CelestialShowerContainerComponent } from './celestial-shower/container.component';
 import { GanyuContainerComponent } from './container.component';
 import { LiutianArcheryContainerComponent } from './liutian-archery/container.component';
 
@@ -13,6 +14,10 @@ import { LiutianArcheryContainerComponent } from './liutian-archery/container.co
           {
             path: 'liutian-archery',
             component: LiutianArcheryContainerComponent,
+          },
+          {
+            path: 'celestial-shower',
+            component: CelestialShowerContainerComponent,
           },
           {
             path: '**',

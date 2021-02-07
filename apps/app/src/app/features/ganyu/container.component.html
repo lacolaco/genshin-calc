@@ -1,12 +1,21 @@
 <ui-character-nav thumbnailSrc="/assets/images/characters/ganyu.png" characterName="甘雨">
   <a
-    routerLink="liutian-archery"
+    routerLink="./liutian-archery"
     routerLinkActive
-    #rla="routerLinkActive"
+    #rlaNormal="routerLinkActive"
     ui-character-nav-item
-    [isActive]="rla.isActive"
+    [isActive]="rlaNormal.isActive"
   >
     通常攻撃・流天射術
+  </a>
+  <a
+    routerLink="./celestial-shower"
+    routerLinkActive
+    #rlaBurst="routerLinkActive"
+    ui-character-nav-item
+    [isActive]="rlaBurst.isActive"
+  >
+    元素爆発「降衆天華」
   </a>
 </ui-character-nav>
 
