@@ -1,14 +1,14 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UiCalculatorModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
-import { initialState } from '../state';
-import { GanyuLiutianArcheryContainerComponent } from './container.component';
+import { CalculatorFormComponent } from './calculator-form/calculator-form.component';
+import { initialState } from './state';
+import { LiutianArcheryContainerComponent } from './container.component';
 
 describe('GanyuLiutianArcheryContainerComponent', () => {
-  let spectator: Spectator<GanyuLiutianArcheryContainerComponent>;
+  let spectator: Spectator<LiutianArcheryContainerComponent>;
   const createComponent = createComponentFactory({
-    component: GanyuLiutianArcheryContainerComponent,
+    component: LiutianArcheryContainerComponent,
     imports: [UiCalculatorModule],
     declarations: [CalculatorFormComponent],
     schemas: [NO_ERRORS_SCHEMA],

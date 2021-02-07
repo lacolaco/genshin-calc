@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GanyuContainerComponent } from './container.component';
-import { GanyuLiutianArcheryContainerComponent } from './liutian-archery/container/container.component';
+import { LiutianArcheryContainerComponent } from './liutian-archery/container.component';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { GanyuLiutianArcheryContainerComponent } from './liutian-archery/contain
         children: [
           {
             path: 'liutian-archery',
-            component: GanyuLiutianArcheryContainerComponent,
+            component: LiutianArcheryContainerComponent,
           },
           {
             path: '**',
