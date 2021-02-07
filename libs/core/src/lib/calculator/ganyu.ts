@@ -42,3 +42,27 @@ export const calculateGanyuLiutianArchery = createCalculator({
     return stats.atk * (arrowDamageMap[talentLevel] + arrowBloomDamageMap[talentLevel]);
   },
 });
+
+const celestialShowerDamageMap: Record<TalentLevel, number> = {
+  1: 70,
+  2: 76,
+  3: 81,
+  4: 88,
+  5: 93,
+  6: 98,
+  7: 105,
+  8: 112,
+  9: 119,
+  10: 126,
+  11: 133,
+  12: 141,
+  13: 149,
+  14: 158,
+  15: 167,
+};
+
+export const calculateGanyuCelestialShower = createCalculator({
+  getBaseDamage: ({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'atk'>) => {
+    return stats.atk * (celestialShowerDamageMap[talentLevel] / 100);
+  },
+});
