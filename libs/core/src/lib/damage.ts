@@ -1,27 +1,12 @@
-import { ElementalReactions } from './types';
-
-export interface Damage {
-  readonly baseline: number;
-  readonly critical: number;
-  readonly average: number;
-}
-
-export type DamageBonusParams = {
-  elementalDamageBonus?: number;
-  attackTypeDamageBonus?: number;
-  anyDamageBonus?: number;
-};
-
-export interface CriticalParams {
-  readonly criticalRate: number;
-  readonly criticalDamage: number;
-}
-
-export interface AmplificationReactionParams {
-  readonly reaction: ElementalReactions;
-  readonly elementalMastery?: number;
-  readonly reactionBonus?: number;
-}
+import {
+  AmplificationReactionParams,
+  CriticalParams,
+  Damage,
+  DamageBonusParams,
+  DefenseReductionParams,
+  ElementalReactions,
+  ResistanceReductionParams,
+} from './types';
 
 const amplificationReactionMultiplier: Record<ElementalReactions, number> = {
   [ElementalReactions.None]: 1,
@@ -30,8 +15,8 @@ const amplificationReactionMultiplier: Record<ElementalReactions, number> = {
 
 export function calculateOutgoingDamage(
   baseDamage: number,
-  damageBonus?: DamageBonusParams,
   critical?: CriticalParams,
+  damageBonus?: DamageBonusParams,
   amplificationReaction?: AmplificationReactionParams,
 ): Damage {
   const damageBonusMultiplier = damageBonus ? 1 + calculateDamageBonus(damageBonus) : 1;
@@ -71,17 +56,6 @@ function calculateAmplificationBonus({
  */
 function calculateAmplifiedReactionEMBonus(elementalMastery: number): number {
   return (25 / 9) * (elementalMastery / (1400 + elementalMastery));
-}
-
-export interface DefenseReductionParams {
-  readonly characterLevel: number;
-  readonly enemyLevel: number;
-  readonly defenseBonus?: number;
-}
-
-export interface ResistanceReductionParams {
-  readonly baseResistance: number;
-  readonly resistanceBonus?: number;
 }
 
 export function calculateIncomingDamage(

@@ -4,16 +4,16 @@ import { ElementalReactions } from './types';
 describe('発信ダメージが計算される', () => {
   describe('基本発信ダメージは 基礎ダメージ * (1 + ダメージバフ%) で計算される', () => {
     test('基礎ダメージ 100 / ダメージバフ 0% のとき、基本発信ダメージは 100 になる', () => {
-      const outgoingDamage = calculateOutgoingDamage(100, {});
+      const outgoingDamage = calculateOutgoingDamage(100);
       expect(outgoingDamage.baseline).toBeCloseTo(100);
     });
     describe('ダメージバフ%は合算される', () => {
       test('元素ダメージバフ 100% のとき、ダメージバフは 100% になる', () => {
-        const outgoingDamage = calculateOutgoingDamage(100, { elementalDamageBonus: 1 });
+        const outgoingDamage = calculateOutgoingDamage(100, undefined, { elementalDamageBonus: 1 });
         expect(outgoingDamage.baseline).toBeCloseTo(200);
       });
       test('元素ダメージバフ 20% / 攻撃タイプダメージバフ 20% / 与えるダメージバフ 20% のとき、ダメージバフは 60% になる', () => {
-        const outgoingDamage = calculateOutgoingDamage(100, {
+        const outgoingDamage = calculateOutgoingDamage(100, undefined, {
           elementalDamageBonus: 0.2,
           attackTypeDamageBonus: 0.2,
           anyDamageBonus: 0.2,
@@ -25,22 +25,22 @@ describe('発信ダメージが計算される', () => {
 
   describe('会心時の発信ダメージは 基本発信ダメージ * (1 + 会心ダメージ%) で計算される', () => {
     test('基本発信ダメージ 100 / 会心ダメージ 0% のとき、会心時の発信ダメージは 100 になる', () => {
-      const outgoingDamage = calculateOutgoingDamage(100, {}, { criticalRate: 0, criticalDamage: 0 });
+      const outgoingDamage = calculateOutgoingDamage(100, { criticalRate: 0, criticalDamage: 0 });
       expect(outgoingDamage.critical).toBeCloseTo(100);
     });
     test('基本発信ダメージ 100 / 会心ダメージ 100% のとき、会心時の発信ダメージは 200 になる', () => {
-      const outgoingDamage = calculateOutgoingDamage(100, {}, { criticalDamage: 1, criticalRate: 0 });
+      const outgoingDamage = calculateOutgoingDamage(100, { criticalDamage: 1, criticalRate: 0 });
       expect(outgoingDamage.critical).toBeCloseTo(200);
     });
   });
 
   describe('平均発信ダメージは 基本発信ダメージ * (1 + 会心ダメージ * 会心率) で計算される', () => {
     test('基本発信ダメージ 100 / 会心ダメージ 0% / 会心率 0% のとき、平均発信ダメージは 100 になる', () => {
-      const outgoingDamage = calculateOutgoingDamage(100, {}, { criticalRate: 0, criticalDamage: 0 });
+      const outgoingDamage = calculateOutgoingDamage(100, { criticalRate: 0, criticalDamage: 0 });
       expect(outgoingDamage.average).toBeCloseTo(100);
     });
     test('基本発信ダメージ 100 / 会心ダメージ 100% / 会心率 50% のとき、会心時の発信ダメージは 150 になる', () => {
-      const outgoingDamage = calculateOutgoingDamage(100, {}, { criticalRate: 0.5, criticalDamage: 1 });
+      const outgoingDamage = calculateOutgoingDamage(100, { criticalRate: 0.5, criticalDamage: 1 });
       expect(outgoingDamage.average).toBeCloseTo(150);
     });
   });
@@ -50,8 +50,8 @@ describe('発信ダメージが計算される', () => {
       test('基本発信ダメージ 100 / 元素熟知 0 / 元素反応バフ% 0 のとき、増幅反応時の発信ダメージは 150 になる', () => {
         const outgoingDamage = calculateOutgoingDamage(
           100,
-          {},
           { criticalRate: 0, criticalDamage: 0 },
+          {},
           { reaction: ElementalReactions.MeltByCryo, elementalMastery: 0, reactionBonus: 0 },
         );
         expect(outgoingDamage.critical).toBeCloseTo(150);
@@ -59,8 +59,8 @@ describe('発信ダメージが計算される', () => {
       test('基本発信ダメージ 100 / 元素熟知 0 / 元素反応バフ% 100% のとき、増幅反応時の発信ダメージは 300 になる', () => {
         const outgoingDamage = calculateOutgoingDamage(
           100,
-          {},
           { criticalRate: 0, criticalDamage: 0 },
+          {},
           { reaction: ElementalReactions.MeltByCryo, elementalMastery: 0, reactionBonus: 1 },
         );
         expect(outgoingDamage.critical).toBeCloseTo(300);
@@ -69,8 +69,8 @@ describe('発信ダメージが計算される', () => {
         test('基本発信ダメージ 100 / 元素熟知 10 のとき、元素熟知熟知補正が1.970%となり増幅反応時の発信ダメージは 152.96 になる', () => {
           const outgoingDamage = calculateOutgoingDamage(
             100,
-            {},
             { criticalRate: 0, criticalDamage: 0 },
+            {},
             { reaction: ElementalReactions.MeltByCryo, elementalMastery: 10 },
           );
           expect(outgoingDamage.critical).toBeCloseTo(152.96);
@@ -80,8 +80,8 @@ describe('発信ダメージが計算される', () => {
         test('基本発信ダメージ 100 / 元素熟知 0 / 会心ダメージ% 100% のとき、増幅反応時の発信ダメージは 300 になる', () => {
           const outgoingDamage = calculateOutgoingDamage(
             100,
-            {},
             { criticalRate: 0, criticalDamage: 1 },
+            {},
             { reaction: ElementalReactions.MeltByCryo, elementalMastery: 0 },
           );
           expect(outgoingDamage.critical).toBeCloseTo(300);

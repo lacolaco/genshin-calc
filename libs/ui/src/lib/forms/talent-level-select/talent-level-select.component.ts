@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ControlValueAccessor } from '@ngneat/reactive-forms';
 
@@ -24,8 +24,13 @@ export class TalentLevelSelectComponent extends ControlValueAccessor<number> {
 
   value: number | null = null;
 
+  constructor(private readonly cdRef: ChangeDetectorRef) {
+    super();
+  }
+
   writeValue(value: number): void {
     this.value = value;
+    this.cdRef.markForCheck();
   }
 
   onSelect(value: number) {

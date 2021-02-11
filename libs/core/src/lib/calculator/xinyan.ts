@@ -1,4 +1,5 @@
-import { CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
+import { TalentLevelParams, CharacterStatsParams } from '../types';
+import { createCalculator } from './factory';
 
 const riffRevolutionMap = [
   3.41,

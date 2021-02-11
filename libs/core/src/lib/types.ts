@@ -25,3 +25,51 @@ export type Calculation = Readonly<{
 }>;
 
 export type Calculator<Params> = (params: Params) => Calculation;
+
+export interface Damage {
+  readonly baseline: number;
+  readonly critical: number;
+  readonly average: number;
+}
+
+export type TalentLevelParams = {
+  talentLevel: TalentLevel;
+};
+
+export type CharacterStatsParams<P extends keyof CharacterStats> = {
+  stats: Pick<CharacterStats, P>;
+};
+
+export type DamageBonusParams = {
+  readonly elementalDamageBonus?: number;
+  readonly attackTypeDamageBonus?: number;
+  readonly anyDamageBonus?: number;
+};
+
+export interface CriticalParams {
+  readonly criticalRate: number;
+  readonly criticalDamage: number;
+}
+
+export interface AmplificationReactionParams {
+  readonly reaction: ElementalReactions;
+  readonly elementalMastery?: number;
+  readonly reactionBonus?: number;
+}
+
+export interface DefenseReductionParams {
+  readonly characterLevel: number;
+  readonly enemyLevel: number;
+  readonly defenseBonus?: number;
+}
+
+export interface ResistanceReductionParams {
+  readonly baseResistance: number;
+  readonly resistanceBonus?: number;
+}
+
+export type RecursiveNonNullable<T> = T extends Record<string, unknown>
+  ? {
+      [K in keyof T]-?: RecursiveNonNullable<T[K]>;
+    }
+  : NonNullable<T>;

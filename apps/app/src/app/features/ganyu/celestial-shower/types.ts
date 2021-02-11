@@ -1,3 +1,3 @@
-import { calculateGanyuCelestialShower } from '@genshin-calc/core';
+import { calculateGanyuCelestialShower, RecursiveNonNullable } from '@genshin-calc/core';
 
-export type CalculatorParams = Parameters<typeof calculateGanyuCelestialShower>[0];
+export type CalculatorParams = RecursiveNonNullable<Parameters<typeof calculateGanyuCelestialShower>[0]>;

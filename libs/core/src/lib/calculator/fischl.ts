@@ -1,4 +1,5 @@
-import { CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
+import { CharacterStatsParams, TalentLevelParams } from '../types';
+import { createCalculator } from './factory';
 
 const nightriderOzDamageMap = [88.8, 95.5, 102, 111, 118, 124, 133, 142, 151, 160, 169, 178, 189, 189, 189];
 

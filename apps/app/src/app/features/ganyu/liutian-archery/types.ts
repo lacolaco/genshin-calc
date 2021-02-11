@@ -1,3 +1,3 @@
-import { calculateGanyuLiutianArchery } from '@genshin-calc/core';
+import { calculateGanyuLiutianArchery, RecursiveNonNullable } from '@genshin-calc/core';
 
-export type CalculatorParams = Parameters<typeof calculateGanyuLiutianArchery>[0];
+export type CalculatorParams = RecursiveNonNullable<Parameters<typeof calculateGanyuLiutianArchery>[0]>;

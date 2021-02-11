@@ -20,9 +20,13 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   valueChange = new EventEmitter<CalculatorParams>();
 
   readonly form = new FormGroup({
-    skillDamage: new FormGroup({
-      talentLevel: new FormControl<TalentLevel>(),
+    talentLevel: new FormControl<TalentLevel>(),
+    characterStats: new FormGroup({
+      characterLevel: new FormControl<number>(),
       atk: new FormControl<number>(),
+      elementalMastery: new FormControl<number>(),
+      criticalRate: new FormControl<number>(),
+      criticalDamage: new FormControl<number>(),
     }),
     damageBonus: new FormGroup({
       elementalDamageBonus: new FormControl<number>(),
@@ -30,18 +34,12 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
       anyDamageBonus: new FormControl<number>(),
     }),
     damageReduction: new FormGroup({
-      characterLevel: new FormControl<number>(),
       enemyLevel: new FormControl<number>(),
       baseResistance: new FormControl<number>(),
       resistanceBonus: new FormControl<number>(),
     }),
-    critical: new FormGroup({
-      criticalRate: new FormControl<number>(),
-      criticalDamage: new FormControl<number>(),
-    }),
     elementalReaction: new FormGroup({
       enableMeltReaction: new FormControl<boolean>(),
-      elementalMastery: new FormControl<number>(),
       reactionBonus: new FormControl<number>(),
     }),
   });
@@ -51,14 +49,14 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.form.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe(({ skillDamage, damageBonus, damageReduction, critical, elementalReaction }) => {
+      .subscribe(({ talentLevel, characterStats, damageBonus, damageReduction, elementalReaction }) => {
         this.valueChange.emit({
-          talentLevel: skillDamage.talentLevel,
+          talentLevel: talentLevel,
           stats: {
-            atk: skillDamage.atk,
+            atk: characterStats.atk,
           },
           defense: {
-            characterLevel: damageReduction.characterLevel,
+            characterLevel: characterStats.characterLevel,
             enemyLevel: damageReduction.enemyLevel,
           },
           resistance: {
@@ -66,21 +64,19 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
             resistanceBonus: damageReduction.resistanceBonus,
           },
           critical: {
-            criticalRate: critical.criticalRate,
-            criticalDamage: critical.criticalDamage,
+            criticalRate: characterStats.criticalRate,
+            criticalDamage: characterStats.criticalDamage,
           },
           damageBonus: {
             elementalDamageBonus: damageBonus.elementalDamageBonus,
             attackTypeDamageBonus: damageBonus.attackTypeDamageBonus,
             anyDamageBonus: damageBonus.anyDamageBonus,
           },
-          amplificationReaction: elementalReaction.enableMeltReaction
-            ? {
-                reaction: ElementalReactions.MeltByCryo,
-                elementalMastery: elementalReaction.elementalMastery,
-                reactionBonus: elementalReaction.reactionBonus,
-              }
-            : undefined,
+          amplificationReaction: {
+            reaction: elementalReaction.enableMeltReaction ? ElementalReactions.MeltByCryo : ElementalReactions.None,
+            elementalMastery: characterStats.elementalMastery,
+            reactionBonus: elementalReaction.reactionBonus,
+          },
         });
       });
   }
@@ -100,9 +96,13 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
   }: CalculatorParams) {
     this.form.setValue(
       {
-        skillDamage: {
-          talentLevel: talentLevel,
+        talentLevel,
+        characterStats: {
+          characterLevel: defense?.characterLevel ?? 1,
           atk: stats.atk,
+          elementalMastery: amplificationReaction?.elementalMastery ?? 0,
+          criticalRate: critical?.criticalRate ?? 0,
+          criticalDamage: critical?.criticalDamage ?? 0,
         },
         damageBonus: {
           anyDamageBonus: damageBonus?.anyDamageBonus ?? 0,
@@ -110,18 +110,12 @@ export class CalculatorFormComponent implements OnInit, OnDestroy {
           elementalDamageBonus: damageBonus?.elementalDamageBonus ?? 0,
         },
         damageReduction: {
-          characterLevel: defense?.characterLevel ?? 0,
           enemyLevel: defense?.enemyLevel ?? 0,
           baseResistance: resistance?.baseResistance ?? 0,
           resistanceBonus: resistance?.resistanceBonus ?? 0,
         },
-        critical: {
-          criticalRate: critical?.criticalRate ?? 0,
-          criticalDamage: critical?.criticalDamage ?? 0,
-        },
         elementalReaction: {
           enableMeltReaction: amplificationReaction?.reaction === ElementalReactions.MeltByCryo,
-          elementalMastery: amplificationReaction?.elementalMastery ?? 0,
           reactionBonus: amplificationReaction?.reactionBonus ?? 0,
         },
       },

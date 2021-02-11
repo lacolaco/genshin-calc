@@ -1,4 +1,5 @@
-import { CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
+import { TalentLevelParams, CharacterStatsParams } from '../types';
+import { createCalculator } from './factory';
 
 const defToAtkBonusMap = [40, 43, 46, 50, 53, 56, 60, 64, 68, 72, 76, 80, 85, 85, 85] as const;
 

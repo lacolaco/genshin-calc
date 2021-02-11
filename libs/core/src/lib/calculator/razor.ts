@@ -1,4 +1,5 @@
-import { CharacterStatsParams, createCalculator, TalentLevelParams } from './factory';
+import { CharacterStatsParams, TalentLevelParams } from '../types';
+import { createCalculator } from './factory';
 
 const normalAttackSkillDamageMap = [
   [95.9, 82.6, 103, 136],

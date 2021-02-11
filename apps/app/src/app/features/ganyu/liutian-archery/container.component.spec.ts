@@ -1,15 +1,17 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UiCalculatorModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { CharacterStore } from '../character-state';
 import { CalculatorFormComponent } from './calculator-form/calculator-form.component';
-import { initialState } from './state';
 import { LiutianArcheryContainerComponent } from './container.component';
+import { initialState } from './state';
 
 describe('GanyuLiutianArcheryContainerComponent', () => {
   let spectator: Spectator<LiutianArcheryContainerComponent>;
   const createComponent = createComponentFactory({
     component: LiutianArcheryContainerComponent,
     imports: [UiCalculatorModule],
+    providers: [CharacterStore],
     declarations: [CalculatorFormComponent],
     schemas: [NO_ERRORS_SCHEMA],
   });
@@ -30,16 +32,16 @@ describe('GanyuLiutianArcheryContainerComponent', () => {
 
   describe('フォーム入力に従ってダメージを計算する', () => {
     beforeEach(() => {
-      spectator.component.setCalculateParams(initialState.calculatorParams);
+      spectator.component.setCalculateParams(initialState);
     });
 
     test('フォーム入力の変更で計算パラメータを更新する', () => {
       spectator.component.setCalculateParams({
-        ...initialState.calculatorParams,
+        ...initialState,
         talentLevel: 10,
       });
 
-      expect(spectator.component.get().calculatorParams.talentLevel).toBe(10);
+      expect(spectator.component.get().talentLevel).toBe(10);
     });
   });
 
