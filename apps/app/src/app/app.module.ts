@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { AngularFirePerformanceModule } from '@angular/fire/performance';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { environment } from '../environments/environment';
     RazorSteelFangModule,
     BasicAttackModule,
   ],
-  providers: [],
+  providers: [ScreenTrackingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
