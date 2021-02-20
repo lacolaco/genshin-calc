@@ -20,6 +20,10 @@ import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet
           loadChildren: () => import('./features/ganyu/module').then((m) => m.GanyuModule),
         },
         {
+          path: 'noelle',
+          loadChildren: () => import('./features/noelle/module').then((m) => m.NoelleModule),
+        },
+        {
           path: 'albedo-transient-blossoms',
           component: AlbedoTransientBlossomsContainerComponent,
         },

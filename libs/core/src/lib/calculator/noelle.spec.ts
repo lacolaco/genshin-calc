@@ -1,9 +1,9 @@
-import { calculateNoelleSweepingTime } from './noelle';
+import { calculateNoelleSweepingTimeAttack } from './noelle';
 
 describe('Noelle', () => {
   describe('Sweeping Time', () => {
     test('攻撃力と防御力に依存し、星座6凸のフラグとヒット数のパラメータを持つ', () => {
-      const calculation = calculateNoelleSweepingTime({
+      const calculation = calculateNoelleSweepingTimeAttack({
         talentLevel: 10,
         stats: {
           atk: 1500,

@@ -1,0 +1,13 @@
+<ui-calculator-nav thumbnailSrc="/assets/images/characters/noelle.png" characterName="ノエル">
+  <a
+    routerLink="./liutian-archery"
+    routerLinkActive
+    #rlaBurst="routerLinkActive"
+    ui-calculator-nav-item
+    [isActive]="rlaBurst.isActive"
+  >
+    元素爆発「大掃除」
+  </a>
+</ui-calculator-nav>
+
+<router-outlet></router-outlet>

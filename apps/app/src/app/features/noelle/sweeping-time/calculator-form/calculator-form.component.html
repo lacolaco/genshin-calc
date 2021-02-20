@@ -1,0 +1,47 @@
+<form [formGroup]="form">
+  <div class="space-y-2">
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">基本ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500"></ul>
+      <ui-form-fields>
+        <ui-talent-level-select formControlName="talentLevel"></ui-talent-level-select>
+        <ui-number-input label="積算ヒット数 (1〜4)" [min]="1" [max]="4" formControlName="hitCount"></ui-number-input>
+      </ui-form-fields>
+      <ui-form-fields formGroupName="characterStats">
+        <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
+        <ui-number-input label="攻撃力" formControlName="atk"></ui-number-input>
+        <ui-number-input label="防御力" formControlName="def"></ui-number-input>
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+      </ui-form-fields>
+      <ui-checkbox formControlName="enableConstellationLv6">命ノ星座 Lv6（防御力50％相当の攻撃力を追加）</ui-checkbox>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">ダメージバフ</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>岩元素共鳴 (シールド状態で与えるダメージ+15%)</li>
+        <li>逆飛びの流星 4セット効果 (シールド時通常攻撃ダメージ+45%)</li>
+        <li>悠久の磐岩 2セット効果 (岩元素ダメージ+15%)</li>
+      </ul>
+      <ui-form-fields formGroupName="damageBonus">
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
+        <ui-number-input mode="percent" label="岩元素ダメージ%" formControlName="elementalDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="通常攻撃ダメージ%" formControlName="attackTypeDamageBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
+      <span class="block text-sm font-bold">敵ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>岩元素共鳴 (シールド状態でダメージを与えた時岩元素耐性-20%)</li>
+      </ul>
+      <ui-form-fields>
+        <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎岩元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="岩元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+  </div>
+</form>

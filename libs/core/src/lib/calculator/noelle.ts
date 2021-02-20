@@ -15,9 +15,13 @@ const normalAttackSkillDamageMap = [
   [145, 135, 158, 208],
   [156, 145, 171, 224],
   [167, 155, 183, 240],
+  [167, 155, 183, 240],
+  [167, 155, 183, 240],
+  [167, 155, 183, 240],
+  [167, 155, 183, 240],
 ] as const;
 
-export const calculateNoelleSweepingTime = createCalculator({
+export const calculateNoelleSweepingTimeAttack = createCalculator({
   getBaseDamage({
     talentLevel,
     stats,
@@ -32,7 +36,8 @@ export const calculateNoelleSweepingTime = createCalculator({
       (acc, cur) => acc + cur,
       0,
     );
-    const atk = stats.atk + (defToAtkBonusMap[talentLevel - 1] / 100 + (enableConstellationLv6 ? 0.5 : 0)) * stats.def;
+    const atkBonusFromDef = (defToAtkBonusMap[talentLevel - 1] + (enableConstellationLv6 ? 50 : 0)) / 100;
+    const atk = stats.atk + atkBonusFromDef * stats.def;
     return (atk * skillDamage) / 100;
   },
 });

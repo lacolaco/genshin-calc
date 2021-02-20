@@ -39,5 +39,10 @@ export class CalculatorNavComponent {
       path: '/xinyan-riff-revolution',
       thumbnailUrl: '/assets/images/characters/xinyan.png',
     },
+    {
+      name: 'ノエル',
+      path: '/noelle',
+      thumbnailUrl: '/assets/images/characters/noelle.png',
+    },
   ];
 }
