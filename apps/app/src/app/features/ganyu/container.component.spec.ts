@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { UiCharacterNavModule } from '@genshin-calc/ui';
+import { UiCalculatorNavModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { GanyuContainerComponent } from './container.component';
 
@@ -8,7 +8,7 @@ describe('GanyuContainerComponent', () => {
   let spectator: Spectator<GanyuContainerComponent>;
   const createComponent = createComponentFactory({
     component: GanyuContainerComponent,
-    imports: [UiCharacterNavModule, RouterTestingModule],
+    imports: [UiCalculatorNavModule, RouterTestingModule],
     schemas: [NO_ERRORS_SCHEMA],
   });
 

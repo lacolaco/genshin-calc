@@ -1,9 +1,9 @@
-<ui-character-nav thumbnailSrc="/assets/images/characters/ganyu.png" characterName="甘雨">
+<ui-calculator-nav thumbnailSrc="/assets/images/characters/ganyu.png" characterName="甘雨">
   <a
     routerLink="./liutian-archery"
     routerLinkActive
     #rlaNormal="routerLinkActive"
-    ui-character-nav-item
+    ui-calculator-nav-item
     [isActive]="rlaNormal.isActive"
   >
     通常攻撃・流天射術
@@ -12,11 +12,11 @@
     routerLink="./celestial-shower"
     routerLinkActive
     #rlaBurst="routerLinkActive"
-    ui-character-nav-item
+    ui-calculator-nav-item
     [isActive]="rlaBurst.isActive"
   >
     元素爆発「降衆天華」
   </a>
-</ui-character-nav>
+</ui-calculator-nav>
 
 <router-outlet></router-outlet>

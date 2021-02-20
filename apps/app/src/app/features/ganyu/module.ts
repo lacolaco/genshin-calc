@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { UiCharacterNavModule } from '@genshin-calc/ui';
+import { UiCalculatorNavModule } from '@genshin-calc/ui';
 import { GanyuCelestialShowerModule } from './celestial-shower/module';
 import { CharacterStore } from './character-state';
 import { GanyuContainerComponent } from './container.component';
@@ -12,7 +12,7 @@ import { GanyuRoutingModule } from './routing.module';
   imports: [
     GanyuRoutingModule,
     CommonModule,
-    UiCharacterNavModule,
+    UiCalculatorNavModule,
     GanyuLiutianArcheryModule,
     GanyuCelestialShowerModule,
   ],

@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { UiCalculatorModule, UiCharacterNavModule } from '@genshin-calc/ui';
+import { UiCalculatorModule, UiCalculatorNavModule } from '@genshin-calc/ui';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { CalculatorFormComponent } from '../calculator-form/calculator-form.component';
 import { initialState } from '../state';
@@ -10,7 +10,7 @@ describe('ZhongliPlanetBefallContainerComponent', () => {
   const createComponent = createComponentFactory({
     component: ZhongliPlanetBefallContainerComponent,
     declarations: [CalculatorFormComponent],
-    imports: [UiCalculatorModule, UiCharacterNavModule],
+    imports: [UiCalculatorModule, UiCalculatorNavModule],
     schemas: [NO_ERRORS_SCHEMA],
   });
 

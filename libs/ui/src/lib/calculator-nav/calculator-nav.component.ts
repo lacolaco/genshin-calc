@@ -2,12 +2,12 @@ import { Component, ChangeDetectionStrategy, Input, Directive } from '@angular/c
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[ui-character-nav-item]',
+  selector: '[ui-calculator-nav-item]',
   host: {
     '[class]': 'isActive ? classListOnActive : classList',
   },
 })
-export class CharacterNavItemDirective {
+export class CalculatorNavItemDirective {
   @Input() isActive = false;
 
   readonly classList = [
@@ -15,8 +15,8 @@ export class CharacterNavItemDirective {
     'items-center',
     'border-b-2',
     'focus:outline-none',
-    'text-gray-600',
     'hover:text-blue-500',
+    'text-gray-600',
     'px-6',
     'py-2',
   ];
@@ -25,8 +25,8 @@ export class CharacterNavItemDirective {
 }
 
 @Component({
-  selector: 'ui-character-nav',
-  templateUrl: './character-nav.component.html',
+  selector: 'ui-calculator-nav',
+  templateUrl: './calculator-nav.component.html',
   styles: [
     `
       :host {
@@ -36,7 +36,7 @@ export class CharacterNavItemDirective {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CharacterNavComponent {
+export class CalculatorNavComponent {
   @Input()
   characterName!: string;
 
