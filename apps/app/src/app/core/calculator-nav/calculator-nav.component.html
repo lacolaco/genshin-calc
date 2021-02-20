@@ -2,68 +2,15 @@
   <div class="mb-2">
     <span class="text-lg">キャラクターを選択</span>
   </div>
-  <div class="flex flex-col sm:flex-row sm:flex-wrap text-sm">
-    <div class="w-full pb-1 sm:w-1/6 sm:p-1">
-      <a
-        routerLink="/zhongli-planet-befall"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <img src="/assets/images/characters/zhongli.png" class="max-h-12 sm:max-h-16" height="48" />
-        <span class="block font-bold">鍾離</span>
-      </a>
-    </div>
-    <div class="w-full pb-1 sm:w-1/6 sm:p-1">
-      <a
-        routerLink="/ganyu"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <img src="/assets/images/characters/ganyu.png" class="max-h-12 sm:max-h-16" height="48" />
-        <span class="block font-bold">甘雨</span>
-      </a>
-    </div>
-    <div class="w-full pb-1 sm:w-1/6 sm:p-1">
-      <a
-        routerLink="/albedo-transient-blossoms"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <img src="/assets/images/characters/albedo.png" class="max-h-12 sm:max-h-16" height="48" />
-        <span class="block font-bold">アルベド</span>
-      </a>
-    </div>
-    <div class="w-full pb-1 sm:w-1/6 sm:p-1">
-      <a
-        routerLink="/fischl-nightrider-oz"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <img src="/assets/images/characters/fischl.png" class="max-h-12 sm:max-h-16" height="48" />
-        <span class="block font-bold">フィッシュル</span>
-      </a>
-    </div>
-    <div class="w-full pb-1 sm:w-1/6 sm:p-1">
-      <a
-        routerLink="/razor-steel-fang"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <img src="/assets/images/characters/razor.png" class="max-h-12 sm:max-h-16" height="48" />
-        <span class="block font-bold">レザー</span>
-      </a>
-    </div>
-    <div class="w-full pb-1 sm:w-1/6 sm:p-1">
-      <a
-        routerLink="/xinyan-riff-revolution"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <img src="/assets/images/characters/xinyan.png" class="max-h-12 sm:max-h-16" height="48" />
-        <span class="block font-bold">辛炎</span>
-      </a>
-    </div>
-    <div class="w-full pb-1 sm:p-1">
-      <a
-        routerLink="/basic-attack"
-        class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
-      >
-        <span class="block font-bold">汎用ダメージ計算</span>
-      </a>
-    </div>
+
+  <ui-character-nav [characters]="characters"> </ui-character-nav>
+
+  <div class="w-full pb-1 sm:p-1">
+    <a
+      routerLink="/basic-attack"
+      class="flex flex-col items-center space-y-1 p-2 sm:p-4 rounded-md border-2 hover:bg-gray-300"
+    >
+      <span class="block font-bold">汎用ダメージ計算</span>
+    </a>
   </div>
 </div>
