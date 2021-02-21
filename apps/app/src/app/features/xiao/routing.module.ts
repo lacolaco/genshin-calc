@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { XiaoContainerComponent as XiaoContainerComponent } from './container.component';
-import { FormContainerComponent } from './lemniscatic-wind-cycling/container.component';
+import { XiaoContainerComponent } from './container.component';
+import { FormContainerComponent as LemniscaticWindCycling } from './lemniscatic-wind-cycling/container.component';
+import { FormContainerComponent as PlungingAttack } from './plunging-attack/container.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,11 @@ import { FormContainerComponent } from './lemniscatic-wind-cycling/container.com
         children: [
           {
             path: 'lemniscatic-wind-cycling',
-            component: FormContainerComponent,
+            component: LemniscaticWindCycling,
+          },
+          {
+            path: 'plunging-attack',
+            component: PlungingAttack,
           },
           {
             path: '**',

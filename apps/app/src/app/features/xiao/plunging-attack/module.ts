@@ -9,4 +9,4 @@ import { FormContainerComponent } from './container.component';
   declarations: [FormContainerComponent, CalculatorFormComponent],
   imports: [CommonModule, ReactiveFormsModule, UiFormsModule, UiCalculatorModule],
 })
-export class XiaoLemniscaticWindCyclingModule {}
+export class XiaoPlungingAttackModule {}

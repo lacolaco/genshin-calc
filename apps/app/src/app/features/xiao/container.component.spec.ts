@@ -29,6 +29,6 @@ describe('XiaoContainerComponent', () => {
   test('計算機へのリンクを表示する', () => {
     const links = spectator.queryAll('a').map((el) => el.textContent?.trim());
 
-    expect(links).toEqual(['元素スキル「風輪両立」']);
+    expect(links).toEqual(['落下攻撃', '元素スキル「風輪両立」']);
   });
 });

@@ -1,5 +1,14 @@
 <ui-calculator-nav thumbnailSrc="/assets/images/characters/xiao.png" characterName="魈">
   <a
+    routerLink="./plunging-attack"
+    routerLinkActive
+    #rlaPlungingAttack="routerLinkActive"
+    ui-calculator-nav-item
+    [isActive]="rlaPlungingAttack.isActive"
+  >
+    落下攻撃
+  </a>
+  <a
     routerLink="./lemniscatic-wind-cycling"
     routerLinkActive
     #rlaSkill="routerLinkActive"

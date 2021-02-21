@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CriticalParams, DefenseReductionParams } from '@genshin-calc/core';
+import { CriticalParams, DamageBonusParams, DefenseReductionParams, RecursiveNonNullable } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 
 export type CharacterState = {
   stats: {
     atk: number;
   };
+  damageBonus: RecursiveNonNullable<DamageBonusParams>;
   defense: DefenseReductionParams;
   critical: CriticalParams;
 };
@@ -17,6 +18,11 @@ export const initialState: CharacterState = {
   critical: {
     criticalRate: 0.05,
     criticalDamage: 0.5,
+  },
+  damageBonus: {
+    anyDamageBonus: 0,
+    elementalDamageBonus: 0.15,
+    attackTypeDamageBonus: 0,
   },
   defense: {
     characterLevel: 80,
@@ -35,12 +41,16 @@ export class CharacterStore extends RxState<CharacterState> {
   /**
    * @override
    */
-  set({ defense, critical, stats }: CharacterState) {
+  set({ defense, critical, stats, damageBonus }: CharacterState) {
     super.set((state) => ({
       ...state,
       stats: {
         ...state.stats,
         atk: stats.atk ?? state.stats.atk,
+      },
+      damageBonus: {
+        ...state.damageBonus,
+        elementalDamageBonus: damageBonus.elementalDamageBonus ?? state.damageBonus.elementalDamageBonus,
       },
       defense: {
         ...state.defense,

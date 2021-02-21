@@ -1,0 +1,17 @@
+<ng-container *ngIf="state$ | async as state">
+  <ui-calculator-container>
+    <ui-calculator-description>元素爆発「靖妖儺舞」中 高空落下攻撃ダメージ</ui-calculator-description>
+
+    <ui-calculation-results
+      *ngIf="state.calculation as calculation"
+      [element]="'anemo'"
+      [calculatedDamage]="calculation.calculatedDamage"
+    >
+    </ui-calculation-results>
+
+    <app-xiao-plunging-attack-calculator-form
+      [value]="state.calculatorParams"
+      (valueChange)="setCalculateParams($event)"
+    ></app-xiao-plunging-attack-calculator-form>
+  </ui-calculator-container>
+</ng-container>
