@@ -44,5 +44,10 @@ export class CalculatorNavComponent {
       path: '/noelle',
       thumbnailUrl: '/assets/images/characters/noelle.png',
     },
+    {
+      name: '魈',
+      path: '/xiao',
+      thumbnailUrl: '/assets/images/characters/xiao.png',
+    },
   ];
 }

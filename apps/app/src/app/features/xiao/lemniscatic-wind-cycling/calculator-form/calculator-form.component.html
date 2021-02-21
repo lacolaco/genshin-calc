@@ -1,0 +1,41 @@
+<form [formGroup]="form">
+  <div class="space-y-2">
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">基本ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500"></ul>
+      <ui-form-fields>
+        <ui-talent-level-select formControlName="talentLevel"></ui-talent-level-select>
+      </ui-form-fields>
+      <ui-form-fields formGroupName="characterStats">
+        <ui-number-input label="キャラクターレベル" formControlName="characterLevel"></ui-number-input>
+        <ui-number-input label="攻撃力" formControlName="atk"></ui-number-input>
+        <ui-number-input mode="percent" label="会心率%" [max]="100" formControlName="criticalRate"></ui-number-input>
+        <ui-number-input mode="percent" label="会心ダメージ%" formControlName="criticalDamage"></ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4">
+      <span class="text-sm font-bold mr-2">ダメージバフ</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500">
+        <li>翠緑の影 2セット効果 (風元素ダメージ+15%)</li>
+        <li>固有天賦：壊劫・国土砕き (風輪両立発動後7秒間、風輪両立によるダメージ+15%)</li>
+      </ul>
+      <ui-form-fields formGroupName="damageBonus">
+        <ui-number-input mode="percent" label="与えるダメージ%" formControlName="anyDamageBonus"></ui-number-input>
+        <ui-number-input mode="percent" label="風元素ダメージ%" formControlName="elementalDamageBonus">
+        </ui-number-input>
+        <ui-number-input mode="percent" label="元素スキルダメージ%" formControlName="attackTypeDamageBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+    <div class="block border border-gray-500 rounded-md p-4" formGroupName="damageReduction">
+      <span class="block text-sm font-bold">敵ステータス</span>
+      <ul class="block list-inside list-disc text-xs text-gray-500"></ul>
+      <ui-form-fields>
+        <ui-number-input label="敵レベル" formControlName="enemyLevel"></ui-number-input>
+        <ui-number-input mode="percent" label="基礎風元素耐性%" formControlName="baseResistance"></ui-number-input>
+        <ui-number-input mode="percent" label="風元素耐性バフ%" [min]="-100" formControlName="resistanceBonus">
+        </ui-number-input>
+      </ui-form-fields>
+    </div>
+  </div>
+</form>
