@@ -1,9 +1,9 @@
-import { calculateXiaoPlungingAttackDamage, calculateXiaoSkillDamage } from './xiao';
+import { calculateXiaoPlungingAttackDamage, calculateXiaoElementalSkillDamage } from './xiao';
 
 describe('Xiao', () => {
   describe('Skill Damage', () => {
     test('攻撃力に依存する', () => {
-      const calculation = calculateXiaoSkillDamage({
+      const calculation = calculateXiaoElementalSkillDamage({
         talentLevel: 10,
         stats: { atk: 2000 },
       });
@@ -21,7 +21,7 @@ describe('Xiao', () => {
     });
 
     test('Fit to real damage', () => {
-      const { calculatedDamage } = calculateXiaoSkillDamage({
+      const { calculatedDamage } = calculateXiaoElementalSkillDamage({
         talentLevel: 3,
         stats: { atk: 1579 },
         critical: { criticalRate: 0.568, criticalDamage: 0.748 },

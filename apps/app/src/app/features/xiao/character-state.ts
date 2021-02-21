@@ -1,0 +1,58 @@
+import { Injectable } from '@angular/core';
+import { CriticalParams, DefenseReductionParams } from '@genshin-calc/core';
+import { RxState } from '@rx-angular/state';
+
+export type CharacterState = {
+  stats: {
+    atk: number;
+  };
+  defense: DefenseReductionParams;
+  critical: CriticalParams;
+};
+
+export const initialState: CharacterState = {
+  stats: {
+    atk: 1800,
+  },
+  critical: {
+    criticalRate: 0.05,
+    criticalDamage: 0.5,
+  },
+  defense: {
+    characterLevel: 80,
+    enemyLevel: 80,
+    defenseBonus: 0,
+  },
+};
+
+@Injectable()
+export class CharacterStore extends RxState<CharacterState> {
+  constructor() {
+    super();
+    this.set(initialState);
+  }
+
+  /**
+   * @override
+   */
+  set({ defense, critical, stats }: CharacterState) {
+    super.set((state) => ({
+      ...state,
+      stats: {
+        ...state.stats,
+        atk: stats.atk ?? state.stats.atk,
+      },
+      defense: {
+        ...state.defense,
+        characterLevel: defense.characterLevel ?? state.defense.characterLevel,
+        enemyLevel: defense.enemyLevel ?? state.defense.enemyLevel,
+        defenseBonus: defense.defenseBonus ?? state.defense.defenseBonus,
+      },
+      critical: {
+        ...state.critical,
+        criticalDamage: critical.criticalDamage ?? state.critical.criticalDamage,
+        criticalRate: critical.criticalRate ?? state.critical.criticalRate,
+      },
+    }));
+  }
+}
