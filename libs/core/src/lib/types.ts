@@ -13,6 +13,8 @@ export type CharacterStats = {
 
 export type TalentLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
+export type TalentLevelTuple<T> = [T, T, T, T, T, T, T, T, T, T, T, T, T, T, T];
+
 export type CalculatedDamage = {
   baseline: number;
   critical: number;

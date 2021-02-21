@@ -6,6 +6,7 @@ import {
   DamageBonusParams,
   DefenseReductionParams,
   ResistanceReductionParams,
+  TalentLevel,
 } from '../types';
 
 type CalculatorFactory<BaseDamageParams> = {
@@ -44,4 +45,14 @@ export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<Ba
       },
     };
   };
+}
+
+export function createTalentLevelMap<T>(items: T[]): Record<TalentLevel, T> {
+  const length = items.length;
+  if (length < 15) {
+    for (let i = 0; i < 15 - length; i++) {
+      items.push(items[length - 1]);
+    }
+  }
+  return items.reduce((acc, cur, i) => ({ ...acc, [i + 1]: cur }), {} as Record<TalentLevel, T>);
 }

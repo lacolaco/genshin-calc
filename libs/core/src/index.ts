@@ -5,5 +5,6 @@ export * from './lib/calculator/xinyan';
 export * from './lib/calculator/noelle';
 export * from './lib/calculator/fischl';
 export * from './lib/calculator/razor';
+export * from './lib/calculator/xiao';
 export * from './lib/calculator/basic';
 export * from './lib/types';
