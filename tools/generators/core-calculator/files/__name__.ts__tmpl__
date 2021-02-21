@@ -1,0 +1,8 @@
+import { TalentLevelParams, CharacterStatsParams } from '../types';
+import { createCalculator } from './factory';
+
+export const calculate<%= name %>Attack = createCalculator({
+  getBaseDamage({ talentLevel, stats }: TalentLevelParams & CharacterStatsParams<'atk'>) {
+    return 0;
+  },
+});
