@@ -21,7 +21,7 @@ import { FormContainerComponent as PlungingAttack } from './plunging-attack/cont
           },
           {
             path: '**',
-            redirectTo: 'lemniscatic-wind-cycling',
+            redirectTo: 'plunging-attack',
           },
         ],
       },
