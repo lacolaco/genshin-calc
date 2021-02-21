@@ -1,24 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { CharacterNavComponent } from './character-nav.component';
 
 describe('CharacterNavComponent', () => {
-  let component: CharacterNavComponent;
-  let fixture: ComponentFixture<CharacterNavComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CharacterNavComponent],
-    }).compileComponents();
+  let spectator: Spectator<CharacterNavComponent>;
+  const createComponent = createComponentFactory({
+    component: CharacterNavComponent,
+    imports: [RouterTestingModule],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CharacterNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent({});
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

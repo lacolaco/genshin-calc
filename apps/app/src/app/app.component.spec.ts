@@ -1,21 +1,19 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { AppComponent } from './app.component';
-import { CalculatorNavComponent } from './core/calculator-nav/calculator-nav.component';
+import { CoreModule } from './core/core.module';
 
 describe('AppComponent', () => {
   let spectator: Spectator<AppComponent>;
   const createComponent = createComponentFactory({
     component: AppComponent,
-    imports: [RouterTestingModule],
-    declarations: [CalculatorNavComponent],
+    imports: [RouterTestingModule, CoreModule],
   });
 
-  beforeEach(() => {
-    spectator = createComponent();
-  });
+  // beforeEach(() => {});
 
   it('should create', () => {
+    spectator = createComponent();
     expect(spectator.component).toBeDefined();
   });
 });
