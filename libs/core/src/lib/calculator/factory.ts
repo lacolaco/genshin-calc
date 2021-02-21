@@ -9,25 +9,30 @@ import {
   TalentLevel,
 } from '../types';
 
-type CalculatorFactory<BaseDamageParams> = {
+type CalculatorFactory<BaseDamageParams, FixedDamageBonusParams> = {
   getBaseDamage: (params: BaseDamageParams) => number;
+  getFixedDamageBonusParams?: (base: DamageBonusParams, params: FixedDamageBonusParams) => DamageBonusParams;
 };
 
-export function createCalculator<BaseDamageParams>(factory: CalculatorFactory<BaseDamageParams>) {
+export function createCalculator<BaseDamageParams, FixedDamageBonusParams>(
+  factory: CalculatorFactory<BaseDamageParams, FixedDamageBonusParams>,
+) {
   return (
-    params: BaseDamageParams & {
-      damageBonus?: DamageBonusParams;
-      defense?: DefenseReductionParams;
-      resistance?: ResistanceReductionParams;
-      critical?: CriticalParams;
-      amplificationReaction?: AmplificationReactionParams;
-    },
+    params: BaseDamageParams &
+      FixedDamageBonusParams & {
+        damageBonus?: DamageBonusParams;
+        defense?: DefenseReductionParams;
+        resistance?: ResistanceReductionParams;
+        critical?: CriticalParams;
+        amplificationReaction?: AmplificationReactionParams;
+      },
   ): Calculation => {
     const baseDamage = factory.getBaseDamage(params);
+    const getFixedDamageBonusParams = factory.getFixedDamageBonusParams ?? ((base: DamageBonusParams) => base);
     const outgoingDamage = calculateOutgoingDamage(
       baseDamage,
       params.critical,
-      params.damageBonus,
+      getFixedDamageBonusParams(params.damageBonus ?? {}, params),
       params.amplificationReaction,
     );
     const finalDamage = calculateIncomingDamage(outgoingDamage, {
