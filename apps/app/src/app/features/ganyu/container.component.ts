@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { characters } from '@genshin-calc/core';
 
 @Component({
   templateUrl: './container.component.html',
@@ -11,4 +12,6 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class GanyuContainerComponent {}
+export class GanyuContainerComponent {
+  readonly character = characters.ganyu;
+}

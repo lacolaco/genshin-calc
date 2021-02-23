@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 export interface CharacterNavItem {
   path: string;
-  name: string;
+  displayName: string;
   thumbnailUrl: string;
 }
 

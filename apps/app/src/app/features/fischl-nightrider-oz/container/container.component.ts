@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { calculateXinyanRiffRevolution } from '@genshin-calc/core';
+import { calculateFischlNightriderOz, characters } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { useCalculator } from '../../../shared/operators/use-calculator';
 import { initialState, State } from '../state';
@@ -17,7 +17,8 @@ import { CalculatorParams } from '../types';
   ],
 })
 export class ContainerComponent extends RxState<State> {
-  readonly state$ = this.select(useCalculator(calculateXinyanRiffRevolution));
+  readonly character = characters.fischl;
+  readonly state$ = this.select(useCalculator(calculateFischlNightriderOz));
 
   constructor() {
     super();

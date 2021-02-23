@@ -1,7 +1,7 @@
 <nav class="flex flex-col md:flex-row border-b border-gray-400">
   <div class="flex items-center px-6 py-2 space-x-2">
-    <img src="{{ thumbnailSrc }}" height="48" width="48" />
-    <h2 class="font-bold">{{ characterName }}</h2>
+    <img src="{{ character.thumbnailUrl }}" height="48" width="48" />
+    <h2 class="font-bold">{{ character.displayName }}</h2>
   </div>
   <ng-content></ng-content>
 </nav>

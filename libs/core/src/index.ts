@@ -8,3 +8,4 @@ export * from './lib/calculator/razor';
 export * from './lib/calculator/xiao';
 export * from './lib/calculator/basic';
 export * from './lib/types';
+export * from './lib/characters';
