@@ -48,13 +48,8 @@ import { ZhongliPlanetBefallContainerComponent } from './features/zhongli-planet
           component: BasicAttackContainer,
         },
         {
-          path: '',
-          pathMatch: 'full',
-          redirectTo: '/zhongli-planet-befall',
-        },
-        {
           path: '**',
-          redirectTo: '/zhongli-planet-befall',
+          redirectTo: '/',
         },
       ],
       {
