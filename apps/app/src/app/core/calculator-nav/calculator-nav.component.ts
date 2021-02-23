@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { characters } from '@genshin-calc/core';
 import { CharacterNavItem } from '@genshin-calc/ui';
 
 @Component({
@@ -10,44 +11,36 @@ import { CharacterNavItem } from '@genshin-calc/ui';
 export class CalculatorNavComponent {
   readonly characters: CharacterNavItem[] = [
     {
-      name: '鍾離',
       path: '/zhongli-planet-befall',
-      thumbnailUrl: '/assets/images/characters/zhongli.png',
+      ...characters.zhongli,
     },
     {
-      name: '甘雨',
       path: '/ganyu',
-      thumbnailUrl: '/assets/images/characters/ganyu.png',
+      ...characters.ganyu,
     },
     {
-      name: 'アルベド',
       path: '/albedo-transient-blossoms',
-      thumbnailUrl: '/assets/images/characters/albedo.png',
+      ...characters.albedo,
     },
     {
-      name: 'フィッシュル',
       path: '/fischl-nightrider-oz',
-      thumbnailUrl: '/assets/images/characters/fischl.png',
+      ...characters.fischl,
     },
     {
-      name: 'レザー',
       path: '/razor-steel-fang',
-      thumbnailUrl: '/assets/images/characters/razor.png',
+      ...characters.razor,
     },
     {
-      name: '辛炎',
       path: '/xinyan-riff-revolution',
-      thumbnailUrl: '/assets/images/characters/xinyan.png',
+      ...characters.xinyan,
     },
     {
-      name: 'ノエル',
       path: '/noelle',
-      thumbnailUrl: '/assets/images/characters/noelle.png',
+      ...characters.noelle,
     },
     {
-      name: '魈',
       path: '/xiao',
-      thumbnailUrl: '/assets/images/characters/xiao.png',
+      ...characters.xiao,
     },
   ];
 }

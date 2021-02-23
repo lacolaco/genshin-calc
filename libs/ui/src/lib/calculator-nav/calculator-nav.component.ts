@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, Directive } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Directive, Optional, Host, DoCheck } from '@angular/core';
+import { RouterLinkActive } from '@angular/router';
+import { Character } from '@genshin-calc/core';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -7,7 +9,7 @@ import { Component, ChangeDetectionStrategy, Input, Directive } from '@angular/c
     '[class]': 'isActive ? classListOnActive : classList',
   },
 })
-export class CalculatorNavItemDirective {
+export class CalculatorNavItemDirective implements DoCheck {
   @Input() isActive = false;
 
   readonly classList = [
@@ -22,6 +24,14 @@ export class CalculatorNavItemDirective {
   ];
 
   readonly classListOnActive = [...this.classList, 'border-blue-500', 'text-blue-500'];
+
+  constructor(@Optional() @Host() private readonly routerLinkActive?: RouterLinkActive) {}
+
+  ngDoCheck() {
+    if (this.routerLinkActive) {
+      this.isActive = this.routerLinkActive.isActive;
+    }
+  }
 }
 
 @Component({
@@ -38,8 +48,5 @@ export class CalculatorNavItemDirective {
 })
 export class CalculatorNavComponent {
   @Input()
-  characterName!: string;
-
-  @Input()
-  thumbnailSrc!: string;
+  character!: Character;
 }

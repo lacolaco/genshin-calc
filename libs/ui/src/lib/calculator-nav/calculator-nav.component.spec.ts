@@ -1,26 +1,39 @@
+import { characters } from '@genshin-calc/core';
 import { createDirectiveFactory, createHostFactory, SpectatorDirective, SpectatorHost } from '@ngneat/spectator/jest';
 import { CalculatorNavComponent, CalculatorNavItemDirective } from './calculator-nav.component';
 
 describe('CalculatorNavComponent', () => {
   let spectator: SpectatorHost<CalculatorNavComponent>;
-  const createSpectator = createHostFactory({
+  const createHost = createHostFactory({
     component: CalculatorNavComponent,
   });
 
   beforeEach(() => {
-    spectator = createSpectator(
+    spectator = createHost(
       `
-    <ui-calculator-nav>
+    <ui-calculator-nav [character]="character">
       <div ui-calculator-nav-item></div>
       <div ui-calculator-nav-item></div>
     </ui-calculator-nav>
     `,
-      {},
+      {
+        hostProps: {
+          character: characters.albedo,
+        },
+      },
     );
   });
 
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
+  });
+
+  it('should display character name', () => {
+    expect(spectator.element).toContainText(characters.albedo.displayName);
+  });
+
+  it('should display character thumbnail', () => {
+    expect(spectator.query('img')).toHaveAttribute('src', characters.albedo.thumbnailUrl);
   });
 
   it('should project nav items', () => {

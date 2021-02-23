@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { calculateRazorSteelFang } from '@genshin-calc/core';
+import { calculateRazorSteelFang, characters } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { useCalculator } from '../../../shared/operators/use-calculator';
 import { initialState, State } from '../state';
@@ -17,6 +17,7 @@ import { CalculatorParams } from '../types';
   ],
 })
 export class ContainerComponent extends RxState<State> {
+  readonly character = characters.razor;
   readonly state$ = this.select(useCalculator(calculateRazorSteelFang));
 
   constructor() {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { calculateZhongliPlanetBefall } from '@genshin-calc/core';
+import { calculateZhongliPlanetBefall, characters } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { useCalculator } from '../../../shared/operators/use-calculator';
 import { initialState, State } from '../state';
@@ -17,6 +17,7 @@ import { CalculatorParams } from '../types';
   ],
 })
 export class ZhongliPlanetBefallContainerComponent extends RxState<State> {
+  readonly character = characters.zhongli;
   readonly state$ = this.select(useCalculator(calculateZhongliPlanetBefall));
 
   constructor() {

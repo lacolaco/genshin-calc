@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { calculateAlbedoTransientBlossoms } from '@genshin-calc/core';
+import { calculateAlbedoTransientBlossoms, characters } from '@genshin-calc/core';
 import { RxState } from '@rx-angular/state';
 import { useCalculator } from '../../../shared/operators/use-calculator';
 import { initialState, State } from '../state';
@@ -17,6 +17,7 @@ import { CalculatorParams } from '../types';
   ],
 })
 export class AlbedoTransientBlossomsContainerComponent extends RxState<State> {
+  readonly character = characters.albedo;
   readonly state$ = this.select(useCalculator(calculateAlbedoTransientBlossoms));
 
   constructor() {
