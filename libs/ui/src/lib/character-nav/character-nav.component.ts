@@ -4,6 +4,7 @@ export interface CharacterNavItem {
   path: string;
   displayName: string;
   thumbnailUrl: string;
+  hidden?: boolean;
 }
 
 @Component({

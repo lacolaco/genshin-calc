@@ -8,6 +8,10 @@ export const characters = {
     displayName: 'アルベド',
     thumbnailUrl: '/assets/images/characters/albedo.png',
   },
+  diluc: {
+    displayName: 'ディルック',
+    thumbnailUrl: '/assets/images/characters/diluc.png',
+  },
   fischl: {
     displayName: 'フィッシュル',
     thumbnailUrl: '/assets/images/characters/fischl.png',
@@ -15,6 +19,10 @@ export const characters = {
   ganyu: {
     displayName: '甘雨',
     thumbnailUrl: '/assets/images/characters/ganyu.png',
+  },
+  ningguang: {
+    displayName: '凝光',
+    thumbnailUrl: '/assets/images/characters/ningguang.png',
   },
   noelle: {
     displayName: 'ノエル',

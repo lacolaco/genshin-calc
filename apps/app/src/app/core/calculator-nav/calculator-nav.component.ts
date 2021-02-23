@@ -42,5 +42,15 @@ export class CalculatorNavComponent {
       path: '/xiao',
       ...characters.xiao,
     },
+    {
+      path: '/ningguang',
+      ...characters.ningguang,
+      hidden: true,
+    },
+    {
+      path: '/diluc',
+      ...characters.diluc,
+      hidden: true,
+    },
   ];
 }
