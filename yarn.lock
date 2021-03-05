@@ -2028,10 +2028,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngneat/spectator@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ngneat/spectator/-/spectator-7.0.0.tgz#8b6bbc547228f45851f41d1b6698c69e7854692a"
-  integrity sha512-k4CsrPtr+TzxxzjaYDMrA5rEHW3lSL7micQIh0QQ0+BS+kE32S/QVrmhTcGBilPfTnahE/NYNs19P+Kus72njA==
+"@ngneat/spectator@7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@ngneat/spectator/-/spectator-7.0.1.tgz#32343c1d1f2d6e6fd762476fe3c6f7c571621df1"
+  integrity sha512-sUaX77IoCSBy3eVd1wuERe2GyHiMkhLiCSte57tOuYNotLHYj3BID00+bISNnnA/EDAPLCCyZrGPBpCNhGM8eA==
   dependencies:
     "@testing-library/dom" "6.1.0"
     jquery "3.5.0"
