@@ -1,9 +1,13 @@
+const { guessProductionMode } = require('@ngneat/tailwind');
 const colors = require('tailwindcss/colors');
+
+process.env.TAILWIND_MODE = guessProductionMode() ? 'build' : 'watch';
 
 module.exports = {
   prefix: '',
+  mode: 'jit',
   purge: {
-    content: ['./apps/**/*.{html,ts}', './libs/**/*.{html,ts}'],
+    content: ['./apps/**/*.{html,ts,css,scss,sass,less,styl}', './libs/**/*.{html,ts,css,scss,sass,less,styl}'],
   },
   corePlugins: {
     grid: false,
