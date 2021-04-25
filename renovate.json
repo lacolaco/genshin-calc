@@ -1,5 +1,9 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:base",
+    "github>lacolaco/renovate-config:automerge-types",
+    "github>lacolaco/renovate-config:ng-update"
+  ],
   "packageRules": [
     {
       "packagePatterns": ["^@angular-eslint/"],
