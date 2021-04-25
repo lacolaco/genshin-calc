@@ -43,7 +43,7 @@
     "@ngneat/reactive-forms": "1.6.0",
     "@ngrx/component-store": "11.0.0",
     "@rx-angular/state": "1.4.3",
-    "firebase": "8.2.10",
+    "firebase": "8.4.2",
     "rxjs": "6.6.6",
     "tslib": "2.2.0",
     "zone.js": "0.11.4"
