@@ -149,26 +149,37 @@
     ora "5.3.0"
     rxjs "6.6.3"
 
-"@angular-eslint/eslint-plugin-template@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-2.1.1.tgz#0ce5869782e63de69d97d4a53985bd5d95e4d555"
-  integrity sha512-FOz32zszf6mQYv60qR9GuwaiKASsL99BVtubeM0t2GlAMFiVYKoniwhqyfTt9xu0tVachUF7OWvwQ1edbNDjNw==
+"@angular-eslint/eslint-plugin-template@4.2.0", "@angular-eslint/eslint-plugin-template@^4.0.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-4.2.0.tgz#2716583530bf2b20069076994816630e299ab67c"
+  integrity sha512-LC8qqqqVmA/OJAsUt6fQCXLmWP5BL30XFvVsPtrORdxMFt0HI1gvkuz5EVak7PeAXEmerdVarNZr5zmCXIWf3g==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
     aria-query "^4.2.2"
     axobject-query "^2.2.0"
 
-"@angular-eslint/eslint-plugin@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-2.1.1.tgz#4781e15d99e2a3f2599c8e2fdb22a39d8ab0757a"
-  integrity sha512-d+XdGjjt7vSfxP2T6oCXqUcRKxVpojRf6rdCB08f47ABCDlRsi1UL59pJ6h+EHF26UnSxIH2VhM/VdhBrNHcnw==
+"@angular-eslint/eslint-plugin@4.2.0", "@angular-eslint/eslint-plugin@^4.0.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin/-/eslint-plugin-4.2.0.tgz#134203c3ac340ae4ae76703434f636dc0a110d7d"
+  integrity sha512-G8D8Pso6GcHW8vFkUSvgoKPIOtGTqO+eb5aytGtpogMgzxBRyr0juU/9Uz5dAhO6TOERIj1gPpJQ61R/n/Aaew==
   dependencies:
     "@typescript-eslint/experimental-utils" "4.16.1"
 
-"@angular-eslint/template-parser@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/template-parser/-/template-parser-2.1.1.tgz#c6a5625d44de6cc9602847720c40f840d615bb6c"
-  integrity sha512-k5Lrio3wvbtU1kFXYsbjI1njQQu+uSJj/i1wjtLFOyh3Hwy0+h5gVepe6sqQ6kjRNvv099MPEyHj2yG5Re1rpg==
+"@angular-eslint/schematics@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/schematics/-/schematics-4.2.0.tgz#28bb9c67f0cc6c03219cf92220f74c171a613897"
+  integrity sha512-aohGcfYUqN2hFLWaZoOqkLDyYVDFoLC3LwgIknoaDqWkvFG/RUTg1X1pCFjddLQYP5ist8+OppHH+gnYMbftEw==
+  dependencies:
+    "@angular-eslint/eslint-plugin" "4.2.0"
+    "@angular-eslint/eslint-plugin-template" "4.2.0"
+    ignore "5.1.8"
+    strip-json-comments "3.1.1"
+    tmp "0.2.1"
+
+"@angular-eslint/template-parser@^4.0.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/template-parser/-/template-parser-4.2.0.tgz#02f98c72692880b81cd6b4cc137306b346c0b193"
+  integrity sha512-77lJ9MDNWmW4ik9l3g149iO9SGRx3qLGZvfSTwmbPxpCgNripWerla9Ia1X+gLkitI8CLpcpiZybxH3EWxj/qQ==
   dependencies:
     eslint-scope "^5.1.0"
 
@@ -7217,15 +7228,15 @@ ignore-walk@^3.0.3:
   dependencies:
     minimatch "^3.0.4"
 
+ignore@5.1.8, ignore@^5.0.4, ignore@^5.1.4:
+  version "5.1.8"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
+  integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
+
 ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
-
-ignore@^5.0.4, ignore@^5.1.4:
-  version "5.1.8"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
-  integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
 image-size@~0.5.0:
   version "0.5.5"
@@ -12581,7 +12592,7 @@ strip-final-newline@^2.0.0:
   resolved "https://registry.yarnpkg.com/strip-final-newline/-/strip-final-newline-2.0.0.tgz#89b852fb2fcbe936f6f4b3187afb0a12c1ab58ad"
   integrity sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==
 
-strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
+strip-json-comments@3.1.1, strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
@@ -12988,7 +12999,7 @@ tmp@0.0.33, tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
-tmp@~0.2.1:
+tmp@0.2.1, tmp@~0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
   integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
